@@ -1,4 +1,4 @@
-use clap::{Command, Parser, Subcommand};
+use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
 #[clap(author="Jan Vanbuel", version="0.1.0", about="CLI to manage Azure DevOps Personal Access Tokens (PAT)", long_about = None)]
@@ -11,11 +11,40 @@ pub struct Cli {
 #[derive(Subcommand)]
 pub enum Commands {
     /// Create a new PAT token
-    Create { name: Option<String> },
+    Create(CreateOpts),
     /// List all PAT tokens
-    List { all: bool },
+    List(ListOpts),
     /// Show contents of a PAT token
-    Show { id: String },
+    Show(ShowOpts),
     /// Delete a PAT token
-    Delete { all: bool },
+    Delete(DeleteOpts),
+}
+#[derive(clap::Parser)]
+pub struct CreateOpts {
+    pub name: Option<String>,
+    pub lifetime: i32,
+}
+
+#[derive(clap::Parser)]
+pub struct ListOpts {
+    pub all: bool,
+}
+
+#[derive(clap::Parser)]
+pub struct DeleteOpts {
+    pub id: String,
+    pub all: bool,
+}
+
+#[derive(clap::Parser)]
+pub struct ShowOpts {
+    pub id: String,
+    pub out: Output,
+}
+
+#[derive(clap::ValueEnum, Clone)]
+pub enum Output {
+    StdOut,
+    File,
+    Env,
 }

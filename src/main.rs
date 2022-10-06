@@ -1,7 +1,6 @@
 use azure_core::auth::{TokenCredential, TokenResponse};
 use azure_identity::token_credentials::AzureCliCredential;
 use std::error::Error;
-use url::Url;
 mod args;
 use clap::Parser;
 
@@ -47,7 +46,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     println!("{:?}", pat_tokens);
 
     match &cli.command {
-        Some(args::Commands::List { all: true }) => {
+        Some(args::Commands::List(args::ListOpts { all: true })) => {
             println!("patrick List")
         }
         _ => {
