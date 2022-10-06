@@ -785,6 +785,7 @@ dependencies = [
  "azure_svc_batch",
  "clap",
  "reqwest",
+ "serde",
  "tokio",
  "url",
 ]
