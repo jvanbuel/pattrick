@@ -6,11 +6,14 @@ use azure_identity::token_credentials::TokenCredential;
 use reqwest::Client;
 use reqwest::IntoUrl;
 use reqwest::Method;
+use reqwest::StatusCode;
 use serde::Deserialize;
 use serde::Serialize;
 use tabled::Tabled;
 
+use crate::args::DeleteOpts;
 use crate::args::ListOpts;
+use crate::args::ShowOpts;
 
 const AZURE_DEVOPS_PAT_URL: &str = "https://vssps.dev.azure.com/imec-int/_apis/tokens/pats";
 const API_VERSION: &str = "7.1-preview.1";
@@ -18,13 +21,14 @@ const API_VERSION: &str = "7.1-preview.1";
 #[derive(Tabled, Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct PatToken {
+    #[serde(rename = "authorizationId")]
+    pub id: String,
     pub display_name: String,
+    pub valid_from: String,
     pub valid_to: String,
     pub scope: String,
     // #[serde(skip)]
     // pub target_accounts: Vec<String>,
-    pub valid_from: String,
-    pub authorization_id: String,
     // pub token: Option<String>,
 }
 
@@ -33,6 +37,20 @@ pub struct PatToken {
 pub struct ListTokenResponse {
     pub continuation_token: Option<String>,
     pub pat_tokens: Vec<PatToken>,
+}
+#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+pub struct PatTokenResult {
+    pat_token: PatToken,
+    pat_token_error: String,
+}
+#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+pub struct PatTokenCreateRequest {
+    pub all_orgs: bool,
+    pub display_name: String,
+    pub scope: String,
+    pub valid_to: String,
 }
 
 pub struct PatTokenManager {
@@ -66,46 +84,43 @@ impl PatTokenManager {
         Ok(lt_response.pat_tokens)
     }
 
-    pub async fn create_pat_token(self, _valid_to: String) -> Result<PatToken, Box<dyn Error>> {
+    pub async fn create_pat_token(
+        self,
+        create_opts: &PatTokenCreateRequest,
+    ) -> Result<PatToken, Box<dyn Error>> {
         let response = self
-            .client
-            .post(AZURE_DEVOPS_PAT_URL)
-            .bearer_auth(&self.ad_token)
-            .query(&[("api-version", API_VERSION)])
+            .base_request(Method::POST, AZURE_DEVOPS_PAT_URL)
+            .json(create_opts)
             .send()
             .await?;
 
-        println!("{:?}", response.text().await?);
-
-        Ok(PatToken::default())
+        let ct_result = response.json::<PatTokenResult>().await?;
+        Ok(ct_result.pat_token)
     }
 
-    pub async fn delete_pat_token(self, id: String) -> Result<(), Box<dyn Error>> {
+    pub async fn delete_pat_token(
+        self,
+        delete_opts: &DeleteOpts,
+    ) -> Result<StatusCode, Box<dyn Error>> {
         let response = self
-            .client
-            .delete(&format!("{}/{}", AZURE_DEVOPS_PAT_URL, id))
-            .bearer_auth(&self.ad_token)
-            .query(&[("api-version", API_VERSION)])
+            .base_request(Method::DELETE, AZURE_DEVOPS_PAT_URL)
+            .query(&[("authorizationId", &delete_opts.id)])
             .send()
             .await?;
 
-        println!("{:?}", response.text().await?);
-
-        Ok(())
+        Ok(response.status())
     }
 
-    pub async fn show_pat_token(self, id: String) -> Result<PatToken, Box<dyn Error>> {
+    pub async fn show_pat_token(self, show_opts: &ShowOpts) -> Result<PatToken, Box<dyn Error>> {
         let response = self
-            .client
-            .get(&format!("{}/{}", AZURE_DEVOPS_PAT_URL, id))
-            .bearer_auth(&self.ad_token)
-            .query(&[("api-version", API_VERSION)])
+            .base_request(Method::GET, AZURE_DEVOPS_PAT_URL)
+            .query(&[("authorizationId", &show_opts.id)])
             .send()
             .await?;
 
-        println!("{:?}", response.text().await?);
+        let lt_response = response.json::<PatTokenResult>().await?;
 
-        Ok(PatToken::default())
+        Ok(lt_response.pat_token)
     }
 }
 
