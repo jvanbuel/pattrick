@@ -8,22 +8,24 @@ use reqwest::IntoUrl;
 use reqwest::Method;
 use serde::Deserialize;
 use serde::Serialize;
+use tabled::Tabled;
 
 use crate::args::ListOpts;
 
 const AZURE_DEVOPS_PAT_URL: &str = "https://vssps.dev.azure.com/imec-int/_apis/tokens/pats";
 const API_VERSION: &str = "7.1-preview.1";
 
-#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
+#[derive(Tabled, Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct PatToken {
     pub display_name: String,
     pub valid_to: String,
     pub scope: String,
-    pub target_accounts: Vec<String>,
+    // #[serde(skip)]
+    // pub target_accounts: Vec<String>,
     pub valid_from: String,
     pub authorization_id: String,
-    pub token: Option<String>,
+    // pub token: Option<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
@@ -61,9 +63,7 @@ impl PatTokenManager {
 
         let lt_response = response.json::<ListTokenResponse>().await?;
 
-        println!("{:?}", &lt_response);
-
-        Ok(vec![PatToken::default()])
+        Ok(lt_response.pat_tokens)
     }
 
     pub async fn create_pat_token(self, _valid_to: String) -> Result<PatToken, Box<dyn Error>> {

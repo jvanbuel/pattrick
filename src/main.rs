@@ -2,6 +2,7 @@ use std::error::Error;
 mod args;
 use clap::Parser;
 use reqwest::Client;
+use tabled::{Style, Table};
 mod pat;
 
 #[tokio::main]
@@ -26,7 +27,10 @@ async fn main() -> Result<(), Box<dyn Error>> {
         }
         Some(args::Commands::List(list_opts)) => {
             let pat_tokens = &token_manager.list_pat_tokens(list_opts).await?;
-            println!("{:?}", pat_tokens);
+
+            let mut table = Table::new(pat_tokens);
+            table.with(Style::modern());
+            println!("{:#^10}", table.to_string());
         }
         Some(args::Commands::Show(show_opts)) => {
             let pat_token = &token_manager
