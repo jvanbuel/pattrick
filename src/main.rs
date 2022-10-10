@@ -1,4 +1,4 @@
-use std::error::Error;
+use std::{error::Error, path::Path};
 mod args;
 use chrono::Utc;
 use clap::Parser;
@@ -30,13 +30,38 @@ async fn main() -> Result<(), Box<dyn Error>> {
                     .name
                     .clone()
                     .unwrap_or_else(|| petname::petname(2, "-")),
-                scope: "vso.packaging".to_string(),
+                scope: create_opts.scope.to_string(),
                 valid_to: (Utc::now() + chrono::Duration::seconds(create_opts.lifetime))
                     .to_rfc3339(),
             };
 
             let pat_token = token_manager.create_pat_token(&create_request).await?;
-            print_as_table(vec![pat_token]);
+
+            match create_opts.out {
+                args::Output::StdOut => {
+                    print_as_table(vec![pat_token]);
+                }
+                args::Output::DotEnv => {
+                    std::fs::write(
+                        ".env",
+                        format!("{}={}", pat_token.display_name, pat_token.token.unwrap()),
+                    )?;
+                }
+                args::Output::DotNetrc => {
+                    let netrc_path = dirs::home_dir()
+                        .ok_or("Could not find home directory")?
+                        .join(".netrc");
+                    let netrc_contents = std::fs::read_to_string(netrc_path)?;
+                    let netrc = netrc::Netrc::parse(netrc_contents.as_bytes());
+
+                    
+                    println!("{:?}", netrc);
+                    // std::fs::write(
+                    //     "token.txt",
+                    //     format!("{}={}", pat_token.display_name, pat_token.token.unwrap()),
+                    // )?;
+                }
+            }
         }
         Some(args::Commands::List(list_opts)) => {
             let pat_tokens = token_manager.list_pat_tokens(list_opts).await?;

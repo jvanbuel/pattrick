@@ -281,6 +281,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "dirs"
+version = "4.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ca3aa72a6f96ea37bbc5aa912f6788242832f75369bdfdadcb0e38423f100059"
+dependencies = [
+ "dirs-sys",
+]
+
+[[package]]
+name = "dirs-sys"
+version = "0.3.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1b1d1d91c932ef41c0f2663aa8b0ca0342d444d842c06914aa0a7e352d0bada6"
+dependencies = [
+ "libc",
+ "redox_users",
+ "winapi",
+]
+
+[[package]]
 name = "dyn-clone"
 version = "1.0.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -759,6 +779,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "netrc"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c9a91b326434fca226707ed8ec1fd22d4e1c96801abdf10c412afdc7d97116e0"
+
+[[package]]
 name = "num-integer"
 version = "0.1.45"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -885,7 +911,9 @@ dependencies = [
  "azure_svc_batch",
  "chrono",
  "clap 4.0.9",
+ "dirs",
  "emoji",
+ "netrc",
  "petname",
  "reqwest",
  "serde",
@@ -1115,6 +1143,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fb5a58c1855b4b6819d59012155603f0b22ad30cad752600aadfcb695265519a"
 dependencies = [
  "bitflags",
+]
+
+[[package]]
+name = "redox_users"
+version = "0.4.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b033d837a7cf162d7993aded9304e30a83213c648b6e389db233191f891e5c2b"
+dependencies = [
+ "getrandom 0.2.7",
+ "redox_syscall",
+ "thiserror",
 ]
 
 [[package]]

@@ -30,6 +30,13 @@ pub struct CreateOpts {
         help = "Number of seconds the token should be valid for"
     )]
     pub lifetime: i64,
+    #[arg(
+        long,
+        short,
+        default_value = "vso.packaging",
+        help = "Scope of the token"
+    )]
+    pub scope: String,
     #[arg(short, long, value_enum, default_value_t = Output::StdOut)]
     pub out: Output,
 }
@@ -55,6 +62,6 @@ pub struct ShowOpts {
 #[derive(ValueEnum, Clone)]
 pub enum Output {
     StdOut,
-    File,
-    Env,
+    DotNetrc,
+    DotEnv,
 }
