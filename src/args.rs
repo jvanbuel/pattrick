@@ -1,5 +1,4 @@
 use clap::{Parser, Subcommand, ValueEnum};
-
 #[derive(Parser)]
 #[clap(author, version, about="CLI to manage Azure DevOps Personal Access Tokens (PAT)", long_about = None)]
 #[clap(propagate_version = true, arg_required_else_help = true)]
@@ -15,13 +14,13 @@ pub enum Commands {
     /// List all PAT tokens
     List(ListOpts),
     /// Show contents of a PAT token
-    Show(ShowOpts),
+    Get(GetOpts),
     /// Delete a PAT token
     Delete(DeleteOpts),
 }
 #[derive(Parser)]
 pub struct CreateOpts {
-    #[arg()]
+    #[arg(help = "Display name of the PAT token")]
     pub name: Option<String>,
     #[arg(
         long,
@@ -37,12 +36,19 @@ pub struct CreateOpts {
         help = "Scope of the token"
     )]
     pub scope: String,
-    #[arg(short, long, value_enum, default_value_t = Output::StdOut)]
+    #[arg(short, long, value_enum, default_value_t = Output::StdOut, help = "Output format of the token: print to stdout, write to dotenv or netrc")]
     pub out: Output,
 }
 
 #[derive(Parser)]
 pub struct ListOpts {
+    #[arg(
+        default_value_t = false,
+        required = false,
+        short,
+        long,
+        help = "Show all tokens, including expired ones"
+    )]
     pub all: bool,
 }
 
@@ -53,7 +59,7 @@ pub struct DeleteOpts {
 }
 
 #[derive(Parser)]
-pub struct ShowOpts {
+pub struct GetOpts {
     pub id: String,
     #[arg(short, long, value_enum, default_value_t = Output::StdOut)]
     pub out: Output,

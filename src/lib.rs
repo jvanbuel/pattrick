@@ -12,10 +12,6 @@ use serde::Deserialize;
 use serde::Serialize;
 use tabled::Tabled;
 
-use crate::args::DeleteOpts;
-use crate::args::ListOpts;
-use crate::args::ShowOpts;
-
 const AZURE_DEVOPS_PAT_URL: &str = "https://vssps.dev.azure.com/imec-int/_apis/tokens/pats";
 const API_VERSION: &str = "7.1-preview.1";
 
@@ -62,6 +58,33 @@ pub struct PatTokenCreateRequest {
     pub valid_to: String,
 }
 
+#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+pub struct PatTokenListRequest {
+    pub display_filter_option: DisplayFilterOption,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
+pub enum DisplayFilterOption {
+    All,
+    #[default]
+    Active,
+    Expired,
+    Revoked,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+pub struct PatTokenGetRequest {
+    pub authorization_id: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+pub struct PatTokenDeleteRequest {
+    pub authorization_id: String,
+}
+
 pub struct PatTokenManager {
     pub ad_token: String,
     pub client: Client,
@@ -81,10 +104,11 @@ impl PatTokenManager {
     }
     pub async fn list_pat_tokens(
         &self,
-        _list_opts: &ListOpts,
+        list_request: &PatTokenListRequest,
     ) -> Result<Vec<PatToken>, Box<dyn Error>> {
         let response = self
             .base_request(Method::GET, AZURE_DEVOPS_PAT_URL)
+            .query(&[("displayFilterOption", &list_request.display_filter_option)])
             .send()
             .await?;
 
@@ -95,11 +119,11 @@ impl PatTokenManager {
 
     pub async fn create_pat_token(
         self,
-        create_opts: &PatTokenCreateRequest,
+        create_request: &PatTokenCreateRequest,
     ) -> Result<PatToken, Box<dyn Error>> {
         let response = self
             .base_request(Method::POST, AZURE_DEVOPS_PAT_URL)
-            .json(create_opts)
+            .json(create_request)
             .send()
             .await?;
 
@@ -109,21 +133,24 @@ impl PatTokenManager {
 
     pub async fn delete_pat_token(
         self,
-        delete_opts: &DeleteOpts,
+        delete_request: &PatTokenDeleteRequest,
     ) -> Result<StatusCode, Box<dyn Error>> {
         let response = self
             .base_request(Method::DELETE, AZURE_DEVOPS_PAT_URL)
-            .query(&[("authorizationId", &delete_opts.id)])
+            .query(&[("authorizationId", &delete_request.authorization_id)])
             .send()
             .await?;
 
         Ok(response.status())
     }
 
-    pub async fn show_pat_token(self, show_opts: &ShowOpts) -> Result<PatToken, Box<dyn Error>> {
+    pub async fn get_pat_token(
+        self,
+        get_request: &PatTokenGetRequest,
+    ) -> Result<PatToken, Box<dyn Error>> {
         let response = self
             .base_request(Method::GET, AZURE_DEVOPS_PAT_URL)
-            .query(&[("authorizationId", &show_opts.id)])
+            .query(&[("authorizationId", &get_request.authorization_id)])
             .send()
             .await?;
 
