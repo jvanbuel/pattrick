@@ -1,5 +1,6 @@
 use std::error::Error;
 mod args;
+use chrono::Utc;
 use clap::Parser;
 use pat::PatToken;
 use reqwest::{Client, StatusCode};
@@ -28,10 +29,12 @@ async fn main() -> Result<(), Box<dyn Error>> {
                 display_name: create_opts
                     .name
                     .clone()
-                    .unwrap_or_else(|| "pat123".to_string()),
+                    .unwrap_or_else(|| petname::petname(2, "-")),
                 scope: "vso.packaging".to_string(),
-                valid_to: "2022-12-31T23:59:59.9999999".to_string(),
+                valid_to: (Utc::now() + chrono::Duration::seconds(create_opts.lifetime))
+                    .to_rfc3339(),
             };
+
             let pat_token = token_manager.create_pat_token(&create_request).await?;
             print_as_table(vec![pat_token]);
         }
@@ -50,7 +53,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
             match status {
                 &StatusCode::NO_CONTENT => {
                     let id = &delete_opts.id;
-                    let check_mark = emoji::symbols::other_symbol::CHECK_BOX_WITH_CHECK.glyph;
+                    let check_mark = emoji::symbols::other_symbol::CHECK_MARK_BUTTON.glyph;
                     println!("{check_mark} Successfully deleted PAT token with id: {id}");
                 }
                 _ => println!("Error deleting token: {:?}", status),

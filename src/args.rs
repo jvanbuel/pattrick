@@ -1,7 +1,7 @@
 use clap::{Parser, Subcommand, ValueEnum};
 
 #[derive(Parser)]
-#[clap(author="Jan Vanbuel", version="0.1.0", about="CLI to manage Azure DevOps Personal Access Tokens (PAT)", long_about = None)]
+#[clap(author, version, about="CLI to manage Azure DevOps Personal Access Tokens (PAT)", long_about = None)]
 #[clap(propagate_version = true, arg_required_else_help = true)]
 pub struct Cli {
     #[clap(subcommand)]
@@ -21,9 +21,17 @@ pub enum Commands {
 }
 #[derive(Parser)]
 pub struct CreateOpts {
+    #[arg()]
     pub name: Option<String>,
-    #[arg(default_value = "2022-12-31T23:59:59.9999999")]
-    pub lifetime: String,
+    #[arg(
+        long,
+        short,
+        default_value = "120",
+        help = "Number of seconds the token should be valid for"
+    )]
+    pub lifetime: i64,
+    #[arg(short, long, value_enum, default_value_t = Output::StdOut)]
+    pub out: Output,
 }
 
 #[derive(Parser)]
@@ -40,7 +48,7 @@ pub struct DeleteOpts {
 #[derive(Parser)]
 pub struct ShowOpts {
     pub id: String,
-    #[arg(value_enum, default_value_t = Output::StdOut)]
+    #[arg(short, long, value_enum, default_value_t = Output::StdOut)]
     pub out: Output,
 }
 

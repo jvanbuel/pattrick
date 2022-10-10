@@ -3,6 +3,7 @@ use std::error::Error;
 use azure_core::auth::TokenResponse;
 use azure_identity::token_credentials::AzureCliCredential;
 use azure_identity::token_credentials::TokenCredential;
+use chrono::{DateTime, Utc};
 use reqwest::Client;
 use reqwest::IntoUrl;
 use reqwest::Method;
@@ -24,12 +25,20 @@ pub struct PatToken {
     #[serde(rename = "authorizationId")]
     pub id: String,
     pub display_name: String,
-    pub valid_from: String,
-    pub valid_to: String,
+    pub valid_from: DateTime<Utc>,
+    pub valid_to: DateTime<Utc>,
     pub scope: String,
+    #[tabled(display_with = "display_token")]
+    pub token: Option<String>,
     // #[serde(skip)]
     // pub target_accounts: Vec<String>,
-    // pub token: Option<String>,
+}
+
+fn display_token(token: &Option<String>) -> String {
+    match token {
+        Some(token) => token.to_string(),
+        None => "N/A".to_string(),
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
