@@ -2,6 +2,8 @@
 name = "pattrick"
 version = "0.1.0"
 edition = "2021"
+description = "Pattrick is a command line tool for managing Personal Access Tokens (PAT) in Azure DevOps."
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
