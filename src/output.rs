@@ -1,7 +1,7 @@
 use std::{
     error::Error,
     fs::OpenOptions,
-    io::{ErrorKind, Read, Write},
+    io::{ErrorKind, Read, Seek, SeekFrom, Write},
 };
 
 use netrc::Netrc;
@@ -65,6 +65,8 @@ pub fn write_to_netrc(pat_token: PatToken) -> Result<(), Box<dyn Error>> {
     );
 
     netrc_file.set_len(0)?;
+    netrc_file.seek(SeekFrom::Start(0))?;
+
     for hosts in netrc.hosts {
         let host = hosts.0;
         let machine = hosts.1;
@@ -78,5 +80,6 @@ pub fn write_to_netrc(pat_token: PatToken) -> Result<(), Box<dyn Error>> {
             .as_bytes(),
         )?;
     }
+    netrc_file.flush()?;
     Ok(())
 }
