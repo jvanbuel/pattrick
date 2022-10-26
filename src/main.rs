@@ -1,5 +1,3 @@
-use std::error::Error;
-mod args;
 use chrono::Utc;
 use clap::Parser;
 use output::print_as_table;
@@ -8,7 +6,9 @@ use pattrick::DisplayFilterOption;
 use pattrick::PatTokenDeleteRequest;
 use pattrick::PatTokenGetRequest;
 use pattrick::PatTokenListRequest;
+use pattrick_clap as args;
 use reqwest::{Client, StatusCode};
+use std::error::Error;
 
 mod output;
 use pattrick::{get_ad_token_for_devops, PatTokenCreateRequest, PatTokenManager};

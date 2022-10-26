@@ -22,3 +22,14 @@ chrono = "0.4.22"
 petname = "1.1.2"
 netrc = "0.4.1"
 dirs = "4.0.0"
+pattrick-clap = { path = "pattrick-clap" }
+
+[build-dependencies]
+clap = { version = "4.0.9", features = ["derive"] }
+clap_complete = "4.0.3"
+clap_complete_fig = "4.0.1"
+pattrick-clap = { path = "pattrick-clap" }
+
+[workspace]
+# This is a path relative to the workspace root.
+members = ["pattrick-clap"]

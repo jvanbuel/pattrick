@@ -55,6 +55,13 @@ pub struct ListOpts {
 #[derive(Parser)]
 pub struct DeleteOpts {
     pub id: String,
+    #[arg(
+        default_value_t = false,
+        required = false,
+        short,
+        long,
+        help = "Delete all tokens, including expired ones"
+    )]
     pub all: bool,
 }
 
