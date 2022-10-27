@@ -1,5 +1,4 @@
 use clap::CommandFactory;
-use clap_complete;
 use clap_complete_fig::Fig;
 use pattrick_clap::Cli;
 

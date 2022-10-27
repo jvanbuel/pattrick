@@ -84,7 +84,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
                     let check_mark = emoji::symbols::other_symbol::CHECK_MARK_BUTTON.glyph;
                     println!("{check_mark} Successfully deleted PAT token with id: {id}");
                 }
-                _ => println!("Error deleting token: {:?}", status),
+                _ => println!("Error deleting token: {status}"),
             }
         }
         _ => {

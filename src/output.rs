@@ -15,7 +15,7 @@ pub fn print_as_table(pat_tokens: Vec<PatToken>) {
     println!("{:#^10}", table.to_string());
 }
 
-pub fn update_netrc(netrc: &mut Netrc, host: String, machine: netrc::Machine) -> () {
+pub fn update_netrc(netrc: &mut Netrc, host: String, machine: netrc::Machine) {
     if !netrc.hosts.iter().any(|h| h.0 == host) {
         println!(
             "{} Adding host {} to .netrc",
@@ -24,15 +24,14 @@ pub fn update_netrc(netrc: &mut Netrc, host: String, machine: netrc::Machine) ->
         );
         return netrc.hosts.push((host, machine));
     }
-    netrc.hosts.iter_mut().find(|h| h.0 == host).map(|h| {
+    if let Some(h) = netrc.hosts.iter_mut().find(|h| h.0 == host) {
         println!(
             "{} Updating host {} in .netrc",
             emoji::symbols::other_symbol::CHECK_MARK_BUTTON.glyph,
             host
         );
         h.1 = machine
-    });
-    ()
+    };
 }
 
 pub fn write_to_netrc(pat_token: PatToken) -> Result<(), Box<dyn Error>> {
