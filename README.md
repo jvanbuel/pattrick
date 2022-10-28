@@ -13,11 +13,19 @@ PATs without having to go to the web interface.
 
 ## Installation
 
-You can install Pattrick with [Homebrew](https://brew.sh/):
+On MacOs, you can install Pattrick with [Homebrew](https://brew.sh/):
 
 ```bash
 brew tap jvanbuel/pattrick
 brew install pattrick
+```
+
+On Linux, you can install Pattrick by executing the following commands:
+
+```bash
+curl -L https://github.com/jvanbuel/pattrick/releases/download/v0.2.0/pattrick-x86_64-unknown-linux-gnu.tar.gz | tar xvz --strip-components 3
+chmod +x pattrick
+sudo mv pattrick /usr/local/bin/pattrick
 ```
 
 ## Usage
