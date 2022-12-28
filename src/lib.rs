@@ -1,7 +1,10 @@
 use std::error::Error;
+use std::process::Command;
 
+use async_recursion::async_recursion;
 use azure_core::auth::TokenResponse;
-use azure_identity::token_credentials::AzureCliCredential;
+use azure_identity::token_credentials::DefaultAzureCredential;
+use azure_identity::token_credentials::DefaultAzureCredentialError;
 use azure_identity::token_credentials::TokenCredential;
 use chrono::{DateTime, Utc};
 use reqwest::header;
@@ -15,6 +18,7 @@ use tabled::Tabled;
 
 const AZURE_DEVOPS_PAT_URL: &str = "https://vssps.dev.azure.com/imec-int/_apis/tokens/pats";
 const API_VERSION: &str = "7.1-preview.1";
+const DEVOPS_RESOURCE: &str = "499b84ac-1321-427f-aa17-267ca6975798";
 
 #[derive(Tabled, Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
@@ -177,11 +181,26 @@ impl PatTokenManager {
     }
 }
 
+#[async_recursion]
 pub async fn get_ad_token_for_devops() -> Result<TokenResponse, Box<dyn Error>> {
-    let res = AzureCliCredential
-        .get_token("499b84ac-1321-427f-aa17-267ca6975798")
-        .await?;
-    Ok(res)
+    let res = DefaultAzureCredential::default()
+        .get_token(DEVOPS_RESOURCE)
+        .await;
+    match res {
+        Ok(token) => Ok(token),
+        Err(e) => {
+            if let DefaultAzureCredentialError::CredentialUnavailable(_) = e {
+                println!("No credential available. Logging in with az cli");
+                Command::new("az")
+                    .args(vec!["login"])
+                    .output()
+                    .expect("failed to execute process");
+                get_ad_token_for_devops().await
+            } else {
+                Err::<TokenResponse, Box<dyn Error>>(Box::new(e))
+            }
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
