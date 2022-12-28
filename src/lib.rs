@@ -7,7 +7,6 @@ use azure_identity::token_credentials::DefaultAzureCredential;
 use azure_identity::token_credentials::DefaultAzureCredentialError;
 use azure_identity::token_credentials::TokenCredential;
 use chrono::{DateTime, Utc};
-use log::info;
 use reqwest::header;
 use reqwest::Client;
 use reqwest::IntoUrl;
@@ -142,7 +141,7 @@ impl PatTokenManager {
     }
 
     pub async fn create_pat_token(
-        self,
+        &self,
         create_request: &PatTokenCreateRequest,
     ) -> Result<PatToken, Box<dyn Error>> {
         let response = self
@@ -156,7 +155,7 @@ impl PatTokenManager {
     }
 
     pub async fn delete_pat_token(
-        self,
+        &self,
         delete_request: &PatTokenDeleteRequest,
     ) -> Result<StatusCode, Box<dyn Error>> {
         let response = self
@@ -169,7 +168,7 @@ impl PatTokenManager {
     }
 
     pub async fn get_pat_token(
-        self,
+        &self,
         get_request: &PatTokenGetRequest,
     ) -> Result<PatToken, Box<dyn Error>> {
         let response = self
@@ -184,7 +183,7 @@ impl PatTokenManager {
     }
 
     pub async fn get_pat_token_by_name(
-        self,
+        &self,
         name: &str,
     ) -> Result<Option<PatToken>, Box<dyn Error>> {
         let list_request = PatTokenListRequest {

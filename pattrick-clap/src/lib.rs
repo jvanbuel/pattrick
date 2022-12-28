@@ -56,6 +56,9 @@ pub struct ListOpts {
 
 #[derive(Parser)]
 pub struct DeleteOpts {
+    #[arg(default_value_t = String::from(""), required = false, short, long, help = "Name of the token to delete")]
+    pub name: String,
+    #[arg(default_value_t = String::from(""), required = false, short, long, help = "Id of the token to delete")]
     pub id: String,
     #[arg(
         default_value_t = false,

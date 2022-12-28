@@ -74,14 +74,32 @@ async fn main() -> Result<(), Box<dyn Error>> {
             print_as_table(vec![pat_token]);
         }
         Some(args::Commands::Delete(delete_opts)) => {
-            let delete_request = PatTokenDeleteRequest {
-                authorization_id: delete_opts.id.clone(),
-            };
+            if delete_opts.id.is_empty() && delete_opts.name.is_empty() {
+                return Err("Either id or name must be provided".into());
+            }
+            let mut authorization_id = "".to_string();
+            if !delete_opts.name.is_empty() {
+                let token_result = &token_manager
+                    .get_pat_token_by_name(&delete_opts.name)
+                    .await?;
+                match token_result {
+                    Some(token) => {
+                        authorization_id = token.id.clone();
+                    }
+                    None => {
+                        return Err("No PAT token found with that name".into());
+                    }
+                }
+            }
+            if !delete_opts.id.is_empty() {
+                authorization_id = delete_opts.id.clone();
+            }
+            let delete_request = PatTokenDeleteRequest { authorization_id };
             let status = &token_manager.delete_pat_token(&delete_request).await?;
 
             match status {
                 &StatusCode::NO_CONTENT => {
-                    let id = &delete_opts.id;
+                    let id = delete_request.authorization_id;
                     println!("✅ Successfully deleted PAT token with id: {id}");
                 }
                 _ => println!("Error deleting token: {status}"),

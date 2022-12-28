@@ -105,6 +105,24 @@ const completion: Fig.Spec = {
       description: "Delete a PAT token",
       options: [
         {
+          name: ["-n", "--name"],
+          description: "Name of the token to delete",
+          isRepeatable: true,
+          args: {
+            name: "name",
+            isOptional: true,
+          },
+        },
+        {
+          name: ["-i", "--id"],
+          description: "Id of the token to delete",
+          isRepeatable: true,
+          args: {
+            name: "id",
+            isOptional: true,
+          },
+        },
+        {
           name: ["-a", "--all"],
           description: "Delete all tokens, including expired ones",
         },
@@ -117,9 +135,6 @@ const completion: Fig.Spec = {
           description: "Print version information",
         },
       ],
-      args: {
-        name: "id",
-      },
     },
     {
       name: "update",
