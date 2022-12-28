@@ -82,8 +82,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
             match status {
                 &StatusCode::NO_CONTENT => {
                     let id = &delete_opts.id;
-                    let check_mark = emoji::symbols::other_symbol::CHECK_MARK_BUTTON.glyph;
-                    println!("{check_mark} Successfully deleted PAT token with id: {id}");
+                    println!("✅ Successfully deleted PAT token with id: {id}");
                 }
                 _ => println!("Error deleting token: {status}"),
             }

@@ -17,7 +17,6 @@ url = "2.3.1"
 reqwest = "0.11.12"
 serde = "1.0.145"
 tabled = { version = "0.9.0", features = [ "color" ] }
-emoji = "0.2.1"
 chrono = "0.4.22"
 petname = "1.1.2"
 netrc = "0.4.1"
@@ -28,6 +27,7 @@ owo-colors = "3.5.0"
 base64 = "0.20.0"
 self_update = "0.32.0"
 async-recursion = "1.0.0"
+log = "0.4.17"
 
 [build-dependencies]
 clap = { version = "4.0.9", features = ["derive"] }

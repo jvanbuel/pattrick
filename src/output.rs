@@ -19,19 +19,11 @@ pub fn print_as_table(pat_tokens: Vec<PatToken>) {
 
 pub fn update_netrc(netrc: &mut Netrc, host: String, machine: netrc::Machine) {
     if !netrc.hosts.iter().any(|h| h.0 == host) {
-        println!(
-            "{} Adding host {} to .netrc",
-            emoji::symbols::other_symbol::CHECK_MARK_BUTTON.glyph,
-            host
-        );
+        println!("✅ Adding host {host} to .netrc",);
         return netrc.hosts.push((host, machine));
     }
     if let Some(h) = netrc.hosts.iter_mut().find(|h| h.0 == host) {
-        println!(
-            "{} Updating host {} in .netrc",
-            emoji::symbols::other_symbol::CHECK_MARK_BUTTON.glyph,
-            host
-        );
+        println!("✅ Updating host {host} in .netrc",);
         h.1 = machine
     };
 }

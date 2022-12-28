@@ -7,6 +7,7 @@ use azure_identity::token_credentials::DefaultAzureCredential;
 use azure_identity::token_credentials::DefaultAzureCredentialError;
 use azure_identity::token_credentials::TokenCredential;
 use chrono::{DateTime, Utc};
+use log::info;
 use reqwest::header;
 use reqwest::Client;
 use reqwest::IntoUrl;
@@ -190,11 +191,11 @@ pub async fn get_ad_token_for_devops() -> Result<TokenResponse, Box<dyn Error>> 
         Ok(token) => Ok(token),
         Err(e) => {
             if let DefaultAzureCredentialError::CredentialUnavailable(_) = e {
-                println!("No credential available. Logging in with az cli");
+                println!("🔐 No credential available. Logging in with az cli...");
                 Command::new("az")
                     .args(vec!["login"])
                     .output()
-                    .expect("failed to execute process");
+                    .expect("Login failed.");
                 get_ad_token_for_devops().await
             } else {
                 Err::<TokenResponse, Box<dyn Error>>(Box::new(e))
