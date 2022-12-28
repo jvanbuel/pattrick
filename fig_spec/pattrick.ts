@@ -122,6 +122,20 @@ const completion: Fig.Spec = {
       },
     },
     {
+      name: "update",
+      description: "Update Pattrick",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help information",
+        },
+        {
+          name: ["-V", "--version"],
+          description: "Print version information",
+        },
+      ],
+    },
+    {
       name: "help",
       description: "Print this message or the help of the given subcommand(s)",
       subcommands: [
@@ -140,6 +154,10 @@ const completion: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a PAT token",
+        },
+        {
+          name: "update",
+          description: "Update Pattrick",
         },
         {
           name: "help",

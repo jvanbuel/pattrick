@@ -1,4 +1,5 @@
 use chrono::Utc;
+use clap::crate_version;
 use clap::Parser;
 use output::print_as_table;
 use output::write_to_netrc;
@@ -87,9 +88,28 @@ async fn main() -> Result<(), Box<dyn Error>> {
                 _ => println!("Error deleting token: {status}"),
             }
         }
-        _ => {
-            println!("other");
+        Some(args::Commands::Update) => {
+            let current_version = crate_version!();
+            let latest_version = &token_manager.get_latest_version().await?;
+            if latest_version.contains(current_version) {
+                println!("You are running the latest version of pattrick (v{current_version})");
+                return Ok(());
+            }
+            tokio::task::spawn_blocking(|| {
+                let status = self_update::backends::github::Update::configure()
+                    .repo_owner("jvanbuel")
+                    .repo_name("pattrick")
+                    .bin_name("pattrick")
+                    .show_download_progress(true)
+                    .current_version(crate_version!())
+                    .build()
+                    .unwrap()
+                    .update()
+                    .unwrap();
+                println!("Status of update: {status}")
+            });
         }
+        _ => {}
     }
 
     Ok(())

@@ -17,6 +17,8 @@ pub enum Commands {
     Get(GetOpts),
     /// Delete a PAT token
     Delete(DeleteOpts),
+    /// Update Pattrick
+    Update,
 }
 #[derive(Parser)]
 pub struct CreateOpts {

@@ -5,13 +5,15 @@ use std::{
 };
 
 use netrc::Netrc;
-use tabled::{Style, Table};
+use tabled::{locator::ByColumnName, Disable, Style, Table};
 
 use pattrick::PatToken;
 
 pub fn print_as_table(pat_tokens: Vec<PatToken>) {
     let mut table = Table::new(pat_tokens);
     table.with(Style::modern());
+    table.with(Disable::column(ByColumnName::new("token")));
+    table.with(Disable::column(ByColumnName::new("id")));
     println!("{:#^10}", table.to_string());
 }
 

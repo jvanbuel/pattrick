@@ -4,6 +4,7 @@ use azure_core::auth::TokenResponse;
 use azure_identity::token_credentials::AzureCliCredential;
 use azure_identity::token_credentials::TokenCredential;
 use chrono::{DateTime, Utc};
+use reqwest::header;
 use reqwest::Client;
 use reqwest::IntoUrl;
 use reqwest::Method;
@@ -158,6 +159,22 @@ impl PatTokenManager {
 
         Ok(lt_response.pat_token)
     }
+
+    pub async fn get_latest_version(self) -> Result<String, Box<dyn Error>> {
+        let response = self
+            .client
+            .request(
+                Method::GET,
+                "https://api.github.com/repos/jvanbuel/pattrick/releases",
+            )
+            .header(header::USER_AGENT, "Pattrick")
+            .header(header::HOST, "api.github.com")
+            .send()
+            .await?;
+
+        let gh_response = response.json::<Vec<GitHubRelease>>().await?;
+        Ok(gh_response[0].tag_name.clone())
+    }
 }
 
 pub async fn get_ad_token_for_devops() -> Result<TokenResponse, Box<dyn Error>> {
@@ -165,4 +182,12 @@ pub async fn get_ad_token_for_devops() -> Result<TokenResponse, Box<dyn Error>> 
         .get_token("499b84ac-1321-427f-aa17-267ca6975798")
         .await?;
     Ok(res)
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
+pub struct GitHubRelease {
+    url: String,
+    assets_url: String,
+    tag_name: String,
+    published_at: DateTime<Utc>,
 }
