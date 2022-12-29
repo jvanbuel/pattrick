@@ -23,6 +23,7 @@ const completion: Fig.Spec = {
             name: "scope",
             isOptional: true,
             suggestions: [
+              "full-access",
               "agent-pools",
               "agent-pools-manage",
               "build",

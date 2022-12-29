@@ -1,164 +1,29 @@
 use std::error::Error;
 use std::process::Command;
 
+mod model;
 use async_recursion::async_recursion;
 use azure_core::auth::TokenResponse;
 use azure_identity::token_credentials::DefaultAzureCredential;
 use azure_identity::token_credentials::DefaultAzureCredentialError;
 use azure_identity::token_credentials::TokenCredential;
-use chrono::{DateTime, Utc};
-use pattrick_clap::Scope;
+use model::github::GitHubRelease;
+pub use model::{
+    requests::{
+        DisplayFilterOption, ListTokenResponse, PatTokenCreateRequest, PatTokenDeleteRequest,
+        PatTokenGetRequest, PatTokenListRequest, PatTokenResult,
+    },
+    token::PatToken,
+};
 use reqwest::header;
 use reqwest::Client;
 use reqwest::IntoUrl;
 use reqwest::Method;
 use reqwest::StatusCode;
-use serde::Deserialize;
-use serde::Serialize;
-use tabled::Tabled;
 
 const AZURE_DEVOPS_PAT_URL: &str = "https://vssps.dev.azure.com/imec-int/_apis/tokens/pats";
 const API_VERSION: &str = "7.1-preview.1";
 const DEVOPS_RESOURCE: &str = "499b84ac-1321-427f-aa17-267ca6975798";
-
-#[derive(Tabled, Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
-#[serde(rename_all = "camelCase")]
-pub struct PatToken {
-    #[serde(rename = "authorizationId")]
-    pub id: String,
-    pub display_name: String,
-    pub valid_from: DateTime<Utc>,
-    pub valid_to: DateTime<Utc>,
-    #[serde(with = "ScopeDef")]
-    pub scope: Scope,
-    #[tabled(display_with = "display_token")]
-    pub token: Option<String>,
-}
-
-#[derive(Serialize, Deserialize, Default, Debug, Clone, PartialEq, Eq)]
-#[serde(remote = "Scope")]
-enum ScopeDef {
-    #[serde(rename = "vso.agentpools")]
-    AgentPools,
-    #[serde(rename = "vso.agentpools_manage")]
-    AgentPoolsManage,
-    #[serde(rename = "vso.build")]
-    Build,
-    #[serde(rename = "vso.build_execute")]
-    BuildExecute,
-    #[serde(rename = "vso.code")]
-    Code,
-    #[serde(rename = "vso.code_write")]
-    CodeWrite,
-    #[serde(rename = "vso.code_manage")]
-    CodeManage,
-    #[serde(rename = "vso.dashboards")]
-    Dashboards,
-    #[serde(rename = "vso.dashboards_manage")]
-    DashboardsManage,
-    #[serde(rename = "vso.extension")]
-    Extension,
-    #[serde(rename = "vso.extension_manage")]
-    ExtensionManage,
-    #[serde(rename = "vso.governance")]
-    Governance,
-    #[serde(rename = "vso.graph")]
-    Graph,
-    #[serde(rename = "vso.graph_manage")]
-    GraphManage,
-    #[serde(rename = "vso.notification")]
-    Notification,
-    #[serde(rename = "vso.notification_diagnostics")]
-    NotificationDiagnostics,
-    #[default]
-    #[serde(rename = "vso.packaging")]
-    Packaging,
-    #[serde(rename = "vso.packaging_manage")]
-    PackagingManage,
-    #[serde(rename = "vso.packaging_write")]
-    PackagingWrite,
-    #[serde(rename = "vso.profile")]
-    Profile,
-    #[serde(rename = "vso.project")]
-    Project,
-    #[serde(rename = "vso.project_manage")]
-    ProjectManage,
-    #[serde(rename = "vso.release")]
-    Release,
-    #[serde(rename = "vso.release_execute")]
-    ReleaseExecute,
-    #[serde(rename = "vso.security")]
-    Security,
-    #[serde(rename = "vso.security_manage")]
-    SecurityManage,
-    #[serde(rename = "vso.test")]
-    Test,
-    #[serde(rename = "vso.test_write")]
-    TestWrite,
-    #[serde(rename = "vso.work")]
-    Work,
-    #[serde(rename = "vso.work_write")]
-    WorkWrite,
-    #[serde(rename = "vso.wiki")]
-    Wiki,
-    #[serde(rename = "vso.wiki_write")]
-    WikiWrite,
-}
-fn display_token(token: &Option<String>) -> String {
-    match token {
-        Some(token) => token.to_string(),
-        None => "N/A".to_string(),
-    }
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
-#[serde(rename_all = "camelCase")]
-pub struct ListTokenResponse {
-    pub continuation_token: Option<String>,
-    pub pat_tokens: Vec<PatToken>,
-}
-#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
-#[serde(rename_all = "camelCase")]
-pub struct PatTokenResult {
-    pat_token: PatToken,
-    pat_token_error: String,
-}
-#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
-#[serde(rename_all = "camelCase")]
-pub struct PatTokenCreateRequest {
-    pub all_orgs: bool,
-    pub display_name: String,
-    #[serde(with = "ScopeDef")]
-    pub scope: Scope,
-    pub valid_to: String,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
-#[serde(rename_all = "camelCase")]
-pub struct PatTokenListRequest {
-    pub display_filter_option: DisplayFilterOption,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
-pub enum DisplayFilterOption {
-    All,
-    #[default]
-    Active,
-    Expired,
-    Revoked,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
-#[serde(rename_all = "camelCase")]
-pub struct PatTokenGetRequest {
-    pub authorization_id: String,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
-#[serde(rename_all = "camelCase")]
-pub struct PatTokenDeleteRequest {
-    pub authorization_id: String,
-}
 
 pub struct PatTokenManager {
     pub ad_token: String,
@@ -181,6 +46,7 @@ impl PatTokenManager {
         &self,
         list_request: &PatTokenListRequest,
     ) -> Result<Vec<PatToken>, Box<dyn Error>> {
+        println!("{:?}", self.ad_token);
         let mut pat_tokens: Vec<PatToken> = Vec::new();
         let response = self
             .base_request(Method::GET, AZURE_DEVOPS_PAT_URL)
@@ -302,12 +168,4 @@ pub async fn get_ad_token_for_devops() -> Result<TokenResponse, Box<dyn Error>> 
             }
         }
     }
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
-pub struct GitHubRelease {
-    url: String,
-    assets_url: String,
-    tag_name: String,
-    published_at: DateTime<Utc>,
 }

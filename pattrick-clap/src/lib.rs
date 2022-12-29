@@ -89,6 +89,7 @@ pub enum Output {
 
 #[derive(ValueEnum, Clone, Debug, Default, PartialEq, Eq, Display)]
 pub enum Scope {
+    FullAccess,
     AgentPools,
     AgentPoolsManage,
     Build,
