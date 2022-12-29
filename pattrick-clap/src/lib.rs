@@ -1,4 +1,6 @@
 use clap::{Parser, Subcommand, ValueEnum};
+use strum_macros::Display;
+
 #[derive(Parser)]
 #[clap(author, version, about="CLI to manage Azure DevOps Personal Access Tokens (PAT)", long_about = None)]
 #[clap(propagate_version = true, arg_required_else_help = true)]
@@ -34,10 +36,11 @@ pub struct CreateOpts {
     #[arg(
         long,
         short,
-        default_value = "vso.packaging",
+        value_enum,
+        default_value_t = Scope::Packaging,
         help = "Scope of the token"
     )]
-    pub scope: String,
+    pub scope: Scope,
     #[arg(short, long, value_enum, default_value_t = Output::StdOut, help = "Output format of the token: print to stdout, write to dotenv or netrc")]
     pub out: Output,
 }
@@ -82,4 +85,41 @@ pub enum Output {
     StdOut,
     DotNetrc,
     DotEnv,
+}
+
+#[derive(ValueEnum, Clone, Debug, Default, PartialEq, Eq, Display)]
+pub enum Scope {
+    AgentPools,
+    AgentPoolsManage,
+    Build,
+    BuildExecute,
+    Code,
+    CodeWrite,
+    CodeManage,
+    Dashboards,
+    DashboardsManage,
+    Extension,
+    ExtensionManage,
+    Governance,
+    Graph,
+    GraphManage,
+    Notification,
+    NotificationDiagnostics,
+    #[default]
+    Packaging,
+    PackagingManage,
+    PackagingWrite,
+    Profile,
+    Project,
+    ProjectManage,
+    Release,
+    ReleaseExecute,
+    Security,
+    SecurityManage,
+    Test,
+    TestWrite,
+    Work,
+    WorkWrite,
+    Wiki,
+    WikiWrite,
 }

@@ -31,7 +31,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
                     .name
                     .clone()
                     .unwrap_or_else(|| petname::petname(2, "-")),
-                scope: create_opts.scope.to_string(),
+                scope: create_opts.scope.clone(),
                 valid_to: (Utc::now() + chrono::Duration::seconds(create_opts.lifetime))
                     .to_rfc3339(),
             };
