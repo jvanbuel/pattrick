@@ -76,6 +76,20 @@ const completion: Fig.Spec = {
           },
         },
         {
+          name: ["-v", "--verbose"],
+          description: "More output per occurrence",
+          isRepeatable: true,
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Less output per occurrence",
+          exclusiveOn: [
+            "-v",
+            "--verbose",
+          ],
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help information",
         },
@@ -96,6 +110,20 @@ const completion: Fig.Spec = {
         {
           name: ["-a", "--all"],
           description: "Show all tokens, including expired ones",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "More output per occurrence",
+          isRepeatable: true,
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Less output per occurrence",
+          exclusiveOn: [
+            "-v",
+            "--verbose",
+          ],
+          isRepeatable: true,
         },
         {
           name: ["-h", "--help"],
@@ -123,6 +151,20 @@ const completion: Fig.Spec = {
               "dot-env",
             ],
           },
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "More output per occurrence",
+          isRepeatable: true,
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Less output per occurrence",
+          exclusiveOn: [
+            "-v",
+            "--verbose",
+          ],
+          isRepeatable: true,
         },
         {
           name: ["-h", "--help"],
@@ -164,6 +206,20 @@ const completion: Fig.Spec = {
           description: "Delete all tokens, including expired ones",
         },
         {
+          name: ["-v", "--verbose"],
+          description: "More output per occurrence",
+          isRepeatable: true,
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Less output per occurrence",
+          exclusiveOn: [
+            "-v",
+            "--verbose",
+          ],
+          isRepeatable: true,
+        },
+        {
           name: ["-h", "--help"],
           description: "Print help information",
         },
@@ -177,6 +233,20 @@ const completion: Fig.Spec = {
       name: "update",
       description: "Update Pattrick",
       options: [
+        {
+          name: ["-v", "--verbose"],
+          description: "More output per occurrence",
+          isRepeatable: true,
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Less output per occurrence",
+          exclusiveOn: [
+            "-v",
+            "--verbose",
+          ],
+          isRepeatable: true,
+        },
         {
           name: ["-h", "--help"],
           description: "Print help information",
@@ -219,6 +289,20 @@ const completion: Fig.Spec = {
     },
   ],
   options: [
+    {
+      name: ["-v", "--verbose"],
+      description: "More output per occurrence",
+      isRepeatable: true,
+    },
+    {
+      name: ["-q", "--quiet"],
+      description: "Less output per occurrence",
+      exclusiveOn: [
+        "-v",
+        "--verbose",
+      ],
+      isRepeatable: true,
+    },
     {
       name: ["-h", "--help"],
       description: "Print help information",

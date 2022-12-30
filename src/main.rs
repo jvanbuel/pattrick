@@ -16,6 +16,10 @@ use pattrick::{azure::get_ad_token_for_devops, PatTokenCreateRequest, PatTokenMa
 async fn main() -> Result<(), Box<dyn Error>> {
     let cli = args::Cli::parse();
 
+    env_logger::Builder::new()
+        .filter_level(cli.verbose.log_level_filter())
+        .init();
+
     let token_manager = PatTokenManager {
         ad_token: get_ad_token_for_devops().await?.token.secret().to_string(),
         client: Client::new(),
@@ -33,7 +37,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
                 valid_to: (Utc::now() + chrono::Duration::seconds(create_opts.lifetime))
                     .to_rfc3339(),
             };
-
+            log::info!("Creating PAT token with request: {:?}", create_request);
             let pat_token = token_manager.create_pat_token(&create_request).await?;
 
             match create_opts.out {
@@ -60,6 +64,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
                     display_filter_option: DisplayFilterOption::Active,
                 },
             };
+            log::info!("Listing PAT tokens with request: {:?}", list_request);
             let pat_tokens = token_manager.list_pat_tokens(&list_request).await?;
 
             print_as_table(pat_tokens);
@@ -93,6 +98,8 @@ async fn main() -> Result<(), Box<dyn Error>> {
                 authorization_id = delete_opts.id.clone();
             }
             let delete_request = PatTokenDeleteRequest { authorization_id };
+
+            log::info!("Deleting PAT token with request: {:?}", delete_request);
             let status = &token_manager.delete_pat_token(&delete_request).await?;
 
             match status {
@@ -104,12 +111,15 @@ async fn main() -> Result<(), Box<dyn Error>> {
             }
         }
         Some(args::Commands::Update) => {
+            log::info!("Checking for updates...");
             let current_version = crate_version!();
             let latest_version = &token_manager.get_latest_version().await?;
             if latest_version.contains(current_version) {
                 println!("You are running the latest version of pattrick (v{current_version})");
                 return Ok(());
             }
+
+            log::info!("Found new version: {latest_version}. Updating...");
             tokio::task::spawn_blocking(|| {
                 let status = self_update::backends::github::Update::configure()
                     .repo_owner("jvanbuel")

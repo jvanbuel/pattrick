@@ -18,6 +18,7 @@ impl PatTokenManager {
             .send()
             .await?;
 
+        log::debug!("Response: {:#?}", response);
         let mut lt_response = response.json::<ListTokenResponse>().await?;
 
         pat_tokens.append(&mut lt_response.pat_tokens);

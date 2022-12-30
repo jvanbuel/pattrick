@@ -7,6 +7,8 @@ use strum_macros::Display;
 pub struct Cli {
     #[clap(subcommand)]
     pub command: Option<Commands>,
+    #[clap(flatten)]
+    pub verbose: clap_verbosity_flag::Verbosity,
 }
 
 #[derive(Subcommand)]

@@ -15,6 +15,7 @@ impl PatTokenManager {
             .send()
             .await?;
 
+        log::debug!("Response: {:#?}", response);
         Ok(response.status())
     }
 }

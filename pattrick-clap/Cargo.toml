@@ -7,4 +7,5 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "4.0.18", features = ["derive"] }
+clap-verbosity-flag = "2.0.0"
 strum_macros = "0.24.3"

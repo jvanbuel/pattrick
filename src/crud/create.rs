@@ -16,7 +16,8 @@ impl PatTokenManager {
             .json(create_request)
             .send()
             .await?;
-
+            
+        log::debug!("Response: {:#?}", response);
         let ct_result = response.json::<PatTokenResult>().await?;
         Ok(ct_result.pat_token)
     }
