@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 0.3.0 (2022-12-30)
 
 ### New Features
 
@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
-    - add CHANGELOG ([`54c8a6f`](https://github.com/jvanbuel/pattrick/commit/54c8a6f161c0d1c2fad9d38d3a4357579e109cd2))
+    - add CHANGELOG ([`adef280`](https://github.com/jvanbuel/pattrick/commit/adef280c7eb02f4383fcc483cf12a59114d241c3))
     - manually bump version to 0.3.0 ([`20d51de`](https://github.com/jvanbuel/pattrick/commit/20d51de92c9fc6d7b70b6ffce7c2a01152d60e9b))
     - support multiple scopes for PAT creation ([`1db6804`](https://github.com/jvanbuel/pattrick/commit/1db6804a5b6259c553a17bf18142271b476b14e8))
     - add logging ([`13d2d91`](https://github.com/jvanbuel/pattrick/commit/13d2d91df5b061b2924595729fe3deeb2ba02d46))
