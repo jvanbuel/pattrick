@@ -3,6 +3,7 @@ name = "pattrick"
 version = "0.3.0"
 edition = "2021"
 description = "Pattrick is a command line tool for managing Personal Access Tokens (PAT) in Azure DevOps."
+repository = "https://github.com/jvanbuel/pattrick"
 license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -21,7 +22,7 @@ chrono = "0.4.22"
 petname = "1.1.2"
 netrc = "0.4.1"
 dirs = "4.0.0"
-pattrick-clap = { path = "pattrick-clap" }
+pattrick-clap = { version = "0.3.0", path = "pattrick-clap" }
 openssl = { version = "0.10.42", features = ["vendored"] }
 owo-colors = "3.5.0"
 base64 = "0.20.0"
@@ -36,7 +37,7 @@ strum_macros = "0.24.3"
 clap = { version = "4.0.9", features = ["derive"] }
 clap_complete = "4.0.3"
 clap_complete_fig = "4.0.1"
-pattrick-clap = { path = "pattrick-clap" }
+pattrick-clap = { version = "0.3.0", path = "pattrick-clap" }
 
 [workspace]
 # This is a path relative to the workspace root.
