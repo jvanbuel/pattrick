@@ -1175,6 +1175,7 @@ dependencies = [
  "reqwest",
  "self_update",
  "serde",
+ "serde_json",
  "tabled",
  "tokio",
  "url",

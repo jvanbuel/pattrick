@@ -20,10 +20,14 @@ pub enum ScopeDef {
     CodeWrite,
     #[serde(rename = "vso.code_manage")]
     CodeManage,
+    #[serde(rename = "vso.code_full")]
+    CodeFull,
     #[serde(rename = "vso.dashboards")]
     Dashboards,
     #[serde(rename = "vso.dashboards_manage")]
     DashboardsManage,
+    #[serde(rename = "vso.drop_write")]
+    DropWrite,
     #[serde(rename = "vso.extension")]
     Extension,
     #[serde(rename = "vso.extension_manage")]

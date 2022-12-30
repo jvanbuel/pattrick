@@ -46,7 +46,6 @@ impl PatTokenManager {
         &self,
         list_request: &PatTokenListRequest,
     ) -> Result<Vec<PatToken>, Box<dyn Error>> {
-        println!("{:?}", self.ad_token);
         let mut pat_tokens: Vec<PatToken> = Vec::new();
         let response = self
             .base_request(Method::GET, AZURE_DEVOPS_PAT_URL)
