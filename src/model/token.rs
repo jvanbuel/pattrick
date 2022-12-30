@@ -5,6 +5,8 @@ use tabled::Tabled;
 
 use crate::model::scope::ScopeDef;
 
+use super::scope::ScopeWrapper;
+
 #[derive(Tabled, Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct PatToken {
@@ -38,14 +40,26 @@ fn display_scopes(scopes: &Vec<Scope>) -> String {
     scope_string
 }
 
-fn scopes_to_string<S>(scopes: &Vec<Scope>, serializer: S) -> Result<S::Ok, S::Error>
+pub fn scopes_to_string<S>(scopes: &Vec<Scope>, serializer: S) -> Result<S::Ok, S::Error>
 where
     S: serde::Serializer,
 {
-    serializer.serialize_str(&display_scopes(scopes))
+    let mut serialized_scopes = String::new();
+
+    for scope in scopes {
+        serialized_scopes.push_str(
+            serde_json::to_value(&ScopeWrapper(scope))
+                .unwrap()
+                .as_str()
+                .unwrap_or_else(|| panic!("Failed to serialize scope: {scope}")),
+        );
+        serialized_scopes.push(' ');
+    }
+    log::debug!("Serialized scopes: {}", serialized_scopes);
+    serializer.serialize_str(serialized_scopes.as_str())
 }
 
-fn scopes_from_string<'de, D>(deserializer: D) -> Result<Vec<Scope>, D::Error>
+pub fn scopes_from_string<'de, D>(deserializer: D) -> Result<Vec<Scope>, D::Error>
 where
     D: Deserializer<'de>,
 {

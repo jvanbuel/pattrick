@@ -1206,6 +1206,7 @@ dependencies = [
  "self_update",
  "serde",
  "serde_json",
+ "strum_macros",
  "tabled",
  "tokio",
  "url",

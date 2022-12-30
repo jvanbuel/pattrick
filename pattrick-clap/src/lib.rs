@@ -39,10 +39,10 @@ pub struct CreateOpts {
         long,
         short,
         value_enum,
-        default_value_t = Scope::Packaging,
+        default_values_t = vec![Scope::Packaging],
         help = "Scope of the token"
     )]
-    pub scope: Scope,
+    pub scope: Vec<Scope>,
     #[arg(short, long, value_enum, default_value_t = Output::StdOut, help = "Output format of the token: print to stdout, write to dotenv or netrc")]
     pub out: Output,
 }

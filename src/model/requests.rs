@@ -1,5 +1,4 @@
-use crate::model::scope::ScopeDef;
-use crate::model::token::PatToken;
+use crate::model::token::{scopes_from_string, scopes_to_string, PatToken};
 use pattrick_clap::Scope;
 use serde::{Deserialize, Serialize};
 
@@ -20,8 +19,11 @@ pub struct PatTokenResult {
 pub struct PatTokenCreateRequest {
     pub all_orgs: bool,
     pub display_name: String,
-    #[serde(with = "ScopeDef")]
-    pub scope: Scope,
+    #[serde(
+        deserialize_with = "scopes_from_string",
+        serialize_with = "scopes_to_string"
+    )]
+    pub scope: Vec<Scope>,
     pub valid_to: String,
 }
 

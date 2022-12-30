@@ -76,3 +76,6 @@ pub enum ScopeDef {
     #[serde(rename = "vso.wiki_write")]
     WikiWrite,
 }
+
+#[derive(serde::Serialize)]
+pub struct ScopeWrapper<'a>(#[serde(with = "ScopeDef")] pub &'a Scope);
