@@ -49,7 +49,7 @@ fn scopes_from_string<'de, D>(deserializer: D) -> Result<Vec<Scope>, D::Error>
 where
     D: Deserializer<'de>,
 {
-    let s: &str = Deserialize::deserialize(deserializer)?;
+    let s = String::deserialize(deserializer)?;
     let scopes = s
         .split_ascii_whitespace()
         .into_iter()
@@ -60,4 +60,26 @@ where
         })
         .collect();
     Ok(scopes)
+}
+
+#[test]
+fn test_deserialize_scopes_single() {
+    let test_case: &str = "vso.packaging";
+    let deserializer: serde::de::value::StrDeserializer<'_, serde::de::value::Error> =
+        test_case.into_deserializer();
+    assert_eq!(
+        scopes_from_string(deserializer).unwrap(),
+        vec![Scope::Packaging]
+    )
+}
+
+#[test]
+fn test_deserialize_scopes_multiple() {
+    let test_case: &str = "vso.packaging vso.code_write";
+    let deserializer: serde::de::value::StrDeserializer<'_, serde::de::value::Error> =
+        test_case.into_deserializer();
+    assert_eq!(
+        scopes_from_string(deserializer).unwrap(),
+        vec![Scope::Packaging, Scope::CodeWrite]
+    )
 }
