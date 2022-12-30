@@ -10,7 +10,7 @@ use reqwest::{Client, StatusCode};
 use std::error::Error;
 
 mod output;
-use pattrick::{get_ad_token_for_devops, PatTokenCreateRequest, PatTokenManager};
+use pattrick::{azure::get_ad_token_for_devops, PatTokenCreateRequest, PatTokenManager};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
