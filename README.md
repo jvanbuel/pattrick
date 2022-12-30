@@ -23,7 +23,7 @@ brew install pattrick
 On Linux, you can install Pattrick by executing the following commands:
 
 ```bash
-curl -L https://github.com/jvanbuel/pattrick/releases/download/v0.2.0/pattrick-x86_64-unknown-linux-gnu.tar.gz | tar xvz --strip-components 3
+curl -L https://github.com/jvanbuel/pattrick/releases/download/v0.3.0/pattrick-x86_64-unknown-linux-gnu.tar.gz | tar xvz
 chmod +x pattrick
 sudo mv pattrick /usr/local/bin/pattrick
 ```
@@ -39,8 +39,8 @@ az login
 ## Usage as standalone library
 
 You can also use Pattrick as a standalone library. This is useful if you want to manage PATS programmatically in your own codebase.
-`
 
 ```rust
 use pattrick::PatManager;
+
 ```
