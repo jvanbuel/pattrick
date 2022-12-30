@@ -62,24 +62,28 @@ where
     Ok(scopes)
 }
 
-#[test]
-fn test_deserialize_scopes_single() {
-    let test_case: &str = "vso.packaging";
-    let deserializer: serde::de::value::StrDeserializer<'_, serde::de::value::Error> =
-        test_case.into_deserializer();
-    assert_eq!(
-        scopes_from_string(deserializer).unwrap(),
-        vec![Scope::Packaging]
-    )
-}
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_deserialize_scopes_single() {
+        let test_case: &str = "vso.packaging";
+        let deserializer: serde::de::value::StrDeserializer<'_, serde::de::value::Error> =
+            test_case.into_deserializer();
+        assert_eq!(
+            scopes_from_string(deserializer).unwrap(),
+            vec![Scope::Packaging]
+        )
+    }
 
-#[test]
-fn test_deserialize_scopes_multiple() {
-    let test_case: &str = "vso.packaging vso.code_write";
-    let deserializer: serde::de::value::StrDeserializer<'_, serde::de::value::Error> =
-        test_case.into_deserializer();
-    assert_eq!(
-        scopes_from_string(deserializer).unwrap(),
-        vec![Scope::Packaging, Scope::CodeWrite]
-    )
+    #[test]
+    fn test_deserialize_scopes_multiple() {
+        let test_case: &str = "vso.packaging vso.code_write";
+        let deserializer: serde::de::value::StrDeserializer<'_, serde::de::value::Error> =
+            test_case.into_deserializer();
+        assert_eq!(
+            scopes_from_string(deserializer).unwrap(),
+            vec![Scope::Packaging, Scope::CodeWrite]
+        )
+    }
 }

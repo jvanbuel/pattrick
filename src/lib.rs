@@ -2,7 +2,7 @@ use std::error::Error;
 pub mod azure;
 mod crud;
 mod model;
-use model::github::GitHubRelease;
+use model::release::GitHubRelease;
 pub use model::{
     requests::{
         DisplayFilterOption, ListTokenResponse, PatTokenCreateRequest, PatTokenDeleteRequest,
