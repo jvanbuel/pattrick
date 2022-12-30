@@ -1,0 +1,42 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## Unreleased
+
+### New Features
+
+ - <csr-id-b202c5ab3445cd9b73b253e3e1915e51a33b9c07/> use enums for token scope
+ - <csr-id-641778af1a55c4552a00dc27ec49a7188a509c02/> possibility of removal by name instead of id
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 11 commits contributed to the release over the course of 65 calendar days.
+ - 2 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - add CHANGELOG ([`54c8a6f`](https://github.com/jvanbuel/pattrick/commit/54c8a6f161c0d1c2fad9d38d3a4357579e109cd2))
+    - manually bump version to 0.3.0 ([`20d51de`](https://github.com/jvanbuel/pattrick/commit/20d51de92c9fc6d7b70b6ffce7c2a01152d60e9b))
+    - support multiple scopes for PAT creation ([`1db6804`](https://github.com/jvanbuel/pattrick/commit/1db6804a5b6259c553a17bf18142271b476b14e8))
+    - add logging ([`13d2d91`](https://github.com/jvanbuel/pattrick/commit/13d2d91df5b061b2924595729fe3deeb2ba02d46))
+    - custom deserialization for scopes ([`9559315`](https://github.com/jvanbuel/pattrick/commit/955931562233ce9055546da2f799fac1c1cdd13a))
+    - refactor ([`f32690e`](https://github.com/jvanbuel/pattrick/commit/f32690e59c380015c3374a41df099d216cadcdd7))
+    - use enums for token scope ([`b202c5a`](https://github.com/jvanbuel/pattrick/commit/b202c5ab3445cd9b73b253e3e1915e51a33b9c07))
+    - possibility of removal by name instead of id ([`641778a`](https://github.com/jvanbuel/pattrick/commit/641778af1a55c4552a00dc27ec49a7188a509c02))
+    - save progress ([`dea5ce2`](https://github.com/jvanbuel/pattrick/commit/dea5ce23c62cdd896ccd8379b437e7b9a31a5196))
+    - updating versions ([`6494376`](https://github.com/jvanbuel/pattrick/commit/6494376b38eac5de0e76184c8b3fc4ef64435f34))
+    - split clap cli into different crate for fig spec generation ([`949f90b`](https://github.com/jvanbuel/pattrick/commit/949f90ba77014dde215cda1d90a283e73aa25c85))
+</details>
+
