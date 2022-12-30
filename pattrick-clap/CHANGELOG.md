@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 11 commits contributed to the release over the course of 65 calendar days.
+ - 13 commits contributed to the release over the course of 65 calendar days.
  - 2 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
 
@@ -27,6 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - add licensen and description to pattrick-clap ([`f447953`](https://github.com/jvanbuel/pattrick/commit/f447953ed3ad5cde4133e9e5b15eae09457efc24))
+    - Release pattrick-clap v0.3.0, pattrick v0.3.0 ([`7f588f6`](https://github.com/jvanbuel/pattrick/commit/7f588f68b3eefc999f0a8521c350677fda36ca89))
     - add CHANGELOG ([`adef280`](https://github.com/jvanbuel/pattrick/commit/adef280c7eb02f4383fcc483cf12a59114d241c3))
     - manually bump version to 0.3.0 ([`20d51de`](https://github.com/jvanbuel/pattrick/commit/20d51de92c9fc6d7b70b6ffce7c2a01152d60e9b))
     - support multiple scopes for PAT creation ([`1db6804`](https://github.com/jvanbuel/pattrick/commit/1db6804a5b6259c553a17bf18142271b476b14e8))
