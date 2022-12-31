@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 1 commit contributed to the release.
+ - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - add repo to Cargo.toml ([`a7356b4`](https://github.com/jvanbuel/pattrick/commit/a7356b4baef648e741cb1197d36a496bedd54f79))
+</details>
+
 ## 0.3.0 (2022-12-30)
 
 ### New Features
@@ -16,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 13 commits contributed to the release over the course of 65 calendar days.
+ - 14 commits contributed to the release over the course of 65 calendar days.
  - 2 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
 
@@ -27,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - Release pattrick-clap v0.3.0, pattrick v0.3.0 ([`c3b6d6e`](https://github.com/jvanbuel/pattrick/commit/c3b6d6edfaf7aee39eacb926154031f23af4acf0))
     - add licensen and description to pattrick-clap ([`f447953`](https://github.com/jvanbuel/pattrick/commit/f447953ed3ad5cde4133e9e5b15eae09457efc24))
     - Release pattrick-clap v0.3.0, pattrick v0.3.0 ([`7f588f6`](https://github.com/jvanbuel/pattrick/commit/7f588f68b3eefc999f0a8521c350677fda36ca89))
     - add CHANGELOG ([`adef280`](https://github.com/jvanbuel/pattrick/commit/adef280c7eb02f4383fcc483cf12a59114d241c3))
