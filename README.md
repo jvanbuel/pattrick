@@ -30,10 +30,23 @@ sudo mv pattrick /usr/local/bin/pattrick
 
 ## Usage
 
-Pattrick looks for Azure CLI credentials to fetch an access token for authentication with Azure DevOps. If you haven't logged in yet, you can do so with:
+Pattrick looks for Azure CLI credentials to fetch an access token for authentication with Azure DevOps. You can get one locally by logging in to Azure with:
 
 ```bash
 az login
+```
+If `pattrick` cannot find a valid access token, it will try to log you in automatically (by using the `az login` command under the hood). You can then start using `pattrick` to manage your PAT tokens: 
+```bash
+pattrick create --lifetime 100 --scope Packaging
+```
+By default, `pattrick` writes newly created token to stdout. However, you can also tell `pattrick` to write the token to your `.netrc` file (useful for e.g. install Python packages from Azure DevOps Artifacts), or to a local `.env` file:
+
+```bash
+pattrick create --out std-out (default) / dot-netrc / dot-env
+```
+To get an overview of the other commands an options available, run:
+```bash
+pattrick --help
 ```
 
 ## Usage as standalone library
@@ -41,6 +54,15 @@ az login
 You can also use Pattrick as a standalone library. This is useful if you want to manage PATS programmatically in your own codebase.
 
 ```rust
-use pattrick::PatManager;
+use pattrick::{PatTokenManager, PatTokenListRequest, DisplayFilterOption};
+use pattrick::azure::get_ad_token_for_devops;
 
+let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
+
+let pat_tokens = pat_manager.list_pat_tokens(
+     PatTokenListRequest {
+        display_filter_option: DisplayFilterOption::All
+     }
+ ).await?;
 ```
+For more information, check out the `pattrick` documentation at [docs.rs](https://docs.rs/pattrick/latest/pattrick/)

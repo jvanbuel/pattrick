@@ -116,8 +116,8 @@ async fn main() -> Result<(), Box<dyn Error>> {
             }
 
             log::info!("Found new version: {latest_version}. Updating...");
-            tokio::task::spawn_blocking(|| {
-                let status = self_update::backends::github::Update::configure()
+            let status = tokio::task::spawn_blocking(|| {
+                self_update::backends::github::Update::configure()
                     .repo_owner("jvanbuel")
                     .repo_name("pattrick")
                     .bin_name("pattrick")
@@ -126,9 +126,10 @@ async fn main() -> Result<(), Box<dyn Error>> {
                     .build()
                     .unwrap()
                     .update()
-                    .unwrap();
-                println!("Status of update: {status}")
-            });
+            })
+            .await?;
+
+            println!("Status of update: {status:?}");
         }
         _ => {}
     }
