@@ -1,4 +1,4 @@
-use chrono::Utc;
+use chrono::{Duration, Utc};
 use clap::crate_version;
 use clap::Parser;
 use output::print_as_table;
@@ -6,7 +6,7 @@ use output::write_to_netrc;
 use pattrick::{DisplayFilterOption, PatTokenDeleteRequest};
 use pattrick::{PatTokenGetRequest, PatTokenListRequest};
 use pattrick_clap as args;
-use reqwest::{Client, StatusCode};
+use reqwest::StatusCode;
 use std::error::Error;
 
 mod output;
@@ -20,10 +20,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .filter_level(cli.verbose.log_level_filter())
         .init();
 
-    let token_manager = PatTokenManager {
-        ad_token: get_ad_token_for_devops().await?.token.secret().to_string(),
-        client: Client::new(),
-    };
+    let token_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
 
     match &cli.command {
         Some(args::Commands::Create(create_opts)) => {
@@ -34,8 +31,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
                     .clone()
                     .unwrap_or_else(|| petname::petname(2, "-")),
                 scope: create_opts.scope.clone(),
-                valid_to: (Utc::now() + chrono::Duration::seconds(create_opts.lifetime))
-                    .to_rfc3339(),
+                valid_to: (Utc::now() + Duration::seconds(create_opts.lifetime)),
             };
             log::info!("Creating PAT token with request: {:?}", create_request);
             let pat_token = token_manager.create_pat_token(&create_request).await?;

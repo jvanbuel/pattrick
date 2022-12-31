@@ -7,6 +7,27 @@ use crate::{
 };
 
 impl PatTokenManager {
+    /// Create a new PAT token
+    ///
+    /// # Example
+    ///
+    /// ```rust,no_run
+    /// use pattrick::{PatTokenManager, PatTokenCreateRequest};
+    /// use pattrick_clap::Scope;
+    /// use pattrick::azure::get_ad_token_for_devops;
+    /// use chrono::{Utc, Duration};
+    ///
+    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
+    ///
+    /// let pat_token = pat_manager.create_pat_token(
+    ///    PatTokenCreateRequest {
+    ///      all_orgs: false,
+    ///      display_name: "awesome-pat",
+    ///      scope: vec![Scope::Build],
+    ///      valid_to: (Utc::now() + Duration::seconds(30)),
+    ///  }
+    /// ).await?;
+    ///
     pub async fn create_pat_token(
         &self,
         create_request: &PatTokenCreateRequest,
@@ -16,7 +37,7 @@ impl PatTokenManager {
             .json(create_request)
             .send()
             .await?;
-            
+
         log::debug!("Response: {:#?}", response);
         let ct_result = response.json::<PatTokenResult>().await?;
         Ok(ct_result.pat_token)

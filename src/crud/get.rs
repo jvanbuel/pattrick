@@ -8,6 +8,22 @@ use crate::{
 };
 
 impl PatTokenManager {
+    /// Get a PAT token
+    ///
+    /// # Example
+    ///
+    /// ```rust,no_run
+    /// use pattrick::{PatTokenManager, PatTokenGetRequest};
+    /// use pattrick::azure::get_ad_token_for_devops;
+    ///
+    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
+    ///
+    /// let pat_token = pat_manager.get_pat_token(
+    ///    PatTokenGetRequest {
+    ///       authorization_id: "12345678-1234-1234-1234-123456789012"
+    ///   }
+    /// ).await?;
+    /// ```
     pub async fn get_pat_token(
         &self,
         get_request: &PatTokenGetRequest,
@@ -24,6 +40,18 @@ impl PatTokenManager {
         Ok(lt_response.pat_token)
     }
 
+    /// Get a PAT token by name
+    ///
+    /// # Example
+    ///
+    /// ```rust,no_run
+    /// use pattrick::PatTokenManager;
+    /// use pattrick::azure::get_ad_token_for_devops;
+    ///
+    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
+    ///
+    /// let pat_token = pat_manager.get_pat_token_by_name("awesome-pat").await?;
+    /// ```
     pub async fn get_pat_token_by_name(
         &self,
         name: &str,

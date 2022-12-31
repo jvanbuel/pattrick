@@ -7,20 +7,27 @@ use crate::model::scope::ScopeDef;
 
 use super::scope::ScopeWrapper;
 
+/// A Personal Access Token (PAT) for Azure DevOps
 #[derive(Tabled, Debug, Serialize, Deserialize, Clone, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct PatToken {
+    /// ID of the token
     #[serde(rename = "authorizationId")]
     pub id: String,
+    /// display name of the token
     pub display_name: String,
+    /// creation date of the token
     pub valid_from: DateTime<Utc>,
+    /// expiration date of the token
     pub valid_to: DateTime<Utc>,
+    /// scope of the PAT token, e.g. Packaging, Code, Build, ...
     #[tabled(display_with = "display_scopes")]
     #[serde(
         deserialize_with = "scopes_from_string",
         serialize_with = "scopes_to_string"
     )]
     pub scope: Vec<Scope>,
+    /// PAT token value
     #[tabled(display_with = "display_token")]
     pub token: Option<String>,
 }
