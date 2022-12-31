@@ -5,13 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 0.3.1 (2022-12-31)
 
 ### Commit Statistics
 
 <csr-read-only-do-not-edit/>
 
- - 1 commit contributed to the release.
+ - 2 commits contributed to the release.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
 
@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - update changelog ([`8bfc69c`](https://github.com/jvanbuel/pattrick/commit/8bfc69ce425882963d68048e8d482d70a8023039))
     - add repo to Cargo.toml ([`a7356b4`](https://github.com/jvanbuel/pattrick/commit/a7356b4baef648e741cb1197d36a496bedd54f79))
 </details>
 
