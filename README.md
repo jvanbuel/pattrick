@@ -1,5 +1,7 @@
 # Pattrick
 
+![build](https://img.shields.io/github/actions/workflow/status/jvanbuel/pattrick/test.yml)
+
 Pattrick is a command line tool for managing Personal Access Tokens (PAT) in Azure DevOps.
 
 It allows you to:
