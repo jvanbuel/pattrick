@@ -18,7 +18,6 @@
 //! ).await?;
 //! ```
 
-#![feature(rustdoc_missing_doc_code_examples)]
 #![warn(rustdoc::broken_intra_doc_links)]
 #![warn(missing_docs)]
 #![warn(rustdoc::missing_crate_level_docs)]
