@@ -2,13 +2,15 @@ use clap::{Parser, Subcommand, ValueEnum};
 use strum_macros::Display;
 
 #[derive(Parser)]
-#[clap(author, version, about="CLI to manage Azure DevOps Personal Access Tokens (PAT)", long_about = None)]
-#[clap(propagate_version = true, arg_required_else_help = true)]
+#[clap(author, about="CLI to manage Azure DevOps Personal Access Tokens (PAT)", long_about = None)]
+#[clap(arg_required_else_help = true)]
 pub struct Cli {
     #[clap(subcommand)]
     pub command: Option<Commands>,
     #[clap(flatten)]
     pub verbose: clap_verbosity_flag::Verbosity,
+    #[clap(long, help = "Print version information")]
+    pub version: bool,
 }
 
 #[derive(Subcommand)]

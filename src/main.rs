@@ -21,7 +21,11 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .init();
 
     let token_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
-
+    
+    if cli.version {
+        println!("pattrick v{}", crate_version!());
+        return Ok(());
+    }
     match &cli.command {
         Some(args::Commands::Create(create_opts)) => {
             let create_request = PatTokenCreateRequest {
