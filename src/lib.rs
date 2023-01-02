@@ -4,11 +4,12 @@
 //! It allows you to easily create, list, get and delete PAT tokens.
 //!
 //! # Example
-//! ```
+//! ```no_run
 //!
 //! use pattrick::{PatTokenManager, PatTokenListRequest, DisplayFilterOption};
 //! use pattrick::azure::get_ad_token_for_devops;
 //!
+//! # tokio_test::block_on(async {
 //! let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
 //!
 //! let pat_tokens = pat_manager.list_pat_tokens(
@@ -16,12 +17,12 @@
 //!         display_filter_option: DisplayFilterOption::All
 //!     }
 //! ).await?;
+//! # Ok::<(), Box<dyn std::error::Error>>(())});
 //! ```
 
 #![warn(rustdoc::broken_intra_doc_links)]
 #![warn(missing_docs)]
 #![warn(rustdoc::missing_crate_level_docs)]
-#![warn(rustdoc::missing_doc_code_examples)]
 
 use std::error::Error;
 /// Azure AD related functions
@@ -55,10 +56,12 @@ const API_VERSION: &str = "7.1-preview.1";
 /// use pattrick::azure::get_ad_token_for_devops;
 /// use reqwest::Client;
 ///
+/// # tokio_test::block_on(async {
 /// let pat_manager = PatTokenManager {
 ///     ad_token: get_ad_token_for_devops().await?,
 ///     client: Client::new(),
 /// };
+/// # Ok::<(), Box<dyn std::error::Error>>(())});
 /// ```
 pub struct PatTokenManager {
     /// Azure AD token used to authenticate with Azure DevOps
@@ -76,7 +79,9 @@ impl PatTokenManager {
     /// use pattrick::PatTokenManager;
     /// use pattrick::azure::get_ad_token_for_devops;
     ///
+    /// # tokio_test::block_on(async {
     /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
+    /// # Ok::<(), Box<dyn std::error::Error>>(())});
     /// ```
     pub fn new(ad_token: AzureADToken) -> Self {
         Self {
@@ -103,12 +108,13 @@ impl PatTokenManager {
     /// use pattrick::PatTokenManager;
     /// use pattrick::azure::get_ad_token_for_devops;
     ///
+    /// # tokio_test::block_on(async {
     /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
     ///
     /// let latest_version = pat_manager.get_latest_version().await?;
     ///
     /// println!("Latest version: {}", latest_version);
-    ///
+    /// # Ok::<(), Box<dyn std::error::Error>>(())});
     pub async fn get_latest_version(self) -> Result<String, Box<dyn Error>> {
         let response = self
             .client

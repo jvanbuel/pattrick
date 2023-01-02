@@ -21,7 +21,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .init();
 
     let token_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
-    
+
     if cli.version {
         println!("pattrick v{}", crate_version!());
         return Ok(());
@@ -38,7 +38,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
                 valid_to: (Utc::now() + Duration::seconds(create_opts.lifetime)),
             };
             log::info!("Creating PAT token with request: {:?}", create_request);
-            let pat_token = token_manager.create_pat_token(&create_request).await?;
+            let pat_token = token_manager.create_pat_token(create_request).await?;
 
             match create_opts.out {
                 args::Output::StdOut => {
@@ -65,7 +65,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
                 },
             };
             log::info!("Listing PAT tokens with request: {:?}", list_request);
-            let pat_tokens = token_manager.list_pat_tokens(&list_request).await?;
+            let pat_tokens = token_manager.list_pat_tokens(list_request).await?;
 
             print_as_table(pat_tokens);
         }
@@ -73,7 +73,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
             let get_request = PatTokenGetRequest {
                 authorization_id: get_opts.id.clone(),
             };
-            let pat_token = token_manager.get_pat_token(&get_request).await?;
+            let pat_token = token_manager.get_pat_token(get_request).await?;
             print_as_table(vec![pat_token]);
         }
         Some(args::Commands::Delete(delete_opts)) => {
@@ -97,15 +97,16 @@ async fn main() -> Result<(), Box<dyn Error>> {
             if !delete_opts.id.is_empty() {
                 authorization_id = delete_opts.id.clone();
             }
-            let delete_request = PatTokenDeleteRequest { authorization_id };
+            let delete_request = PatTokenDeleteRequest {
+                authorization_id: authorization_id.clone(),
+            };
 
             log::info!("Deleting PAT token with request: {:?}", delete_request);
-            let status = &token_manager.delete_pat_token(&delete_request).await?;
+            let status = &token_manager.delete_pat_token(delete_request).await?;
 
             match status {
                 &StatusCode::NO_CONTENT => {
-                    let id = delete_request.authorization_id;
-                    println!("✅ Successfully deleted PAT token with id: {id}");
+                    println!("✅ Successfully deleted PAT token with id: {authorization_id}");
                 }
                 _ => println!("Error deleting token: {status}"),
             }

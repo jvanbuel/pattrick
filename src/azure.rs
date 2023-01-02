@@ -14,10 +14,13 @@ const DEVOPS_RESOURCE: &str = "499b84ac-1321-427f-aa17-267ca6975798";
 ///
 /// # Example
 ///
-/// ```rust,no_run
+/// ```no_run
 /// use pattrick::azure::get_ad_token_for_devops;
+/// use pattrick::azure::AzureADToken;
 ///
+/// # tokio_test::block_on(async {
 /// let token: AzureADToken = get_ad_token_for_devops().await?;
+/// # Ok::<(), Box<dyn std::error::Error>>(())});
 /// ```
 #[derive(Debug)]
 pub struct AzureADToken(String);
@@ -27,6 +30,7 @@ impl Display for AzureADToken {
         write!(f, "{}", &self.0)
     }
 }
+
 /// Get an Azure AD token for Azure DevOps
 ///
 /// # Example
@@ -34,7 +38,9 @@ impl Display for AzureADToken {
 /// ```rust,no_run
 /// use pattrick::azure::get_ad_token_for_devops;
 ///
+/// # tokio_test::block_on(async {
 /// let token = get_ad_token_for_devops().await?;
+/// # Ok::<(), Box<dyn std::error::Error>>(())});
 /// ```
 #[async_recursion]
 pub async fn get_ad_token_for_devops() -> Result<AzureADToken, Box<dyn Error>> {

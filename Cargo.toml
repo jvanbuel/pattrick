@@ -42,3 +42,6 @@ pattrick-clap = { version = "^0.3.2", path = "pattrick-clap" }
 [workspace]
 # This is a path relative to the workspace root.
 members = ["pattrick-clap"]
+
+[dev-dependencies]
+tokio-test = "0.4.2"

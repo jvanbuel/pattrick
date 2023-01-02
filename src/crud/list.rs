@@ -15,17 +15,19 @@ impl PatTokenManager {
     /// use pattrick::{PatTokenManager, PatTokenListRequest, DisplayFilterOption};
     /// use pattrick::azure::get_ad_token_for_devops;
     ///
+    /// # tokio_test::block_on(async {
     /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
     ///
     /// let pat_tokens = pat_manager.list_pat_tokens(
     ///     PatTokenListRequest {
-    ///         display_filter_option: DisplayFitlerOption::All
+    ///         display_filter_option: DisplayFilterOption::All
     ///     }
     /// ).await?;
+    /// # Ok::<(), Box<dyn std::error::Error>>(())});
     /// ```
     pub async fn list_pat_tokens(
         &self,
-        list_request: &PatTokenListRequest,
+        list_request: PatTokenListRequest,
     ) -> Result<Vec<PatToken>, Box<dyn Error>> {
         let mut pat_tokens: Vec<PatToken> = Vec::new();
         let response = self

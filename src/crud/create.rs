@@ -17,24 +17,26 @@ impl PatTokenManager {
     /// use pattrick::azure::get_ad_token_for_devops;
     /// use chrono::{Utc, Duration};
     ///
+    /// # tokio_test::block_on(async {
     /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
     ///
     /// let pat_token = pat_manager.create_pat_token(
     ///    PatTokenCreateRequest {
     ///      all_orgs: false,
-    ///      display_name: "awesome-pat",
+    ///      display_name: String::from("awesome-pat"),
     ///      scope: vec![Scope::Build],
     ///      valid_to: (Utc::now() + Duration::seconds(30)),
     ///  }
     /// ).await?;
+    /// # Ok::<(), Box<dyn std::error::Error>>(())});
     ///
     pub async fn create_pat_token(
         &self,
-        create_request: &PatTokenCreateRequest,
+        create_request: PatTokenCreateRequest,
     ) -> Result<PatToken, Box<dyn Error>> {
         let response = self
             .base_request(Method::POST, AZURE_DEVOPS_PAT_URL)
-            .json(create_request)
+            .json(&create_request)
             .send()
             .await?;
 

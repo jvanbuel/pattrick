@@ -16,21 +16,23 @@ impl PatTokenManager {
     /// use pattrick::{PatTokenManager, PatTokenGetRequest};
     /// use pattrick::azure::get_ad_token_for_devops;
     ///
+    /// # tokio_test::block_on(async {
     /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
     ///
     /// let pat_token = pat_manager.get_pat_token(
     ///    PatTokenGetRequest {
-    ///       authorization_id: "12345678-1234-1234-1234-123456789012"
+    ///       authorization_id: String::from("12345678-1234-1234-1234-123456789012")
     ///   }
     /// ).await?;
+    /// # Ok::<(), Box<dyn std::error::Error>>(())});
     /// ```
     pub async fn get_pat_token(
         &self,
-        get_request: &PatTokenGetRequest,
+        get_request: PatTokenGetRequest,
     ) -> Result<PatToken, Box<dyn Error>> {
         let response = self
             .base_request(Method::GET, AZURE_DEVOPS_PAT_URL)
-            .query(&[("authorizationId", &get_request.authorization_id)])
+            .query(&[("authorizationId", get_request.authorization_id)])
             .send()
             .await?;
 
@@ -48,9 +50,12 @@ impl PatTokenManager {
     /// use pattrick::PatTokenManager;
     /// use pattrick::azure::get_ad_token_for_devops;
     ///
+    /// # tokio_test::block_on( async {
     /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
     ///
     /// let pat_token = pat_manager.get_pat_token_by_name("awesome-pat").await?;
+    ///
+    /// # Ok::<(), Box<dyn std::error::Error>>(())});
     /// ```
     pub async fn get_pat_token_by_name(
         &self,
@@ -59,7 +64,7 @@ impl PatTokenManager {
         let list_request = PatTokenListRequest {
             display_filter_option: DisplayFilterOption::All,
         };
-        let pat_tokens = self.list_pat_tokens(&list_request).await?;
+        let pat_tokens = self.list_pat_tokens(list_request).await?;
         Ok(pat_tokens
             .into_iter()
             .find(|pat_token| pat_token.display_name == name))
