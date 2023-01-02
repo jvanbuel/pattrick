@@ -96,6 +96,7 @@ pub enum Scope {
     FullAccess,
     AgentPools,
     AgentPoolsManage,
+    Analytics,
     Build,
     BuildExecute,
     Code,

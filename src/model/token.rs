@@ -76,7 +76,7 @@ where
         .into_iter()
         .map(|s| {
             let scope: Result<Scope, serde::de::value::Error> =
-                ScopeDef::deserialize(s.into_deserializer());
+                ScopeDef::deserialize(s.trim_matches('"').into_deserializer());
             scope.unwrap_or_else(|_| panic!("Failed to deserialize scope: {s}"))
         })
         .collect();

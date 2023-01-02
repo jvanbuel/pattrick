@@ -10,6 +10,8 @@ pub enum ScopeDef {
     AgentPools,
     #[serde(rename = "vso.agentpools_manage")]
     AgentPoolsManage,
+    #[serde(rename = "vso.analytics")]
+    Analytics,
     #[serde(rename = "vso.build")]
     Build,
     #[serde(rename = "vso.build_execute")]
