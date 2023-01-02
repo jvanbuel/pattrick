@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.2 (2023-01-02)
+
+### New Features
+
+ - <csr-id-74e3abd79cf3031f17fce0679bea6711f8dc9ee1/> use version of the implementation crate instead of clap crate
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 1 commit contributed to the release.
+ - 1 day passed between releases.
+ - 1 commit was understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - use version of the implementation crate instead of clap crate ([`74e3abd`](https://github.com/jvanbuel/pattrick/commit/74e3abd79cf3031f17fce0679bea6711f8dc9ee1))
+</details>
+
 ## 0.3.1 (2022-12-31)
 
 ### New Features
@@ -15,7 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 4 commits contributed to the release.
+ - 5 commits contributed to the release.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
 
@@ -26,6 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - Release pattrick-clap v0.3.1, pattrick v0.3.1 ([`68c57e2`](https://github.com/jvanbuel/pattrick/commit/68c57e23c2fdf41ac469cf0d8753b6140f657575))
     - add features to changelog ([`33f7400`](https://github.com/jvanbuel/pattrick/commit/33f74007bbebb666b38cbaed195c2fe4afb8f303))
     - Adjusting changelogs prior to release of pattrick-clap v0.3.1, pattrick v0.3.1 ([`7b3593b`](https://github.com/jvanbuel/pattrick/commit/7b3593b248f385eca186ea928a3c44d0cac520f3))
     - update changelog ([`8bfc69c`](https://github.com/jvanbuel/pattrick/commit/8bfc69ce425882963d68048e8d482d70a8023039))
