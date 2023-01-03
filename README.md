@@ -5,7 +5,6 @@
 ![docs](https://img.shields.io/docsrs/pattrick)
 ![license](https://img.shields.io/crates/l/pattrick)
 
-
 Pattrick is a command line tool for managing Personal Access Tokens (PAT) in Azure DevOps.
 
 It allows you to:
@@ -29,7 +28,7 @@ brew install pattrick
 On Linux, you can install Pattrick by executing the following commands:
 
 ```bash
-curl -L https://github.com/jvanbuel/pattrick/releases/download/v0.3.0/pattrick-x86_64-unknown-linux-gnu.tar.gz | tar xvz
+curl -L https://github.com/jvanbuel/pattrick/releases/latest/download/pattrick-x86_64-unknown-linux-gnu.tar.gz | tar xvz
 chmod +x pattrick
 sudo mv pattrick /usr/local/bin/pattrick
 ```
@@ -41,16 +40,21 @@ Pattrick looks for Azure CLI credentials to fetch an access token for authentica
 ```bash
 az login
 ```
-If `pattrick` cannot find a valid access token, it will try to log you in automatically (by using the `az login` command under the hood). You can then start using `pattrick` to manage your PAT tokens: 
+
+If `pattrick` cannot find a valid access token, it will try to log you in automatically (by using the `az login` command under the hood). You can then start using `pattrick` to manage your PAT tokens:
+
 ```bash
 pattrick create --lifetime 100 --scope Packaging
 ```
-By default, `pattrick` writes newly created token to stdout. However, you can also tell `pattrick` to write the token to your `.netrc` file (useful for e.g. install Python packages from Azure DevOps Artifacts), or to a local `.env` file:
+
+By default, `pattrick` writes newly created token to stdout. However, you can also tell `pattrick` to write the token to your `.netrc` file (useful for e.g. installing Python packages from Azure DevOps Artifacts), or to a local `.env` file:
 
 ```bash
 pattrick create --out std-out (default) / dot-netrc / dot-env
 ```
-To get an overview of the other commands an options available, run:
+
+To get an overview of the other commands and options available, run:
+
 ```bash
 pattrick --help
 ```
@@ -71,4 +75,5 @@ let pat_tokens = pat_manager.list_pat_tokens(
      }
  ).await?;
 ```
+
 For more information, check out the `pattrick` documentation at [docs.rs](https://docs.rs/pattrick/latest/pattrick/)

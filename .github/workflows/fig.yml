@@ -1,0 +1,32 @@
+name: Push fig spec
+
+on:
+  workflow_dispatch:
+
+jobs:
+  push-to-fig-autocomplete:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+      - name: Install rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+      - uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release
+      - name: Place fig spec in correct folder
+        shell: bash
+        run: |
+          cp target/release/build/**/out/pattrick.ts pattrick.ts
+      - name: Create Autocomplete PR ## Create the autocomplete PR using this action
+        uses: withfig/push-to-fig-autocomplete-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          autocomplete-spec-name: pattrick
+          spec-path: pattrick.ts
+          integration: clap
