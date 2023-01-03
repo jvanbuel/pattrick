@@ -5,7 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.4 (2023-01-03)
+
+### Bug Fixes
+
+ - <csr-id-3519844591a06c19ac9bf89aad648d8e6979ce88/> add tokio_test blocking thread for async doc examples
+ - <csr-id-f533d43867a8446ed5a48ec756791e59f03bee31/> remove trailing and leading quotes of scopes
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 3 commits contributed to the release over the course of 1 calendar day.
+ - 1 day passed between releases.
+ - 2 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - add tokio_test blocking thread for async doc examples ([`3519844`](https://github.com/jvanbuel/pattrick/commit/3519844591a06c19ac9bf89aad648d8e6979ce88))
+    - remove trailing and leading quotes of scopes ([`f533d43`](https://github.com/jvanbuel/pattrick/commit/f533d43867a8446ed5a48ec756791e59f03bee31))
+    - remove rustdoc missing doc code feature ([`4e41d62`](https://github.com/jvanbuel/pattrick/commit/4e41d623b41c22389fcf6c921b03b3c8f29e494e))
+</details>
+
 ## 0.3.3 (2023-01-02)
+
+<csr-id-8eb0b74ed838649f33f793012d20afe4d9ea9cf5/>
 
 ### New Features
 

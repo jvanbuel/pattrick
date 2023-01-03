@@ -1250,7 +1250,7 @@ dependencies = [
 
 [[package]]
 name = "pattrick"
-version = "0.3.3"
+version = "0.3.4"
 dependencies = [
  "async-recursion",
  "azure_core",
@@ -1282,7 +1282,7 @@ dependencies = [
 
 [[package]]
 name = "pattrick-clap"
-version = "0.3.2"
+version = "0.3.3"
 dependencies = [
  "clap 4.0.32",
  "clap-verbosity-flag",

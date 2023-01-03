@@ -5,11 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.3.2 (2023-01-02)
+## 0.3.3 (2023-01-03)
 
-### New Features
+### Bug Fixes
 
- - <csr-id-74e3abd79cf3031f17fce0679bea6711f8dc9ee1/> use version of the implementation crate instead of clap crate
+ - <csr-id-f533d43867a8446ed5a48ec756791e59f03bee31/> remove trailing and leading quotes of scopes
 
 ### Commit Statistics
 
@@ -27,6 +27,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - remove trailing and leading quotes of scopes ([`f533d43`](https://github.com/jvanbuel/pattrick/commit/f533d43867a8446ed5a48ec756791e59f03bee31))
+</details>
+
+## 0.3.2 (2023-01-02)
+
+### New Features
+
+ - <csr-id-74e3abd79cf3031f17fce0679bea6711f8dc9ee1/> use version of the implementation crate instead of clap crate
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 2 commits contributed to the release.
+ - 1 day passed between releases.
+ - 1 commit was understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Release pattrick-clap v0.3.2, pattrick v0.3.3 ([`3876f89`](https://github.com/jvanbuel/pattrick/commit/3876f8951c6664d8bece3f15e5d07b501d4100ef))
     - use version of the implementation crate instead of clap crate ([`74e3abd`](https://github.com/jvanbuel/pattrick/commit/74e3abd79cf3031f17fce0679bea6711f8dc9ee1))
 </details>
 
