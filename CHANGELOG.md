@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 0.3.5 (2023-01-05)
 
+<csr-id-c073406a43f93aa2b55da285867283a9ad28bcae/>
+
 ### Other
 
  - <csr-id-c073406a43f93aa2b55da285867283a9ad28bcae/> don't request ad token for version command
