@@ -1,10 +1,9 @@
 use chrono::{Duration, Utc};
-use clap::crate_version;
-use clap::Parser;
-use output::print_as_table;
-use output::write_to_netrc;
-use pattrick::{DisplayFilterOption, PatTokenDeleteRequest};
-use pattrick::{PatTokenGetRequest, PatTokenListRequest};
+use clap::{crate_version, Parser};
+use output::{print_as_table, write_to_dotenv, write_to_netrc};
+use pattrick::{
+    DisplayFilterOption, PatTokenDeleteRequest, PatTokenGetRequest, PatTokenListRequest,
+};
 use pattrick_clap as args;
 use reqwest::StatusCode;
 use std::error::Error;
@@ -20,12 +19,13 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .filter_level(cli.verbose.log_level_filter())
         .init();
 
-    let token_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
-
     if cli.version {
         println!("pattrick v{}", crate_version!());
         return Ok(());
     }
+
+    let token_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
+
     match &cli.command {
         Some(args::Commands::Create(create_opts)) => {
             let create_request = PatTokenCreateRequest {
@@ -45,10 +45,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
                     print_as_table(vec![pat_token]);
                 }
                 args::Output::DotEnv => {
-                    std::fs::write(
-                        ".env",
-                        format!("{}={}", pat_token.display_name, pat_token.token.unwrap()),
-                    )?;
+                    write_to_dotenv(pat_token)?;
                 }
                 args::Output::DotNetrc => {
                     write_to_netrc(pat_token)?;

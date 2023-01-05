@@ -17,6 +17,15 @@ pub fn print_as_table(pat_tokens: Vec<PatToken>) {
     println!("{:#^10}", table.to_string());
 }
 
+pub fn write_to_dotenv(pat_token: PatToken) -> Result<(), Box<dyn Error>> {
+    std::fs::write(
+        ".env",
+        format!("{}={}", pat_token.display_name, pat_token.token.unwrap()),
+    )?;
+    println!("✅ Successfully created .env file!");
+    Ok(())
+}
+
 pub fn update_netrc(netrc: &mut Netrc, host: String, machine: netrc::Machine) {
     if !netrc.hosts.iter().any(|h| h.0 == host) {
         println!("✅ Adding host {host} to .netrc",);
