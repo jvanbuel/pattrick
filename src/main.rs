@@ -42,7 +42,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
             match create_opts.out {
                 args::Output::StdOut => {
-                    print_as_table(vec![pat_token]);
+                    print_as_table(vec![pat_token], true);
                 }
                 args::Output::DotEnv => {
                     write_to_dotenv(pat_token)?;
@@ -64,14 +64,14 @@ async fn main() -> Result<(), Box<dyn Error>> {
             log::info!("Listing PAT tokens with request: {:?}", list_request);
             let pat_tokens = token_manager.list_pat_tokens(list_request).await?;
 
-            print_as_table(pat_tokens);
+            print_as_table(pat_tokens, false);
         }
         Some(args::Commands::Get(get_opts)) => {
             let get_request = PatTokenGetRequest {
                 authorization_id: get_opts.id.clone(),
             };
             let pat_token = token_manager.get_pat_token(get_request).await?;
-            print_as_table(vec![pat_token]);
+            print_as_table(vec![pat_token], false);
         }
         Some(args::Commands::Delete(delete_opts)) => {
             if delete_opts.id.is_empty() && delete_opts.name.is_empty() {
