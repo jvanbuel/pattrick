@@ -224,6 +224,7 @@ dependencies = [
  "paste",
  "pin-project",
  "rand 0.8.5",
+ "reqwest",
  "rustc_version",
  "serde",
  "serde_json",
@@ -254,18 +255,16 @@ dependencies = [
 
 [[package]]
 name = "azure_svc_batch"
-version = "0.1.0"
+version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b7af107cf27ad7c53143c19837112f1acbb738613404b8ac163df67cb7806358"
+checksum = "1fcc78104c86eac31443f080d42286dbdc77a6e11df8e5e4fbb230500c3de86d"
 dependencies = [
- "azure_core 0.1.1",
+ "azure_core 0.11.0",
  "bytes",
  "futures",
- "http",
  "serde",
  "serde_json",
- "thiserror",
- "url",
+ "time 0.3.20",
 ]
 
 [[package]]
