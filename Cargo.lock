@@ -1431,7 +1431,7 @@ checksum = "9f746c4065a8fa3fe23974dd82f15431cc8d40779821001404d10d2e79ca7d79"
 
 [[package]]
 name = "pattrick"
-version = "0.3.5"
+version = "0.3.6"
 dependencies = [
  "async-recursion",
  "azure_core",
