@@ -5,9 +5,8 @@ use std::{
 };
 
 use async_recursion::async_recursion;
-use azure_identity::token_credentials::{
-    DefaultAzureCredential, DefaultAzureCredentialError, TokenCredential,
-};
+use azure_core::auth::TokenCredential;
+use azure_identity::DefaultAzureCredential;
 
 const DEVOPS_RESOURCE: &str = "499b84ac-1321-427f-aa17-267ca6975798";
 /// Azure AD token
@@ -43,20 +42,20 @@ impl Display for AzureADToken {
 /// # Ok::<(), Box<dyn std::error::Error>>(())});
 /// ```
 #[async_recursion]
-pub async fn get_ad_token_for_devops() -> Result<AzureADToken, Box<dyn Error>> {
+pub async fn get_ad_token_for_devops(tries: i8) -> Result<AzureADToken, Box<dyn Error>> {
     let res = DefaultAzureCredential::default()
         .get_token(DEVOPS_RESOURCE)
         .await;
     match res {
         Ok(token_response) => Ok(AzureADToken(token_response.token.secret().to_string())),
         Err(e) => {
-            if let DefaultAzureCredentialError::CredentialUnavailable(_) = e {
-                println!("🔐 No credential available. Logging in with az cli...");
+            if tries > 0 {
+                println!("🔐 No credential available. Trying to log in with az cli...");
                 Command::new("az")
                     .args(vec!["login"])
                     .output()
                     .expect("Login failed.");
-                get_ad_token_for_devops().await
+                get_ad_token_for_devops(tries - 1).await
             } else {
                 Err::<AzureADToken, Box<dyn Error>>(Box::new(e))
             }

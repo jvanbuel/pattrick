@@ -24,7 +24,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         return Ok(());
     }
 
-    let token_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
+    let token_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
 
     match &cli.command {
         Some(args::Commands::Create(create_opts)) => {
