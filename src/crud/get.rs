@@ -17,7 +17,7 @@ impl PatTokenManager {
     /// use pattrick::azure::get_ad_token_for_devops;
     ///
     /// # tokio_test::block_on(async {
-    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
+    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
     ///
     /// let pat_token = pat_manager.get_pat_token(
     ///    PatTokenGetRequest {
@@ -51,7 +51,7 @@ impl PatTokenManager {
     /// use pattrick::azure::get_ad_token_for_devops;
     ///
     /// # tokio_test::block_on( async {
-    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
+    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
     ///
     /// let pat_token = pat_manager.get_pat_token_by_name("awesome-pat").await?;
     ///

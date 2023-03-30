@@ -10,7 +10,7 @@
 //! use pattrick::azure::get_ad_token_for_devops;
 //!
 //! # tokio_test::block_on(async {
-//! let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
+//! let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
 //!
 //! let pat_tokens = pat_manager.list_pat_tokens(
 //!     PatTokenListRequest {
@@ -58,7 +58,7 @@ const API_VERSION: &str = "7.1-preview.1";
 ///
 /// # tokio_test::block_on(async {
 /// let pat_manager = PatTokenManager {
-///     ad_token: get_ad_token_for_devops().await?,
+///     ad_token: get_ad_token_for_devops(1).await?,
 ///     client: Client::new(),
 /// };
 /// # Ok::<(), Box<dyn std::error::Error>>(())});
@@ -80,7 +80,7 @@ impl PatTokenManager {
     /// use pattrick::azure::get_ad_token_for_devops;
     ///
     /// # tokio_test::block_on(async {
-    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
+    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
     /// # Ok::<(), Box<dyn std::error::Error>>(())});
     /// ```
     pub fn new(ad_token: AzureADToken) -> Self {
@@ -109,7 +109,7 @@ impl PatTokenManager {
     /// use pattrick::azure::get_ad_token_for_devops;
     ///
     /// # tokio_test::block_on(async {
-    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
+    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
     ///
     /// let latest_version = pat_manager.get_latest_version().await?;
     ///

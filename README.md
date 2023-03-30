@@ -67,7 +67,7 @@ You can also use Pattrick as a standalone library. This is useful if you want to
 use pattrick::{PatTokenManager, PatTokenListRequest, DisplayFilterOption};
 use pattrick::azure::get_ad_token_for_devops;
 
-let pat_manager = PatTokenManager::new(get_ad_token_for_devops().await?);
+let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
 
 let pat_tokens = pat_manager.list_pat_tokens(
      PatTokenListRequest {

@@ -18,7 +18,7 @@ const DEVOPS_RESOURCE: &str = "499b84ac-1321-427f-aa17-267ca6975798";
 /// use pattrick::azure::AzureADToken;
 ///
 /// # tokio_test::block_on(async {
-/// let token: AzureADToken = get_ad_token_for_devops().await?;
+/// let token: AzureADToken = get_ad_token_for_devops(1).await?;
 /// # Ok::<(), Box<dyn std::error::Error>>(())});
 /// ```
 #[derive(Debug)]
@@ -38,7 +38,7 @@ impl Display for AzureADToken {
 /// use pattrick::azure::get_ad_token_for_devops;
 ///
 /// # tokio_test::block_on(async {
-/// let token = get_ad_token_for_devops().await?;
+/// let token = get_ad_token_for_devops(1).await?;
 /// # Ok::<(), Box<dyn std::error::Error>>(())});
 /// ```
 #[async_recursion]
