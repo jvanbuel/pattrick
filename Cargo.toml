@@ -23,7 +23,7 @@ petname = "1.1.2"
 netrc = "0.4.1"
 dirs = "5.0.0"
 pattrick-clap = { version = "^0.3.3", path = "pattrick-clap" }
-openssl = { version = "^0.10.48", features = ["vendored"] }
+openssl = { version = "^0.10.49", features = ["vendored"] }
 owo-colors = "3.5.0"
 base64 = "0.21.0"
 self_update = { version = "0.36.0", features = ["archive-tar", "compression-flate2"] }
