@@ -44,7 +44,7 @@ az login
 If `pattrick` cannot find a valid access token, it will try to log you in automatically (by using the `az login` command under the hood). You can then start using `pattrick` to manage your PAT tokens:
 
 ```bash
-pattrick create --lifetime 100 --scope Packaging
+pattrick create --lifetime 100 --scope packaging
 ```
 
 By default, `pattrick` writes newly created token to stdout. However, you can also tell `pattrick` to write the token to your `.netrc` file (useful for e.g. installing Python packages from Azure DevOps Artifacts), or to a local `.env` file:
