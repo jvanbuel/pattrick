@@ -5,7 +5,10 @@ use std::{
 };
 
 use netrc::Netrc;
-use tabled::{locator::ByColumnName, Disable, Style, Table};
+use tabled::{
+    settings::{locator::ByColumnName, Disable, Style},
+    Table,
+};
 
 use pattrick::PatToken;
 
