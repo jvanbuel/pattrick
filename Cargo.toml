@@ -21,7 +21,7 @@ tabled = { version = "^0.12", features = [ "color" ] }
 chrono = "0.4.22"
 petname = "1.1.2"
 netrc = "0.4.1"
-dirs = "5.0.0"
+dirs = "5.0.1"
 pattrick-clap = { version = "^0.3.3", path = "pattrick-clap" }
 openssl = { version = "^0.10.52", features = ["vendored"] }
 owo-colors = "3.5.0"
