@@ -340,12 +340,12 @@ dependencies = [
 
 [[package]]
 name = "clap"
-version = "4.3.1"
+version = "4.3.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b4ed2379f8603fa2b7509891660e802b88c70a79a6427a70abb5968054de2c28"
+checksum = "d9394150f5b4273a1763355bd1c2ec54cc5a2593f790587bcd6b2c947cfa9211"
 dependencies = [
  "clap_builder",
- "clap_derive 4.3.1",
+ "clap_derive 4.3.2",
  "once_cell",
 ]
 
@@ -355,15 +355,15 @@ version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1eef05769009513df2eb1c3b4613e7fad873a14c600ff025b08f250f59fee7de"
 dependencies = [
- "clap 4.3.1",
+ "clap 4.3.8",
  "log",
 ]
 
 [[package]]
 name = "clap_builder"
-version = "4.3.1"
+version = "4.3.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "72394f3339a76daf211e57d4bcb374410f3965dcc606dd0e03738c7888766980"
+checksum = "9a78fbdd3cc2914ddf37ba444114bc7765bbdcb55ec9cbe6fa054f0137400717"
 dependencies = [
  "anstream",
  "anstyle",
@@ -379,7 +379,7 @@ version = "4.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7f6b5c519bab3ea61843a7923d074b04245624bb84a64a8c150f5deb014e388b"
 dependencies = [
- "clap 4.3.1",
+ "clap 4.3.8",
 ]
 
 [[package]]
@@ -388,7 +388,7 @@ version = "4.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f3af28956330989baa428ed4d3471b853715d445c62de21b67292e22cf8a41fa"
 dependencies = [
- "clap 4.3.1",
+ "clap 4.3.8",
  "clap_complete",
 ]
 
@@ -407,9 +407,9 @@ dependencies = [
 
 [[package]]
 name = "clap_derive"
-version = "4.3.1"
+version = "4.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "59e9ef9a08ee1c0e1f2e162121665ac45ac3783b0f897db7244ae75ad9a8f65b"
+checksum = "b8cd2b2a819ad6eec39e8f1d6b53001af1e5469f8c177579cdaeb313115b825f"
 dependencies = [
  "heck",
  "proc-macro2",
@@ -1445,7 +1445,7 @@ dependencies = [
  "azure_svc_batch",
  "base64 0.21.2",
  "chrono",
- "clap 4.3.1",
+ "clap 4.3.8",
  "clap_complete",
  "clap_complete_fig",
  "dirs",
@@ -1471,7 +1471,7 @@ dependencies = [
 name = "pattrick-clap"
 version = "0.3.3"
 dependencies = [
- "clap 4.3.1",
+ "clap 4.3.8",
  "clap-verbosity-flag",
  "strum_macros",
 ]
