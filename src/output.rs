@@ -25,7 +25,7 @@ pub fn print_as_table(pat_tokens: Vec<PatToken>, print_token: bool) {
 pub fn write_to_dotenv(pat_token: PatToken) -> Result<(), Box<dyn Error>> {
     std::fs::write(
         ".env",
-        format!("{}={}", pat_token.display_name, pat_token.token.unwrap()),
+        format!("{}={}\n", pat_token.display_name, pat_token.token.unwrap()),
     )?;
     println!("✅ Successfully created .env file!");
     Ok(())
