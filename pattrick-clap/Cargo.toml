@@ -11,4 +11,4 @@ license = "MIT"
 [dependencies]
 clap = { version = "4.3.11", features = ["derive"] }
 clap-verbosity-flag = "2.0.1"
-strum_macros = "0.24.3"
+strum_macros = "0.25.1"
