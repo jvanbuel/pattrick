@@ -18,7 +18,7 @@ url = "2.4.1"
 reqwest = "0.11.20"
 serde = "1.0.185"
 tabled = { version = "^0.14", features = [ "color" ] }
-chrono = "0.4.26"
+chrono = "0.4.28"
 petname = "1.1.2"
 netrc = "0.4.1"
 dirs = "5.0.1"
