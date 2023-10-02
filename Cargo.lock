@@ -218,7 +218,6 @@ dependencies = [
  "paste",
  "pin-project",
  "rand 0.8.5",
- "reqwest",
  "rustc_version",
  "serde",
  "serde_json",
@@ -255,14 +254,13 @@ dependencies = [
 
 [[package]]
 name = "azure_identity"
-version = "0.15.0"
+version = "0.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e15ab021e72fa7196fa8406951f7e85a3476e4968568b2ce3866d2ceed831655"
+checksum = "5299c8772ae7a98e8939137e9593d371fd3ade9bcf60834ed3bdc67feaf9e50e"
 dependencies = [
  "async-lock",
  "async-trait",
- "azure_core 0.15.0",
- "fix-hidden-lifetime-bug",
+ "azure_core 0.16.0",
  "futures",
  "log",
  "oauth2",
@@ -706,26 +704,6 @@ dependencies = [
  "libc",
  "redox_syscall 0.3.5",
  "windows-sys 0.48.0",
-]
-
-[[package]]
-name = "fix-hidden-lifetime-bug"
-version = "0.2.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d4ae9c2016a663983d4e40a9ff967d6dcac59819672f0b47f2b17574e99c33c8"
-dependencies = [
- "fix-hidden-lifetime-bug-proc_macros",
-]
-
-[[package]]
-name = "fix-hidden-lifetime-bug-proc_macros"
-version = "0.2.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e4c81935e123ab0741c4c4f0d9b8377e5fb21d3de7e062fa4b1263b1fbcba1ea"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 1.0.109",
 ]
 
 [[package]]
