@@ -73,7 +73,6 @@ where
     let s = String::deserialize(deserializer)?;
     let scopes = s
         .split_ascii_whitespace()
-        .into_iter()
         .map(|s| {
             let scope: Result<Scope, serde::de::value::Error> =
                 ScopeDef::deserialize(s.trim_matches('"').into_deserializer());
