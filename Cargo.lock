@@ -208,7 +208,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8e29286b9edfdd6f2c7e9d970bb5b015df8621258acab9ecfcea09b2d7692467"
 dependencies = [
  "async-trait",
- "base64 0.21.4",
+ "base64 0.21.5",
  "bytes",
  "dyn-clone",
  "futures",
@@ -286,9 +286,9 @@ checksum = "9e1b586273c5702936fe7b7d6896644d8be71e6314cfe09d3167c95f712589e8"
 
 [[package]]
 name = "base64"
-version = "0.21.4"
+version = "0.21.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9ba43ea6f343b788c8764558649e08df62f86c6ef251fdaeb1ffd010a9ae50a2"
+checksum = "35636a1494ede3b646cc98f74f8e62c773a38a659ebc777a2cf26b9b74171df9"
 
 [[package]]
 name = "base64ct"
@@ -1476,7 +1476,7 @@ dependencies = [
  "azure_core",
  "azure_identity",
  "azure_svc_batch",
- "base64 0.21.4",
+ "base64 0.21.5",
  "chrono",
  "clap 4.4.6",
  "clap_complete",
@@ -1778,7 +1778,7 @@ version = "0.11.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "046cd98826c46c2ac8ddecae268eb5c2e58628688a5fc7a2643704a73faba95b"
 dependencies = [
- "base64 0.21.4",
+ "base64 0.21.5",
  "bytes",
  "encoding_rs",
  "futures-core",
@@ -2781,7 +2781,7 @@ version = "0.1.0-a.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "21700a4ac5b1b4c7e89c9a9ba303fede557ca64f7069a8b0643cf0e4382acaad"
 dependencies = [
- "base64 0.21.4",
+ "base64 0.21.5",
  "ed25519-dalek",
  "thiserror",
 ]
