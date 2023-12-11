@@ -230,6 +230,33 @@ dependencies = [
 ]
 
 [[package]]
+name = "azure_core"
+version = "0.18.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a6218987c374650fdad0b476bfc675729762c28dfb35f58608a38a2b1ea337dd"
+dependencies = [
+ "async-trait",
+ "base64 0.21.5",
+ "bytes",
+ "dyn-clone",
+ "futures",
+ "getrandom 0.2.11",
+ "http-types",
+ "log",
+ "once_cell",
+ "paste",
+ "pin-project",
+ "rand 0.8.5",
+ "reqwest",
+ "rustc_version",
+ "serde",
+ "serde_json",
+ "time",
+ "url",
+ "uuid",
+]
+
+[[package]]
 name = "azure_identity"
 version = "0.17.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -237,7 +264,7 @@ checksum = "8bd7ea32ca7eb66ff4757f83baac702ff11d469e5de365b6bc6f79f9c25d3436"
 dependencies = [
  "async-lock",
  "async-trait",
- "azure_core",
+ "azure_core 0.17.0",
  "futures",
  "log",
  "oauth2",
@@ -252,14 +279,15 @@ dependencies = [
 
 [[package]]
 name = "azure_svc_batch"
-version = "0.17.0"
+version = "0.18.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1636a798a7abb3b7c12c84e06586f59cf75c86e02add9cfe615f9f5dcf477a63"
+checksum = "9c25e9fbe5da0963e217cc5e83e91d604c3fe5a87f9aa9e40a021cf9a7eed424"
 dependencies = [
- "azure_core",
+ "azure_core 0.18.0",
  "bytes",
  "futures",
  "log",
+ "once_cell",
  "serde",
  "serde_json",
  "time",
@@ -1520,7 +1548,7 @@ name = "pattrick"
 version = "0.3.6"
 dependencies = [
  "async-recursion",
- "azure_core",
+ "azure_core 0.17.0",
  "azure_identity",
  "azure_svc_batch",
  "base64 0.21.5",
