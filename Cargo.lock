@@ -220,7 +220,6 @@ dependencies = [
  "paste",
  "pin-project",
  "rand 0.8.5",
- "reqwest",
  "rustc_version",
  "serde",
  "serde_json",
@@ -258,19 +257,18 @@ dependencies = [
 
 [[package]]
 name = "azure_identity"
-version = "0.17.0"
+version = "0.18.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8bd7ea32ca7eb66ff4757f83baac702ff11d469e5de365b6bc6f79f9c25d3436"
+checksum = "9e1eacc4f7fb2a73d57c39139d0fc3aed78435606055779ddaef4b43cdf919a8"
 dependencies = [
  "async-lock",
  "async-trait",
- "azure_core 0.17.0",
+ "azure_core 0.18.0",
  "futures",
  "log",
  "oauth2",
  "pin-project",
  "serde",
- "serde_json",
  "time",
  "tz-rs",
  "url",
