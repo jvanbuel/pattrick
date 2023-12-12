@@ -8,7 +8,7 @@ use async_recursion::async_recursion;
 use azure_core::auth::TokenCredential;
 use azure_identity::DefaultAzureCredential;
 
-const DEVOPS_RESOURCE: &str = "499b84ac-1321-427f-aa17-267ca6975798";
+const DEVOPS_RESOURCE: &str = "499b84ac-1321-427f-aa17-267ca6975798/.default";
 /// Azure AD token
 ///
 /// # Example
