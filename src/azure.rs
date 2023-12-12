@@ -44,7 +44,7 @@ impl Display for AzureADToken {
 #[async_recursion]
 pub async fn get_ad_token_for_devops(tries: i8) -> Result<AzureADToken, Box<dyn Error>> {
     let res = DefaultAzureCredential::default()
-        .get_token(DEVOPS_RESOURCE)
+        .get_token(&[DEVOPS_RESOURCE])
         .await;
     match res {
         Ok(token_response) => Ok(AzureADToken(token_response.token.secret().to_string())),
