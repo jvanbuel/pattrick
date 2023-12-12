@@ -8,7 +8,7 @@ use async_recursion::async_recursion;
 use azure_core::auth::TokenCredential;
 use azure_identity::DefaultAzureCredential;
 
-const DEVOPS_RESOURCE: &str = "499b84ac-1321-427f-aa17-267ca6975798";
+const DEVOPS_RESOURCE: &str = "499b84ac-1321-427f-aa17-267ca6975798/.default";
 /// Azure AD token
 ///
 /// # Example
@@ -44,7 +44,7 @@ impl Display for AzureADToken {
 #[async_recursion]
 pub async fn get_ad_token_for_devops(tries: i8) -> Result<AzureADToken, Box<dyn Error>> {
     let res = DefaultAzureCredential::default()
-        .get_token(DEVOPS_RESOURCE)
+        .get_token(&[DEVOPS_RESOURCE])
         .await;
     match res {
         Ok(token_response) => Ok(AzureADToken(token_response.token.secret().to_string())),
