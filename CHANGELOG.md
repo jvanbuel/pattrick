@@ -5,6 +5,51 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.7 (2023-12-13)
+
+### Chore
+
+ - <csr-id-ffaeac79fe101ea4d01550b94699c484f4acfe5e/> update azure dependencies
+
+### New Features
+
+ - <csr-id-00d9c7d3b98a2734f3f50f00c6b89300d29a8496/> update tabled to 0.11.1
+
+### Bug Fixes
+
+ - <csr-id-845ab8a3ad4f6d1430ffa256e6200222689cc4a0/> broken scope azure credential
+
+### Other
+
+ - <csr-id-afc3f155c0ba06ab58eccd84693677aa4e3f3ca3/> broken az login
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 9 commits contributed to the release over the course of 238 calendar days.
+ - 258 days passed between releases.
+ - 4 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Merge pull request #136 from jvanbuel/feat/helpful-devops-login-error-message ([`fd078bc`](https://github.com/jvanbuel/pattrick/commit/fd078bc6f92cd363fca97fcbf4839cdbae012540))
+    - Add helpful devops help message ([`85e0310`](https://github.com/jvanbuel/pattrick/commit/85e03102382866d1ae29899b086a4d97a751c669))
+    - Merge pull request #135 from jvanbuel/to-fix-broken-az-login ([`04c1247`](https://github.com/jvanbuel/pattrick/commit/04c124784befdc533f9c9fef7eaa68184da8781d))
+    - Broken scope azure credential ([`845ab8a`](https://github.com/jvanbuel/pattrick/commit/845ab8a3ad4f6d1430ffa256e6200222689cc4a0))
+    - Broken az login ([`afc3f15`](https://github.com/jvanbuel/pattrick/commit/afc3f155c0ba06ab58eccd84693677aa4e3f3ca3))
+    - Update azure dependencies ([`ffaeac7`](https://github.com/jvanbuel/pattrick/commit/ffaeac79fe101ea4d01550b94699c484f4acfe5e))
+    - Merge pull request #49 from oliverw1/patch-1 ([`4a54c85`](https://github.com/jvanbuel/pattrick/commit/4a54c8593fc7a316cbc68a7bc8d5bfb62ae7bf41))
+    - Add newline to .env so it becomes a "real" file ([`536b4b8`](https://github.com/jvanbuel/pattrick/commit/536b4b857b5aa13d9066ec679eb03a3e31d90b80))
+    - Update tabled to 0.11.1 ([`00d9c7d`](https://github.com/jvanbuel/pattrick/commit/00d9c7d3b98a2734f3f50f00c6b89300d29a8496))
+</details>
+
 ## 0.3.6 (2023-03-30)
 
 ### Bug Fixes

@@ -20,3 +20,6 @@ release: build linux-arm linux-x86 macos-m1
 	tar -zcvf target/$(NAME)-x86_64-unknown-linux-gnu.tar.gz -C target/x86_64-unknown-linux-gnu/release $(NAME)
 	tar -zcvf target/$(NAME)-aarch64-apple-darwin.tar.gz -C target/aarch64-apple-darwin/release $(NAME)
 	tar -zcvf target/$(NAME)-x86_64-apple-darwin.tar.gz -C target/x86_64-apple-darwin/release $(NAME)
+
+smart-release:
+	cargo smar-release
