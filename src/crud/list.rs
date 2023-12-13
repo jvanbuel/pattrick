@@ -3,7 +3,7 @@ use std::error::Error;
 use reqwest::Method;
 
 use crate::{
-    ListTokenResponse, PatToken, PatTokenListRequest, PatTokenManager, AZURE_DEVOPS_PAT_URL,
+    ListTokenResponse, PatToken, PatTokenListRequest, PatTokenManager, AZURE_DEVOPS_PAT_URL, crud::error::DEVOPS_ERROR_MESSAGE,
 };
 
 impl PatTokenManager {
@@ -37,25 +37,40 @@ impl PatTokenManager {
             .await?;
 
         log::debug!("Response: {:#?}", response);
-        let mut lt_response = response.json::<ListTokenResponse>().await?;
+        match response.error_for_status() {
+            Ok(response) => {
+                log::debug!("{:#?}", response);
+                let mut lt_result = response.json::<ListTokenResponse>().await?;
+                pat_tokens.append(&mut lt_result.pat_tokens);
 
-        pat_tokens.append(&mut lt_response.pat_tokens);
+                while let Some(token) = &lt_result.continuation_token {
+                    if token.is_empty() {
+                        return Ok(pat_tokens);
+                    }
+                    let response = self
+                        .base_request(Method::GET, AZURE_DEVOPS_PAT_URL)
+                        .query(&[("displayFilterOption", &list_request.display_filter_option)])
+                        .query(&[("continuationToken", token)])
+                        .send()
+                        .await?;
 
-        while let Some(token) = &lt_response.continuation_token {
-            if token.is_empty() {
-                return Ok(pat_tokens);
+                    lt_result = response.json::<ListTokenResponse>().await?;
+                    pat_tokens.append(&mut lt_result.pat_tokens);
+                    }
+
+                Ok(pat_tokens)
             }
-            let response = self
-                .base_request(Method::GET, AZURE_DEVOPS_PAT_URL)
-                .query(&[("displayFilterOption", &list_request.display_filter_option)])
-                .query(&[("continuationToken", token)])
-                .send()
-                .await?;
-
-            lt_response = response.json::<ListTokenResponse>().await?;
-            pat_tokens.append(&mut lt_response.pat_tokens);
+            Err(e) => {
+                if let Some(status) = e.status() {
+                    if status.is_client_error() {
+                        return Err::<Vec<PatToken>, Box<dyn Error>>(DEVOPS_ERROR_MESSAGE.into())
+                    }
+                }
+                Err::<Vec<PatToken>, Box<dyn Error>>(Box::new(e))
+            }
         }
 
-        Ok(lt_response.pat_tokens)
+
+
     }
 }

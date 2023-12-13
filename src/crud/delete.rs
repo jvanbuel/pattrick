@@ -2,7 +2,7 @@ use std::error::Error;
 
 use reqwest::{Method, StatusCode};
 
-use crate::{PatTokenDeleteRequest, PatTokenManager, AZURE_DEVOPS_PAT_URL};
+use crate::{PatTokenDeleteRequest, PatTokenManager, AZURE_DEVOPS_PAT_URL, crud::error::DEVOPS_ERROR_MESSAGE};
 
 impl PatTokenManager {
     /// Delete a PAT token
@@ -33,7 +33,22 @@ impl PatTokenManager {
             .send()
             .await?;
 
-        log::debug!("Response: {:#?}", response);
-        Ok(response.status())
+        log::debug!("{:#?}", response);
+        match response.error_for_status() {
+            Ok(response) => {
+                Ok(response.status())
+            }
+            Err(e) => {
+                log::debug!("Error: {:#?}", e);
+                if let Some(status) = e.status() {
+                    if status.is_client_error() {
+                        return Err::<StatusCode, Box<dyn Error>>(
+                        DEVOPS_ERROR_MESSAGE.into(),
+                        );
+                    }
+                }
+                Err::<StatusCode, Box<dyn Error>>(Box::new(e))
+            }
+        }
     }
 }

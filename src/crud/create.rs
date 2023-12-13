@@ -3,7 +3,7 @@ use std::error::Error;
 use reqwest::Method;
 
 use crate::{
-    PatToken, PatTokenCreateRequest, PatTokenManager, PatTokenResult, AZURE_DEVOPS_PAT_URL,
+    PatToken, PatTokenCreateRequest, PatTokenManager, PatTokenResult, AZURE_DEVOPS_PAT_URL, crud::error::DEVOPS_ERROR_MESSAGE,
 };
 
 impl PatTokenManager {
@@ -40,8 +40,20 @@ impl PatTokenManager {
             .send()
             .await?;
 
-        log::debug!("Response: {:#?}", response);
-        let ct_result = response.json::<PatTokenResult>().await?;
-        Ok(ct_result.pat_token)
+        match response.error_for_status() {
+            Ok(response) => {
+                log::debug!("{:#?}", response);
+                let ct_result = response.json::<PatTokenResult>().await?;
+                Ok(ct_result.pat_token)
+            }
+            Err(e) => {
+                log::debug!("Error: {:#?}", e);
+                if let Some(status) = e.status() {
+                    if status.is_client_error() {
+                        return Err::<PatToken, Box<dyn Error>>(DEVOPS_ERROR_MESSAGE.into())
+                    }
+                }
+                Err::<PatToken, Box<dyn Error>>(Box::new(e))}
+        }
     }
 }

@@ -1,6 +1,7 @@
 use std::error::Error;
 
 use reqwest::Method;
+use crate::crud::error::DEVOPS_ERROR_MESSAGE;
 
 use crate::{
     DisplayFilterOption, PatToken, PatTokenGetRequest, PatTokenListRequest, PatTokenManager,
@@ -37,9 +38,25 @@ impl PatTokenManager {
             .await?;
 
         log::debug!("Response: {:#?}", response);
-        let lt_response = response.json::<PatTokenResult>().await?;
+        match response.error_for_status() {
+            Ok(response) => {
+                log::debug!("{:#?}", response);
+                let lt_result = response.json::<PatTokenResult>().await?;
+                Ok(lt_result.pat_token)
+            }
+            Err(e) => {
+                log::debug!("Error: {:#?}", e);
+                if let Some(status) = e.status() {
+                    if status.is_client_error() {
+                        return Err::<PatToken, Box<dyn Error>>(
+                            DEVOPS_ERROR_MESSAGE.into(),
+                        );
+                    }
+                }
+                Err::<PatToken, Box<dyn Error>>(Box::new(e))
+            }
+        }
 
-        Ok(lt_response.pat_token)
     }
 
     /// Get a PAT token by name
