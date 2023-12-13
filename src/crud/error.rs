@@ -1,0 +1,1 @@
+pub const DEVOPS_ERROR_MESSAGE: &str = "Client error! Try to login to Azure DevOps through the browser before running this command again.";
