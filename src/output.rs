@@ -6,7 +6,7 @@ use std::{
 
 use netrc::Netrc;
 use tabled::{
-    settings::{locator::ByColumnName, Disable, Style},
+    settings::{location::ByColumnName, Disable, Style},
     Table,
 };
 
