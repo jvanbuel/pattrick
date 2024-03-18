@@ -15,7 +15,7 @@ azure_core = "^0.19"
 azure_identity = "^0.19"
 azure_svc_batch = "^0.19"
 url = "2.5.0"
-reqwest = "0.11.24"
+reqwest = "0.11.26"
 serde = "1.0.197"
 tabled = { version = "^0.15", features = ["ansi"] }
 chrono = "0.4.35"
