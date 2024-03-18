@@ -47,4 +47,4 @@ pattrick-clap = { version = "^0.3.4", path = "pattrick-clap" }
 members = ["pattrick-clap"]
 
 [dev-dependencies]
-tokio-test = "0.4.2"
+tokio-test = "0.4.4"
