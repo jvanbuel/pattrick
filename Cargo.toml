@@ -19,7 +19,7 @@ reqwest = { version = "0.12.4", features = ["json"] }
 serde = "1.0.198"
 tabled = { version = "^0.15", features = ["ansi"] }
 chrono = "0.4.38"
-petname = "1.1.2"
+petname = "2.0.1"
 netrc = "0.4.1"
 dirs = "5.0.1"
 pattrick-clap = { version = "^0.3.4", path = "pattrick-clap" }
