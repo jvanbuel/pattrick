@@ -11,9 +11,9 @@ license = "MIT"
 [dependencies]
 clap = { version = "4.5.4", features = ["derive", "cargo"] }
 tokio = { version = "^1.37.0", features = ["macros", "rt-multi-thread"] }
-azure_core = "^0.19"
-azure_identity = "^0.19"
-azure_svc_batch = "^0.19"
+azure_core = "^0.20"
+azure_identity = "^0.20"
+azure_svc_batch = "^0.20"
 url = "2.5.0"
 reqwest = { version = "0.12.4", features = ["json"] }
 serde = "1.0.198"
