@@ -33,7 +33,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
                 display_name: create_opts
                     .name
                     .clone()
-                    .unwrap_or_else(|| petname::petname(2, "-")),
+                    .unwrap_or_else(|| petname::petname(2, "-").expect("Failed to generate name")),
                 scope: create_opts.scope.clone(),
                 valid_to: (Utc::now()
                     + if let Some(lifetime) = Duration::try_seconds(create_opts.lifetime) {
