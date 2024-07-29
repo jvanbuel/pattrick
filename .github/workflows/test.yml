@@ -9,9 +9,6 @@ on:
       - "Cargo.lock"
   pull_request:
     branches: [ "main" ]
-    
-permissions:
-  contents: write 
 
 env:
   CARGO_TERM_COLOR: always
@@ -30,6 +27,7 @@ jobs:
     name: 'Dependabot'
     needs: [build]
     runs-on: ubuntu-latest
+    permissions: write-all
     if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}} # Detect that the PR author is dependabot
     steps:
       - name: Auto-merge Dependabot PRs
