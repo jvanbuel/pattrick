@@ -9,6 +9,9 @@ on:
       - "Cargo.lock"
   pull_request:
     branches: [ "main" ]
+    
+permissions:
+  contents: write 
 
 env:
   CARGO_TERM_COLOR: always
