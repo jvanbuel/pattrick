@@ -17,7 +17,7 @@ azure_svc_batch = "^0.20"
 url = "2.5.2"
 reqwest = { version = "0.12.5", features = ["json"] }
 serde = "1.0.206"
-tabled = { version = "^0.15", features = ["ansi"] }
+tabled = { version = "^0.16", features = ["ansi"] }
 chrono = "0.4.38"
 petname = "^2.0"
 netrc = "0.4.1"
