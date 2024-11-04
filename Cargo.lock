@@ -1657,7 +1657,7 @@ name = "pattrick"
 version = "0.3.7"
 dependencies = [
  "async-recursion",
- "azure_core 0.20.0",
+ "azure_core 0.21.0",
  "azure_identity",
  "azure_svc_batch",
  "base64 0.22.1",
