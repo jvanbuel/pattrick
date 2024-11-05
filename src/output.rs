@@ -52,6 +52,7 @@ pub fn write_to_netrc(pat_token: PatToken) -> Result<(), Box<dyn Error>> {
         .write(true)
         .append(false)
         .create(true)
+        .truncate(true)
         .open(netrc_path.as_path())?;
 
     let mut netrc_contents: String = Default::default();

@@ -36,11 +36,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
                     .unwrap_or_else(|| petname::petname(2, "-").expect("Failed to generate name")),
                 scope: create_opts.scope.clone(),
                 valid_to: (Utc::now()
-                    + if let Some(lifetime) = Duration::try_seconds(create_opts.lifetime) {
-                        lifetime
-                    } else {
-                        Default::default()
-                    }),
+                    + Duration::try_seconds(create_opts.lifetime).unwrap_or_default()),
             };
             log::info!("Creating PAT token with request: {:?}", create_request);
             let pat_token = token_manager.create_pat_token(create_request).await?;

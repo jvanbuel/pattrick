@@ -55,7 +55,7 @@ where
 
     for scope in scopes {
         serialized_scopes.push_str(
-            serde_json::to_value(&ScopeWrapper(scope))
+            serde_json::to_value(ScopeWrapper(scope))
                 .unwrap()
                 .as_str()
                 .unwrap_or_else(|| panic!("Failed to serialize scope: {scope}")),
