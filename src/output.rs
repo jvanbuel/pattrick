@@ -6,7 +6,7 @@ use std::{
 
 use netrc::Netrc;
 use tabled::{
-    settings::{location::ByColumnName, Disable, Style},
+    settings::{location::ByColumnName, Remove, Style},
     Table,
 };
 
@@ -15,9 +15,9 @@ use pattrick::PatToken;
 pub fn print_as_table(pat_tokens: Vec<PatToken>, print_token: bool) {
     let mut table = Table::new(pat_tokens);
     table.with(Style::modern());
-    table.with(Disable::column(ByColumnName::new("id")));
+    table.with(Remove::column(ByColumnName::new("id")));
     if !print_token {
-        table.with(Disable::column(ByColumnName::new("token")));
+        table.with(Remove::column(ByColumnName::new("token")));
     }
     println!("{:#^10}", table.to_string());
 }
