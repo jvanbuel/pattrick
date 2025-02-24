@@ -21,14 +21,14 @@ pub struct PatToken {
     /// expiration date of the token
     pub valid_to: DateTime<Utc>,
     /// scope of the PAT token, e.g. Packaging, Code, Build, ...
-    #[tabled(display_with = "display_scopes")]
+    #[tabled(display = "display_scopes")]
     #[serde(
         deserialize_with = "scopes_from_string",
         serialize_with = "scopes_to_string"
     )]
     pub scope: Vec<Scope>,
     /// PAT token value
-    #[tabled(display_with = "display_token")]
+    #[tabled(display = "display_token")]
     pub token: Option<String>,
 }
 
