@@ -15,7 +15,7 @@ azure_core = "^0.22"
 azure_identity = "^0.22"
 azure_svc_batch = "^0.21"
 url = "2.5.4"
-reqwest = { version = "0.12.14", features = ["json"] }
+reqwest = { version = "0.12.15", features = ["json"] }
 serde = "1.0.219"
 tabled = { version = "^0.18", features = ["ansi"] }
 chrono = "0.4.40"
