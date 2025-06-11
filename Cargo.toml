@@ -1,7 +1,7 @@
 [package]
 name = "pattrick"
 version = "0.3.7"
-edition = "2021"
+edition = "2024"
 description = "Pattrick is a command line tool for managing Personal Access Tokens (PAT) in Azure DevOps."
 repository = "https://github.com/jvanbuel/pattrick"
 license = "MIT"
@@ -11,13 +11,13 @@ license = "MIT"
 [dependencies]
 clap = { version = "4.5.39", features = ["derive", "cargo"] }
 tokio = { version = "^1.45.1", features = ["macros", "rt-multi-thread"] }
-azure_core = "^0.24"
-azure_identity = "^0.24"
+azure_core = "^0.25"
+azure_identity = "^0.25"
 url = "2.5.4"
 reqwest = { version = "0.12.19", features = ["json"] }
 serde = "1.0.219"
 tabled = { version = "^0.20", features = ["ansi"] }
-chrono = "0.4.41"
+chrono = { version = "0.4.41", features = ["serde"] }
 petname = "^2.0"
 netrc = "0.4.1"
 dirs = "6.0.0"
