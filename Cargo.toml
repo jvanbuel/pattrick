@@ -14,7 +14,7 @@ tokio = { version = "^1.45.1", features = ["macros", "rt-multi-thread"] }
 azure_core = "^0.25"
 azure_identity = "^0.25"
 url = "2.5.4"
-reqwest = { version = "0.12.19", features = ["json"] }
+reqwest = { version = "0.12.22", features = ["json"] }
 serde = "1.0.219"
 tabled = { version = "^0.20", features = ["ansi"] }
 chrono = { version = "0.4.41", features = ["serde"] }
