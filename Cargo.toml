@@ -9,10 +9,10 @@ license = "MIT"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-clap = { version = "4.5.39", features = ["derive", "cargo"] }
+clap = { version = "4.5.41", features = ["derive", "cargo"] }
 tokio = { version = "^1.46.1", features = ["macros", "rt-multi-thread"] }
-azure_core = "^0.25"
-azure_identity = "^0.25"
+azure_core = "^0.26"
+azure_identity = "^0.26"
 url = "2.5.4"
 reqwest = { version = "0.12.22", features = ["json"] }
 serde = "1.0.219"
