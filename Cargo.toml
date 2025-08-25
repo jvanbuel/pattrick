@@ -13,7 +13,7 @@ clap = { version = "4.5.45", features = ["derive", "cargo"] }
 tokio = { version = "^1.47.1", features = ["macros", "rt-multi-thread"] }
 azure_core = "^0.27"
 azure_identity = "^0.27"
-url = "2.5.4"
+url = "2.5.7"
 reqwest = { version = "0.12.23", features = ["json"] }
 serde = "1.0.219"
 tabled = { version = "^0.20", features = ["ansi"] }
