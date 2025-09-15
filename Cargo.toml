@@ -31,7 +31,7 @@ self_update = { version = "0.42.0", features = [
 ] }
 async-recursion = "1.1.1"
 log = "0.4.28"
-serde_json = "1.0.143"
+serde_json = "1.0.145"
 env_logger = "0.11.8"
 strum_macros = "0.27.1"
 
