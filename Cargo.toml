@@ -15,7 +15,7 @@ azure_core = "^0.27"
 azure_identity = "^0.27"
 url = "2.5.7"
 reqwest = { version = "0.12.23", features = ["json"] }
-serde = "1.0.226"
+serde = "1.0.228"
 tabled = { version = "^0.20", features = ["ansi"] }
 chrono = { version = "0.4.42", features = ["serde"] }
 petname = "^2.0"
