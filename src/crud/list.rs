@@ -61,11 +61,10 @@ impl PatTokenManager {
                 Ok(pat_tokens)
             }
             Err(e) => {
-                if let Some(status) = e.status() {
-                    if status.is_client_error() {
+                if let Some(status) = e.status()
+                    && status.is_client_error() {
                         return Err::<Vec<PatToken>, Box<dyn Error>>(DEVOPS_ERROR_MESSAGE.into())
                     }
-                }
                 Err::<Vec<PatToken>, Box<dyn Error>>(Box::new(e))
             }
         }

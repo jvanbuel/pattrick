@@ -48,11 +48,10 @@ impl PatTokenManager {
             }
             Err(e) => {
                 log::debug!("Error: {:#?}", e);
-                if let Some(status) = e.status() {
-                    if status.is_client_error() {
+                if let Some(status) = e.status()
+                    && status.is_client_error() {
                         return Err::<PatToken, Box<dyn Error>>(DEVOPS_ERROR_MESSAGE.into())
                     }
-                }
                 Err::<PatToken, Box<dyn Error>>(Box::new(e))}
         }
     }

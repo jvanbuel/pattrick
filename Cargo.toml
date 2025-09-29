@@ -11,8 +11,8 @@ license = "MIT"
 [dependencies]
 clap = { version = "4.5.47", features = ["derive", "cargo"] }
 tokio = { version = "^1.47.1", features = ["macros", "rt-multi-thread"] }
-azure_core = "^0.27"
-azure_identity = "^0.27"
+azure_core = "^0.28"
+azure_identity = "^0.28"
 url = "2.5.7"
 reqwest = { version = "0.12.23", features = ["json"] }
 serde = "1.0.228"
@@ -36,7 +36,7 @@ env_logger = "0.11.8"
 strum_macros = "0.27.1"
 
 [build-dependencies]
-clap = { version = "4.5.47", features = ["derive"] }
+clap = { version = "4.5.48", features = ["derive"] }
 clap_complete = "4.5.58"
 clap_complete_fig = "4.5.2"
 pattrick-clap = { version = "^0.3.4", path = "pattrick-clap" }

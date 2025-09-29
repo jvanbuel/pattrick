@@ -1,11 +1,11 @@
 use std::error::Error;
 
-use reqwest::Method;
 use crate::crud::error::DEVOPS_ERROR_MESSAGE;
+use reqwest::Method;
 
 use crate::{
-    DisplayFilterOption, PatToken, PatTokenGetRequest, PatTokenListRequest, PatTokenManager,
-    PatTokenResult, AZURE_DEVOPS_PAT_URL,
+    AZURE_DEVOPS_PAT_URL, DisplayFilterOption, PatToken, PatTokenGetRequest, PatTokenListRequest,
+    PatTokenManager, PatTokenResult,
 };
 
 impl PatTokenManager {
@@ -46,17 +46,14 @@ impl PatTokenManager {
             }
             Err(e) => {
                 log::debug!("Error: {:#?}", e);
-                if let Some(status) = e.status() {
-                    if status.is_client_error() {
-                        return Err::<PatToken, Box<dyn Error>>(
-                            DEVOPS_ERROR_MESSAGE.into(),
-                        );
-                    }
+                if let Some(status) = e.status()
+                    && status.is_client_error()
+                {
+                    return Err::<PatToken, Box<dyn Error>>(DEVOPS_ERROR_MESSAGE.into());
                 }
                 Err::<PatToken, Box<dyn Error>>(Box::new(e))
             }
         }
-
     }
 
     /// Get a PAT token by name
