@@ -3,7 +3,7 @@ use std::error::Error;
 use reqwest::Method;
 
 use crate::{
-    ListTokenResponse, PatToken, PatTokenListRequest, PatTokenManager, AZURE_DEVOPS_PAT_URL, crud::error::DEVOPS_ERROR_MESSAGE,
+    ListTokenResponse, PatToken, PatTokenListRequest, PatTokenManager, crud::error::DEVOPS_ERROR_MESSAGE,
 };
 
 impl PatTokenManager {
@@ -16,7 +16,7 @@ impl PatTokenManager {
     /// use pattrick::azure::get_ad_token_for_devops;
     ///
     /// # tokio_test::block_on(async {
-    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
+    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?).await?;
     ///
     /// let pat_tokens = pat_manager.list_pat_tokens(
     ///     PatTokenListRequest {
@@ -31,7 +31,7 @@ impl PatTokenManager {
     ) -> Result<Vec<PatToken>, Box<dyn Error>> {
         let mut pat_tokens: Vec<PatToken> = Vec::new();
         let response = self
-            .base_request(Method::GET, AZURE_DEVOPS_PAT_URL)
+            .base_request(Method::GET, &self.pat_url)
             .query(&[("displayFilterOption", &list_request.display_filter_option)])
             .send()
             .await?;
@@ -48,7 +48,7 @@ impl PatTokenManager {
                         return Ok(pat_tokens);
                     }
                     let response = self
-                        .base_request(Method::GET, AZURE_DEVOPS_PAT_URL)
+                        .base_request(Method::GET, &self.pat_url)
                         .query(&[("displayFilterOption", &list_request.display_filter_option)])
                         .query(&[("continuationToken", token)])
                         .send()

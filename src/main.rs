@@ -1,5 +1,5 @@
 use chrono::{Duration, Utc};
-use clap::{crate_version, Parser};
+use clap::{Parser, crate_version};
 use output::{print_as_table, write_to_dotenv, write_to_netrc};
 use pattrick::{
     DisplayFilterOption, PatTokenDeleteRequest, PatTokenGetRequest, PatTokenListRequest,
@@ -9,7 +9,7 @@ use reqwest::StatusCode;
 use std::error::Error;
 
 mod output;
-use pattrick::{azure::get_ad_token_for_devops, PatTokenCreateRequest, PatTokenManager};
+use pattrick::{PatTokenCreateRequest, PatTokenManager, azure::get_ad_token_for_devops};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
@@ -23,8 +23,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         println!("pattrick v{}", crate_version!());
         return Ok(());
     }
-
-    let token_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
+    let token_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?).await?;
 
     match &cli.command {
         Some(args::Commands::Create(create_opts)) => {

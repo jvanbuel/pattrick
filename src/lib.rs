@@ -10,7 +10,7 @@
 //! use pattrick::azure::get_ad_token_for_devops;
 //!
 //! # tokio_test::block_on(async {
-//! let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
+//! let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?).await?;
 //!
 //! let pat_tokens = pat_manager.list_pat_tokens(
 //!     PatTokenListRequest {
@@ -43,7 +43,6 @@ use reqwest::Client;
 use reqwest::IntoUrl;
 use reqwest::Method;
 
-const AZURE_DEVOPS_PAT_URL: &str = "https://vssps.dev.azure.com/imec-int/_apis/tokens/pats";
 const API_VERSION: &str = "7.1-preview.1";
 
 /// PatTokenManager is a struct that manages the creation, listing, getting and deletion of PAT tokens.
@@ -57,10 +56,7 @@ const API_VERSION: &str = "7.1-preview.1";
 /// use reqwest::Client;
 ///
 /// # tokio_test::block_on(async {
-/// let pat_manager = PatTokenManager {
-///     ad_token: get_ad_token_for_devops(1).await?,
-///     client: Client::new(),
-/// };
+/// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?).await?;
 /// # Ok::<(), Box<dyn std::error::Error>>(())});
 /// ```
 pub struct PatTokenManager {
@@ -68,6 +64,8 @@ pub struct PatTokenManager {
     pub ad_token: AzureADToken,
     /// Reqwest client used to make requests
     pub client: Client,
+    /// Azure DevOps PAT API URL for the organization
+    pub pat_url: String,
 }
 
 impl PatTokenManager {
@@ -80,14 +78,18 @@ impl PatTokenManager {
     /// use pattrick::azure::get_ad_token_for_devops;
     ///
     /// # tokio_test::block_on(async {
-    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
+    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?).await?;
     /// # Ok::<(), Box<dyn std::error::Error>>(())});
     /// ```
-    pub fn new(ad_token: AzureADToken) -> Self {
-        Self {
+    pub async fn new(ad_token: AzureADToken) -> Result<Self, Box<dyn Error>> {
+        let organization = azure::get_organization(&ad_token).await?;
+        let pat_url = format!("https://vssps.dev.azure.com/{}/_apis/tokens/pats", organization);
+
+        Ok(Self {
             ad_token,
             client: Client::new(),
-        }
+            pat_url,
+        })
     }
     fn base_request<U>(&self, method: Method, url: U) -> reqwest::RequestBuilder
     where
@@ -109,7 +111,7 @@ impl PatTokenManager {
     /// use pattrick::azure::get_ad_token_for_devops;
     ///
     /// # tokio_test::block_on(async {
-    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
+    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?).await?;
     ///
     /// let latest_version = pat_manager.get_latest_version().await?;
     ///

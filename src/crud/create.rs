@@ -3,7 +3,7 @@ use std::error::Error;
 use reqwest::Method;
 
 use crate::{
-    PatToken, PatTokenCreateRequest, PatTokenManager, PatTokenResult, AZURE_DEVOPS_PAT_URL, crud::error::DEVOPS_ERROR_MESSAGE,
+    PatToken, PatTokenCreateRequest, PatTokenManager, PatTokenResult, crud::error::DEVOPS_ERROR_MESSAGE,
 };
 
 impl PatTokenManager {
@@ -18,7 +18,7 @@ impl PatTokenManager {
     /// use chrono::{Utc, Duration};
     ///
     /// # tokio_test::block_on(async {
-    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
+    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?).await?;
     ///
     /// let pat_token = pat_manager.create_pat_token(
     ///    PatTokenCreateRequest {
@@ -35,7 +35,7 @@ impl PatTokenManager {
         create_request: PatTokenCreateRequest,
     ) -> Result<PatToken, Box<dyn Error>> {
         let response = self
-            .base_request(Method::POST, AZURE_DEVOPS_PAT_URL)
+            .base_request(Method::POST, &self.pat_url)
             .json(&create_request)
             .send()
             .await?;

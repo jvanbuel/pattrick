@@ -4,7 +4,7 @@ use crate::crud::error::DEVOPS_ERROR_MESSAGE;
 use reqwest::Method;
 
 use crate::{
-    AZURE_DEVOPS_PAT_URL, DisplayFilterOption, PatToken, PatTokenGetRequest, PatTokenListRequest,
+    DisplayFilterOption, PatToken, PatTokenGetRequest, PatTokenListRequest,
     PatTokenManager, PatTokenResult,
 };
 
@@ -18,7 +18,7 @@ impl PatTokenManager {
     /// use pattrick::azure::get_ad_token_for_devops;
     ///
     /// # tokio_test::block_on(async {
-    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
+    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?).await?;
     ///
     /// let pat_token = pat_manager.get_pat_token(
     ///    PatTokenGetRequest {
@@ -32,7 +32,7 @@ impl PatTokenManager {
         get_request: PatTokenGetRequest,
     ) -> Result<PatToken, Box<dyn Error>> {
         let response = self
-            .base_request(Method::GET, AZURE_DEVOPS_PAT_URL)
+            .base_request(Method::GET, &self.pat_url)
             .query(&[("authorizationId", get_request.authorization_id)])
             .send()
             .await?;
@@ -65,7 +65,7 @@ impl PatTokenManager {
     /// use pattrick::azure::get_ad_token_for_devops;
     ///
     /// # tokio_test::block_on( async {
-    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
+    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?).await?;
     ///
     /// let pat_token = pat_manager.get_pat_token_by_name("awesome-pat").await?;
     ///
