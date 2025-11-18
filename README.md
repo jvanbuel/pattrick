@@ -41,7 +41,9 @@ Pattrick looks for Azure CLI credentials to fetch an access token for authentica
 az login
 ```
 
-If `pattrick` cannot find a valid access token, it will try to log you in automatically (by using the `az login` command under the hood). You can then start using `pattrick` to manage your PAT tokens:
+If `pattrick` cannot find a valid access token, it will try to log you in automatically (by using the `az login` command under the hood). It will also try to automatically figure out the DevOps organization to connect to. If you have access to multiple DevOps organization, you can specify the organization you want to manage PAT tokens for via the environment variable `DEVOPS_ORGANIZATION`.
+
+You can then start using `pattrick` to manage your PAT tokens:
 
 ```bash
 pattrick create --lifetime 100 --scope packaging
