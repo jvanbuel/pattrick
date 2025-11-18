@@ -22,4 +22,4 @@ release: build linux-arm linux-x86 macos-m1
 	tar -zcvf target/$(NAME)-x86_64-apple-darwin.tar.gz -C target/x86_64-apple-darwin/release $(NAME)
 
 smart-release:
-	cargo smar-release pattrick --update-crates-index --execute
+	cargo smart-release pattrick --update-crates-index --execute

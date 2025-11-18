@@ -2,7 +2,7 @@ use std::error::Error;
 
 use reqwest::{Method, StatusCode};
 
-use crate::{PatTokenDeleteRequest, PatTokenManager, AZURE_DEVOPS_PAT_URL, crud::error::DEVOPS_ERROR_MESSAGE};
+use crate::{PatTokenDeleteRequest, PatTokenManager, crud::error::DEVOPS_ERROR_MESSAGE};
 
 impl PatTokenManager {
     /// Delete a PAT token
@@ -14,7 +14,7 @@ impl PatTokenManager {
     /// use pattrick::azure::get_ad_token_for_devops;
     ///
     /// # tokio_test::block_on(async {
-    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?);
+    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?).await?;
     ///
     /// pat_manager.delete_pat_token(
     ///    PatTokenDeleteRequest {
@@ -28,7 +28,7 @@ impl PatTokenManager {
         delete_request: PatTokenDeleteRequest,
     ) -> Result<StatusCode, Box<dyn Error>> {
         let response = self
-            .base_request(Method::DELETE, AZURE_DEVOPS_PAT_URL)
+            .base_request(Method::DELETE, &self.pat_url)
             .query(&[("authorizationId", &delete_request.authorization_id)])
             .send()
             .await?;
