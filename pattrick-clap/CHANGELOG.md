@@ -7,6 +7,65 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 0.3.5 (2025-11-18)
 
+<csr-id-3a509ca3dfdaaa3493dedd86d104832f7d4fe867/>
+<csr-id-f83ad89f6f66764b8f2c6235c0f7c5fff704db22/>
+<csr-id-b233584a463d3e9891f42bcefcf728adfe7ca625/>
+<csr-id-2f171e04cb1f66c464dcf6a02a5a0baa132190ee/>
+<csr-id-458654d2e34bfcf5627176f7e3105aea99234d40/>
+<csr-id-97fd4a1fc4bd96dc5cb4bc301b62f390a45a5830/>
+<csr-id-893869e481f9f07afd51a85312c76a68b8295a13/>
+<csr-id-f73306ff55b90de745d075c9537e9d803e0cdfec/>
+<csr-id-0763491283bffdec8b92dc10b3c84c0328420b7a/>
+<csr-id-2b2895d6349179148cf567e20b03961b45588623/>
+<csr-id-bb90fdebbcba4d3614a8583cbbc0bf1033920a5f/>
+<csr-id-d9355e726e42e541a182e444e52e7ee61af100be/>
+<csr-id-3599eb0390c9cea3913832bf7f27958fac2cae64/>
+<csr-id-39f4c9c9615a76dc0f23d09ec7c970844d648fc0/>
+<csr-id-1dd8a9a87cdcbb82272ad8d681d76f165e0e9bae/>
+<csr-id-c06a88707958a93218700931660c11940c8ae8a0/>
+<csr-id-99f6c5826946f872801bbd7fb919428765b4717b/>
+<csr-id-faca480619c95a4afe2dd854576745df28a87e12/>
+<csr-id-d1c8ab8043d30ac3fd8101a6bd58466feed09e5f/>
+<csr-id-7f99dfd871199f8856de046b792c38b7cb00c2f5/>
+<csr-id-ab2d666a4f624f112a9fde3576dcae794f5b2260/>
+<csr-id-be53e035b00bb430717f2680835eb9b16126cf2c/>
+<csr-id-5fcbbc943179565f013dcdd39434b8f2bcdec663/>
+<csr-id-2e9ab9ce0c47e19dc0cf5aa67bcd4c6aa542cab3/>
+<csr-id-cf510b6b47e243c4402ecfc8606a844b9f58a633/>
+<csr-id-3ce59654b8944ac1f58e43db7f9fe8541d4d6e81/>
+<csr-id-3514ad0600a36729c694d626540ff69f8193fa39/>
+<csr-id-323bcb3c31dd90a5eac6cb2712e5f4cfefbfdc5a/>
+<csr-id-df1369b63224d235c8c8df51f39963e9415fc90a/>
+<csr-id-aca34ab6da9efe15d21e9c6bfee226ffce4bb9a3/>
+<csr-id-53ea05a2532bcce8cfdb516e280762a0809aca61/>
+<csr-id-a35af36b46ffbf683236f022694afd96a106a898/>
+<csr-id-640b8c44ab245af800a558fcc3231a37d069708e/>
+<csr-id-4c4c5d06cec78986546a1b3111cfa7e7f4c77a8a/>
+<csr-id-b624519fb301f583fefe025b1e16386265e373e6/>
+<csr-id-84217bbe3c9c8e3375a7db06026beaec7309a9e5/>
+<csr-id-dcfde8629b881c7c0386bc88f381af2c89efd3dc/>
+<csr-id-744b4b1d9674d2906f0c929a2fd9aa60a65a2b0d/>
+<csr-id-c840f74a5d98c27fe94fc8bfacf740107f747955/>
+<csr-id-97d0b1a132c86c340b096e018a70041162c8ea0b/>
+<csr-id-d00877279f96de0f5c9f8e6410a27b7b436f6038/>
+<csr-id-b7303d0b3beed2c736da447d10c8ac98177d9e8a/>
+<csr-id-b40ef3a0204f97dca88c49005bd4b4ac47877e49/>
+<csr-id-54a061e12a1b4ce358fda405d6e66490ea004053/>
+<csr-id-2e426e662d58d4236bdada220e6d67eaaacb4dd0/>
+<csr-id-089af312a40d22c8c708ec7d36a44341a66a5d10/>
+<csr-id-5ad055579da876d2c1686322b8122b28c21db2b6/>
+<csr-id-b50bfef65d8fca1cc9e71499f88a0e5d9f7a8ffa/>
+<csr-id-2d12e0486e073d3be9f3d17f3fe484f8157d4d71/>
+<csr-id-a26ddd3e26788bb72abcb947027012c8648fe817/>
+<csr-id-0a3bc27c981d27e979ab68b65e87e6243884dbd6/>
+<csr-id-cd998b7b47a7a2fca2171fe425fb0cc6d2d3b772/>
+<csr-id-d2335bb927e7a313ed1dc9cdce6f70e67ce1659b/>
+<csr-id-7f8afce49e4f9603c6aa58bfc62d102d28c4ff77/>
+<csr-id-0cbc439c59e13243918c86ec357b73df249908fa/>
+<csr-id-cbd6f3d917ee7c5c76df7c28b87a635d064c69f7/>
+<csr-id-554fac9b6961e3ab2267a9aa472c995bf1948668/>
+<csr-id-fffa1fc81d1a369e20f4b2781f6750aa3cf0bd4e/>
+
 ### Other
 
  - <csr-id-3a509ca3dfdaaa3493dedd86d104832f7d4fe867/> bump clap from 4.5.50 to 4.5.51
@@ -712,7 +771,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 118 commits contributed to the release.
+ - 119 commits contributed to the release.
  - 706 days passed between releases.
  - 58 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
@@ -724,6 +783,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - Release pattrick-clap v0.3.5, pattrick v0.3.8 ([`eb5e5af`](https://github.com/jvanbuel/pattrick/commit/eb5e5af9703276128841b32f21937bd390fd656b))
     - Merge pull request #406 from jvanbuel/dependabot/cargo/clap-4.5.51 ([`057e7cd`](https://github.com/jvanbuel/pattrick/commit/057e7cd77df9849b6f8b44973ede8b2a0378c83b))
     - Bump clap from 4.5.50 to 4.5.51 ([`3a509ca`](https://github.com/jvanbuel/pattrick/commit/3a509ca3dfdaaa3493dedd86d104832f7d4fe867))
     - Merge pull request #405 from jvanbuel/dependabot/cargo/clap-4.5.50 ([`2436f74`](https://github.com/jvanbuel/pattrick/commit/2436f74047b77a500c360abec11958270aa7f64a))
