@@ -5,7 +5,47 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.8 (2025-11-18)
+
+### Bug Fixes
+
+ - <csr-id-f8c6424f9df1ea3624410a57db1836292308bf67/> remove hardcoded organization
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 13 commits contributed to the release over the course of 680 calendar days.
+ - 706 days passed between releases.
+ - 1 commit was understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Merge pull request #413 from jvanbuel/push-slsnqyupxqvo ([`bf1c210`](https://github.com/jvanbuel/pattrick/commit/bf1c2104bc1fc8db38f5618aefe535f21fc13b09))
+    - Remove hardcoded organization ([`f8c6424`](https://github.com/jvanbuel/pattrick/commit/f8c6424f9df1ea3624410a57db1836292308bf67))
+    - Update deps ([`b355c08`](https://github.com/jvanbuel/pattrick/commit/b355c0890b19908936a9175847cd9d31214a4f66))
+    - Merge pull request #362 from jvanbuel/dependabot/cargo/azure_core-0.25.0 ([`5098251`](https://github.com/jvanbuel/pattrick/commit/50982515a6fa7da11e824992b23bc8a2b93316ac))
+    - Update deps ([`9bae981`](https://github.com/jvanbuel/pattrick/commit/9bae9818f884244c092e9c58533950785b4aee01))
+    - Update dependencies ([`7387be1`](https://github.com/jvanbuel/pattrick/commit/7387be1607ea0b397ad607ddd60bf4134950cc77))
+    - Merge pull request #289 from jvanbuel/dependabot/cargo/tabled-0.17.0 ([`4c7b2df`](https://github.com/jvanbuel/pattrick/commit/4c7b2df49ac4a3207a490b20632c3a70c17e944c))
+    - Fix breaking change tabled ([`9ec1e62`](https://github.com/jvanbuel/pattrick/commit/9ec1e62c376092980ebb6003f70065ae365c586b))
+    - Maintenance ([`c4c4243`](https://github.com/jvanbuel/pattrick/commit/c4c424370450213fa1a5d329f64d502607fe8ec1))
+    - Update azure dependencies ([`5f8ca9a`](https://github.com/jvanbuel/pattrick/commit/5f8ca9a3e72436b101349f37031857370143ef8b))
+    - Update petname to v2.0 ([`f25ba4b`](https://github.com/jvanbuel/pattrick/commit/f25ba4b1863ceb540b04ea96f1b8625921c2c091))
+    - Fix breaking changes ([`4239dff`](https://github.com/jvanbuel/pattrick/commit/4239dff1596ac057f597456167c8afd2dcf37230))
+    - Update dependencies ([`67b4347`](https://github.com/jvanbuel/pattrick/commit/67b43479af2a2022a28ffa247665afde311dd86d))
+</details>
+
 ## 0.3.7 (2023-12-13)
+
+<csr-id-ffaeac79fe101ea4d01550b94699c484f4acfe5e/>
+<csr-id-afc3f155c0ba06ab58eccd84693677aa4e3f3ca3/>
 
 ### Chore
 
@@ -27,8 +67,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 9 commits contributed to the release over the course of 238 calendar days.
- - 258 days passed between releases.
+ - 9 commits contributed to the release.
  - 4 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
 
@@ -61,8 +100,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 4 commits contributed to the release over the course of 69 calendar days.
- - 83 days passed between releases.
+ - 4 commits contributed to the release.
  - 2 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
 
@@ -211,7 +249,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <csr-read-only-do-not-edit/>
 
  - 13 commits contributed to the release over the course of 2 calendar days.
- - 64 days passed between releases.
  - 2 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
 

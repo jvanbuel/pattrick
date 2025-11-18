@@ -1489,7 +1489,7 @@ checksum = "f38d5652c16fde515bb1ecef450ab0f6a219d619a7274976324d5e377f7dceba"
 
 [[package]]
 name = "pattrick"
-version = "0.3.7"
+version = "0.3.8"
 dependencies = [
  "async-recursion",
  "azure_core",
@@ -1520,7 +1520,7 @@ dependencies = [
 
 [[package]]
 name = "pattrick-clap"
-version = "0.3.4"
+version = "0.3.5"
 dependencies = [
  "clap",
  "clap-verbosity-flag",

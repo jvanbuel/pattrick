@@ -1,6 +1,6 @@
 [package]
 name = "pattrick"
-version = "0.3.7"
+version = "0.3.8"
 edition = "2024"
 description = "Pattrick is a command line tool for managing Personal Access Tokens (PAT) in Azure DevOps."
 repository = "https://github.com/jvanbuel/pattrick"
@@ -21,7 +21,7 @@ chrono = { version = "0.4.42", features = ["serde"] }
 petname = "^2.0"
 netrc = "0.4.1"
 dirs = "6.0.0"
-pattrick-clap = { version = "^0.3.4", path = "pattrick-clap" }
+pattrick-clap = { version = "^0.3.5", path = "pattrick-clap" }
 openssl = { version = "^0.10.75", features = ["vendored"] }
 owo-colors = "4.2.3"
 base64 = "0.22.1"
@@ -39,7 +39,7 @@ strum_macros = "0.27.1"
 clap = { version = "4.5.51", features = ["derive"] }
 clap_complete = "4.5.60"
 clap_complete_fig = "4.5.2"
-pattrick-clap = { version = "^0.3.4", path = "pattrick-clap" }
+pattrick-clap = { version = "^0.3.5", path = "pattrick-clap" }
 
 [workspace]
 # This is a path relative to the workspace root.
