@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.4.0 (2025-11-20)
+
+### New Features
+
+ - <csr-id-530a4fe5410122a7d55207f1bf7d0cba53e66bfa/> add new token scopes
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 2 commits contributed to the release.
+ - 1 day passed between releases.
+ - 1 commit was understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Merge pull request #415 from jvanbuel/push-okznrklozsrw ([`5f323bb`](https://github.com/jvanbuel/pattrick/commit/5f323bb20a0896fee35ed06595314c941c1ff3ba))
+    - Add new token scopes ([`530a4fe`](https://github.com/jvanbuel/pattrick/commit/530a4fe5410122a7d55207f1bf7d0cba53e66bfa))
+</details>
+
 ## 0.3.8 (2025-11-18)
 
 ### Bug Fixes

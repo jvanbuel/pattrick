@@ -1,6 +1,6 @@
 [package]
 name = "pattrick-clap"
-version = "0.3.5"
+version = "0.3.6"
 edition = "2021"
 description = "Pattrick is a command line tool for managing Personal Access Tokens (PAT) in Azure DevOps."
 repository = "https://github.com/jvanbuel/pattrick"

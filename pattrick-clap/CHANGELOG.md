@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.6 (2025-11-20)
+
+### New Features
+
+ - <csr-id-530a4fe5410122a7d55207f1bf7d0cba53e66bfa/> add new token scopes
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 2 commits contributed to the release.
+ - 1 day passed between releases.
+ - 1 commit was understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Merge pull request #415 from jvanbuel/push-okznrklozsrw ([`5f323bb`](https://github.com/jvanbuel/pattrick/commit/5f323bb20a0896fee35ed06595314c941c1ff3ba))
+    - Add new token scopes ([`530a4fe`](https://github.com/jvanbuel/pattrick/commit/530a4fe5410122a7d55207f1bf7d0cba53e66bfa))
+</details>
+
 ## 0.3.5 (2025-11-18)
 
 <csr-id-3a509ca3dfdaaa3493dedd86d104832f7d4fe867/>
@@ -771,7 +797,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 119 commits contributed to the release.
+ - 120 commits contributed to the release.
  - 706 days passed between releases.
  - 58 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
@@ -783,6 +809,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - Release pattrick-clap v0.3.5, pattrick v0.3.8 ([`42f6f3f`](https://github.com/jvanbuel/pattrick/commit/42f6f3f2eb564ef12923c76b2a20d16567887265))
     - Release pattrick-clap v0.3.5, pattrick v0.3.8 ([`eb5e5af`](https://github.com/jvanbuel/pattrick/commit/eb5e5af9703276128841b32f21937bd390fd656b))
     - Merge pull request #406 from jvanbuel/dependabot/cargo/clap-4.5.51 ([`057e7cd`](https://github.com/jvanbuel/pattrick/commit/057e7cd77df9849b6f8b44973ede8b2a0378c83b))
     - Bump clap from 4.5.50 to 4.5.51 ([`3a509ca`](https://github.com/jvanbuel/pattrick/commit/3a509ca3dfdaaa3493dedd86d104832f7d4fe867))
