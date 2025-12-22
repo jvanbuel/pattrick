@@ -37,7 +37,7 @@ strum_macros = "0.27.1"
 
 [build-dependencies]
 clap = { version = "4.5.53", features = ["derive"] }
-clap_complete = "4.5.61"
+clap_complete = "4.5.62"
 clap_complete_fig = "4.5.2"
 pattrick-clap = { version = "^0.3.6", path = "pattrick-clap" }
 
