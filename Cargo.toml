@@ -33,7 +33,7 @@ async-recursion = "1.1.1"
 log = "0.4.29"
 serde_json = "1.0.149"
 env_logger = "0.11.9"
-strum_macros = "0.27.1"
+strum_macros = "0.28.0"
 
 [build-dependencies]
 clap = { version = "4.5.58", features = ["derive"] }
