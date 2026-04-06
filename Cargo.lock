@@ -1700,7 +1700,7 @@ dependencies = [
  "owo-colors",
  "pattrick-clap",
  "petname",
- "reqwest 0.13.2",
+ "reqwest",
  "self_update",
  "serde",
  "serde_json",
@@ -2096,46 +2096,6 @@ checksum = "dc897dd8d9e8bd1ed8cdad82b5966c3e0ecae09fb1907d58efaa013543185d0a"
 
 [[package]]
 name = "reqwest"
-version = "0.12.28"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "eddd3ca559203180a307f12d114c268abf583f59b03cb906fd0b3ff8646c1147"
-dependencies = [
- "base64",
- "bytes",
- "futures-channel",
- "futures-core",
- "futures-util",
- "h2",
- "http",
- "http-body",
- "http-body-util",
- "hyper",
- "hyper-rustls",
- "hyper-tls",
- "hyper-util",
- "js-sys",
- "log",
- "native-tls",
- "percent-encoding",
- "pin-project-lite",
- "rustls-pki-types",
- "serde",
- "serde_json",
- "serde_urlencoded",
- "sync_wrapper",
- "tokio",
- "tokio-native-tls",
- "tower",
- "tower-http",
- "tower-service",
- "url",
- "wasm-bindgen",
- "wasm-bindgen-futures",
- "web-sys",
-]
-
-[[package]]
-name = "reqwest"
 version = "0.13.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ab3f43e3283ab1488b624b44b0e988d0acea0b3214e694730a055cb6b2efa801"
@@ -2143,6 +2103,7 @@ dependencies = [
  "base64",
  "bytes",
  "encoding_rs",
+ "futures-channel",
  "futures-core",
  "futures-util",
  "h2",
@@ -2364,9 +2325,9 @@ dependencies = [
 
 [[package]]
 name = "self_update"
-version = "0.43.1"
+version = "0.44.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6644febaa58f323b28f7321d04e24d0020d117c27619ab869d6abdf76be9aac6"
+checksum = "2e79722b5a505d4ddc77527455a97244e9e8c4c07533ff44cf4421cce7bb6d17"
 dependencies = [
  "either",
  "flate2",
@@ -2375,7 +2336,7 @@ dependencies = [
  "log",
  "quick-xml",
  "regex",
- "reqwest 0.12.28",
+ "reqwest",
  "self-replace",
  "semver",
  "serde",
@@ -2962,7 +2923,7 @@ dependencies = [
  "futures",
  "pin-project",
  "rand 0.10.0",
- "reqwest 0.13.2",
+ "reqwest",
  "serde",
  "serde_json",
  "time",
