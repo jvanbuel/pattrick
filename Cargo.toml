@@ -25,7 +25,7 @@ pattrick-clap = { version = "^0.3.6", path = "pattrick-clap" }
 openssl = { version = "^0.10.76", features = ["vendored"] }
 owo-colors = "4.3.0"
 base64 = "0.22.1"
-self_update = { version = "0.43.1", features = [
+self_update = { version = "0.44.0", features = [
   "archive-tar",
   "compression-flate2",
 ] }
