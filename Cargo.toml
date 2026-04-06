@@ -10,7 +10,7 @@ license = "MIT"
 
 [dependencies]
 clap = { version = "4.5.58", features = ["derive", "cargo"] }
-tokio = { version = "^1.50.0", features = ["macros", "rt-multi-thread"] }
+tokio = { version = "^1.51.0", features = ["macros", "rt-multi-thread"] }
 azure_core = "^0.33"
 azure_identity = "^0.33"
 url = "2.5.8"
