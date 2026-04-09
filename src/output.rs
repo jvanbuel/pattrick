@@ -5,6 +5,7 @@ use std::{
 };
 
 use netrc::Netrc;
+use pattrick_clap::Format;
 use tabled::{
     settings::{location::ByColumnName, Remove, Style},
     Table,
@@ -12,14 +13,51 @@ use tabled::{
 
 use pattrick::PatToken;
 
+pub fn print_tokens(pat_tokens: Vec<PatToken>, format: Format, print_token: bool) {
+    match format {
+        Format::Table => print_as_table(pat_tokens, print_token),
+        Format::Json => print_as_json(&pat_tokens, print_token),
+        Format::Token => print_as_token(&pat_tokens),
+    }
+}
+
+pub fn print_as_token(pat_tokens: &[PatToken]) {
+    for t in pat_tokens {
+        if let Some(token) = &t.token {
+            println!("{token}");
+        }
+    }
+}
+
 pub fn print_as_table(pat_tokens: Vec<PatToken>, print_token: bool) {
     let mut table = Table::new(pat_tokens);
     table.with(Style::modern());
-    table.with(Remove::column(ByColumnName::new("id")));
     if !print_token {
         table.with(Remove::column(ByColumnName::new("token")));
     }
     println!("{:#^10}", table.to_string());
+}
+
+pub fn print_as_json(pat_tokens: &[PatToken], print_token: bool) {
+    // Re-serialize per token so we can strip the `token` field when it
+    // shouldn't be disclosed (list/get never have it populated anyway,
+    // but be defensive).
+    let values: Vec<serde_json::Value> = pat_tokens
+        .iter()
+        .map(|t| {
+            let mut v = serde_json::to_value(t).expect("PatToken is serializable");
+            if !print_token {
+                if let Some(obj) = v.as_object_mut() {
+                    obj.remove("token");
+                }
+            }
+            v
+        })
+        .collect();
+    println!(
+        "{}",
+        serde_json::to_string_pretty(&values).expect("serializable")
+    );
 }
 
 pub fn write_to_dotenv(pat_token: PatToken) -> Result<(), Box<dyn Error>> {
