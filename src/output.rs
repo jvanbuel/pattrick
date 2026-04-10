@@ -13,10 +13,10 @@ use tabled::{
 
 use pattrick::PatToken;
 
-pub fn print_tokens(pat_tokens: Vec<PatToken>, format: Format, print_token: bool) {
+pub fn print_tokens(pat_tokens: Vec<PatToken>, format: Format) {
     match format {
-        Format::Table => print_as_table(pat_tokens, print_token),
-        Format::Json => print_as_json(&pat_tokens, print_token),
+        Format::Table => print_as_table(pat_tokens),
+        Format::Json => print_as_json(&pat_tokens),
         Format::Token => print_as_token(&pat_tokens),
     }
 }
@@ -29,24 +29,23 @@ pub fn print_as_token(pat_tokens: &[PatToken]) {
     }
 }
 
-pub fn print_as_table(pat_tokens: Vec<PatToken>, print_token: bool) {
+pub fn print_as_table(pat_tokens: Vec<PatToken>) {
+    let has_token = pat_tokens.iter().any(|t| t.token.is_some());
     let mut table = Table::new(pat_tokens);
     table.with(Style::modern());
-    if !print_token {
+    if !has_token {
         table.with(Remove::column(ByColumnName::new("token")));
     }
     println!("{:#^10}", table.to_string());
 }
 
-pub fn print_as_json(pat_tokens: &[PatToken], print_token: bool) {
-    // Re-serialize per token so we can strip the `token` field when it
-    // shouldn't be disclosed (list/get never have it populated anyway,
-    // but be defensive).
+pub fn print_as_json(pat_tokens: &[PatToken]) {
+    let has_token = pat_tokens.iter().any(|t| t.token.is_some());
     let values: Vec<serde_json::Value> = pat_tokens
         .iter()
         .map(|t| {
             let mut v = serde_json::to_value(t).expect("PatToken is serializable");
-            if !print_token {
+            if !has_token {
                 if let Some(obj) = v.as_object_mut() {
                     obj.remove("token");
                 }

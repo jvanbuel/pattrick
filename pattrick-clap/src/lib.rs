@@ -61,6 +61,12 @@ pub struct CreateOpts {
         help = "Stdout render format (ignored when --out is dot-env or dot-netrc)"
     )]
     pub format: Format,
+    #[arg(
+        long,
+        default_value_t = false,
+        help = "Make the token valid for all accessible organizations"
+    )]
+    pub all_orgs: bool,
 }
 
 #[derive(Parser)]
