@@ -45,8 +45,28 @@ pub struct CreateOpts {
         help = "Scope of the token"
     )]
     pub scope: Vec<Scope>,
-    #[arg(short, long, value_enum, default_value_t = Output::StdOut, help = "Output format of the token: print to stdout, write to dotenv or netrc")]
+    #[arg(
+        short,
+        long,
+        value_enum,
+        default_value_t = Output::StdOut,
+        help = "Where to write the token: stdout, a .env file (dot-env), or ~/.netrc (dot-netrc)"
+    )]
     pub out: Output,
+    #[arg(
+        short,
+        long,
+        value_enum,
+        default_value_t = Format::Table,
+        help = "Stdout render format (ignored when --out is dot-env or dot-netrc)"
+    )]
+    pub format: Format,
+    #[arg(
+        long,
+        default_value_t = false,
+        help = "Make the token valid for all accessible organizations"
+    )]
+    pub all_orgs: bool,
 }
 
 #[derive(Parser)]
@@ -59,6 +79,14 @@ pub struct ListOpts {
         help = "Show all tokens, including expired ones"
     )]
     pub all: bool,
+    #[arg(
+        short,
+        long,
+        value_enum,
+        default_value_t = Format::Table,
+        help = "Stdout render format"
+    )]
+    pub format: Format,
 }
 
 #[derive(Parser)]
@@ -80,8 +108,14 @@ pub struct DeleteOpts {
 #[derive(Parser)]
 pub struct GetOpts {
     pub id: String,
-    #[arg(short, long, value_enum, default_value_t = Output::StdOut)]
-    pub out: Output,
+    #[arg(
+        short,
+        long,
+        value_enum,
+        default_value_t = Format::Table,
+        help = "Stdout render format"
+    )]
+    pub format: Format,
 }
 
 #[derive(ValueEnum, Clone)]
@@ -89,6 +123,16 @@ pub enum Output {
     StdOut,
     DotNetrc,
     DotEnv,
+}
+
+#[derive(ValueEnum, Clone, Copy, Debug, PartialEq, Eq)]
+pub enum Format {
+    /// Pretty table (default)
+    Table,
+    /// JSON array
+    Json,
+    /// Raw token value only, nothing else (create only; empty for list/get)
+    Token,
 }
 
 #[derive(ValueEnum, Clone, Debug, Default, PartialEq, Eq, Display)]

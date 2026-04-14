@@ -1,6 +1,6 @@
 use chrono::{Duration, Utc};
 use clap::{Parser, crate_version};
-use output::{print_as_table, write_to_dotenv, write_to_netrc};
+use output::{print_tokens, write_to_dotenv, write_to_netrc};
 use pattrick::{
     DisplayFilterOption, PatTokenDeleteRequest, PatTokenGetRequest, PatTokenListRequest,
 };
@@ -28,7 +28,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     match &cli.command {
         Some(args::Commands::Create(create_opts)) => {
             let create_request = PatTokenCreateRequest {
-                all_orgs: true,
+                all_orgs: create_opts.all_orgs,
                 display_name: create_opts
                     .name
                     .clone()
@@ -42,7 +42,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
             match create_opts.out {
                 args::Output::StdOut => {
-                    print_as_table(vec![pat_token], true);
+                    print_tokens(vec![pat_token], create_opts.format);
                 }
                 args::Output::DotEnv => {
                     write_to_dotenv(pat_token)?;
@@ -64,14 +64,14 @@ async fn main() -> Result<(), Box<dyn Error>> {
             log::info!("Listing PAT tokens with request: {:?}", list_request);
             let pat_tokens = token_manager.list_pat_tokens(list_request).await?;
 
-            print_as_table(pat_tokens, false);
+            print_tokens(pat_tokens, list_opts.format);
         }
         Some(args::Commands::Get(get_opts)) => {
             let get_request = PatTokenGetRequest {
                 authorization_id: get_opts.id.clone(),
             };
             let pat_token = token_manager.get_pat_token(get_request).await?;
-            print_as_table(vec![pat_token], false);
+            print_tokens(vec![pat_token], get_opts.format);
         }
         Some(args::Commands::Delete(delete_opts)) => {
             if delete_opts.id.is_empty() && delete_opts.name.is_empty() {
