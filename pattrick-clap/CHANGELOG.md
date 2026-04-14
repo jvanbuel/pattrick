@@ -5,6 +5,122 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.7 (2026-04-14)
+
+### Other
+
+ - <csr-id-9920cd34312e8f6700e4133edf4a79e701462bae/> bump strum_macros from 0.27.2 to 0.28.0
+   Bumps [strum_macros](https://github.com/Peternator7/strum) from 0.27.2 to 0.28.0.
+   - [Release notes](https://github.com/Peternator7/strum/releases)
+   - [Changelog](https://github.com/Peternator7/strum/blob/master/CHANGELOG.md)
+   - [Commits](https://github.com/Peternator7/strum/compare/v0.27.2...v0.28.0)
+   
+   ---
+   updated-dependencies:
+   - dependency-name: strum_macros
+     dependency-version: 0.28.0
+     dependency-type: direct:production
+     update-type: version-update:semver-minor
+   ...
+ - <csr-id-cd0e14dcc00b7570b224fdc5845b47b8a364fa27/> bump clap from 4.5.57 to 4.5.58
+   Bumps [clap](https://github.com/clap-rs/clap) from 4.5.57 to 4.5.58.
+   - [Release notes](https://github.com/clap-rs/clap/releases)
+   - [Changelog](https://github.com/clap-rs/clap/blob/master/CHANGELOG.md)
+   - [Commits](https://github.com/clap-rs/clap/compare/clap_complete-v4.5.57...clap_complete-v4.5.58)
+   
+   ---
+   updated-dependencies:
+   - dependency-name: clap
+     dependency-version: 4.5.58
+     dependency-type: direct:production
+     update-type: version-update:semver-patch
+   ...
+ - <csr-id-0baeabd866f88c15415cf8a42f240e53bf0be7f1/> bump clap from 4.5.56 to 4.5.57
+   Bumps [clap](https://github.com/clap-rs/clap) from 4.5.56 to 4.5.57.
+   - [Release notes](https://github.com/clap-rs/clap/releases)
+   - [Changelog](https://github.com/clap-rs/clap/blob/master/CHANGELOG.md)
+   - [Commits](https://github.com/clap-rs/clap/compare/clap_complete-v4.5.56...clap_complete-v4.5.57)
+   
+   ---
+   updated-dependencies:
+   - dependency-name: clap
+     dependency-version: 4.5.57
+     dependency-type: direct:production
+     update-type: version-update:semver-patch
+   ...
+ - <csr-id-2e8758571e1ca33d7dc96a2a663537a0cc50601b/> bump clap from 4.5.54 to 4.5.56
+   Bumps [clap](https://github.com/clap-rs/clap) from 4.5.54 to 4.5.56.
+   - [Release notes](https://github.com/clap-rs/clap/releases)
+   - [Changelog](https://github.com/clap-rs/clap/blob/master/CHANGELOG.md)
+   - [Commits](https://github.com/clap-rs/clap/compare/clap_complete-v4.5.54...clap_complete-v4.5.56)
+   
+   ---
+   updated-dependencies:
+   - dependency-name: clap
+     dependency-version: 4.5.56
+     dependency-type: direct:production
+     update-type: version-update:semver-patch
+   ...
+ - <csr-id-2897e0375a5142dbef17c907609b699bccbbb09a/> bump clap from 4.5.53 to 4.5.54
+   Bumps [clap](https://github.com/clap-rs/clap) from 4.5.53 to 4.5.54.
+   - [Release notes](https://github.com/clap-rs/clap/releases)
+   - [Changelog](https://github.com/clap-rs/clap/blob/master/CHANGELOG.md)
+   - [Commits](https://github.com/clap-rs/clap/compare/clap_complete-v4.5.53...clap_complete-v4.5.54)
+   
+   ---
+   updated-dependencies:
+   - dependency-name: clap
+     dependency-version: 4.5.54
+     dependency-type: direct:production
+     update-type: version-update:semver-patch
+   ...
+ - <csr-id-2b85747fb3a87a990dcd39bdf7c9f00d2f5d790a/> bump clap from 4.5.52 to 4.5.53
+   Bumps [clap](https://github.com/clap-rs/clap) from 4.5.52 to 4.5.53.
+   - [Release notes](https://github.com/clap-rs/clap/releases)
+   - [Changelog](https://github.com/clap-rs/clap/blob/master/CHANGELOG.md)
+   - [Commits](https://github.com/clap-rs/clap/compare/clap_complete-v4.5.52...clap_complete-v4.5.53)
+   
+   ---
+   updated-dependencies:
+   - dependency-name: clap
+     dependency-version: 4.5.53
+     dependency-type: direct:production
+     update-type: version-update:semver-patch
+   ...
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 16 commits contributed to the release.
+ - 6 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Adjusting changelogs prior to release of pattrick-clap v0.3.7, pattrick v0.5.0 ([`c9fcf77`](https://github.com/jvanbuel/pattrick/commit/c9fcf7758cac99156247c83481fbf6120340940f))
+    - Merge pull request #459 from RobbertDM/main ([`af13929`](https://github.com/jvanbuel/pattrick/commit/af13929bdc5978fc9b2a2fc96045538eaaf2a374))
+    - Always print token if available ([`4b28526`](https://github.com/jvanbuel/pattrick/commit/4b2852656ee3d8ac989f9369fc3fc37e743a4c17))
+    - Introduce json and token output formats ([`0996dfc`](https://github.com/jvanbuel/pattrick/commit/0996dfc204de33512ffa9948ce96087e0abf352c))
+    - Merge pull request #445 from jvanbuel/dependabot/cargo/strum_macros-0.28.0 ([`c915490`](https://github.com/jvanbuel/pattrick/commit/c915490e824d4c97f0c98edfaf241a82cc3161a2))
+    - Bump strum_macros from 0.27.2 to 0.28.0 ([`9920cd3`](https://github.com/jvanbuel/pattrick/commit/9920cd34312e8f6700e4133edf4a79e701462bae))
+    - Merge pull request #441 from jvanbuel/dependabot/cargo/clap-4.5.58 ([`2a5282f`](https://github.com/jvanbuel/pattrick/commit/2a5282f26dc142fa57301aa72557033c0f8492b0))
+    - Bump clap from 4.5.57 to 4.5.58 ([`cd0e14d`](https://github.com/jvanbuel/pattrick/commit/cd0e14dcc00b7570b224fdc5845b47b8a364fa27))
+    - Merge pull request #439 from jvanbuel/dependabot/cargo/clap-4.5.57 ([`536623c`](https://github.com/jvanbuel/pattrick/commit/536623ca864acc0848bb803ecd920ab61bf50fea))
+    - Bump clap from 4.5.56 to 4.5.57 ([`0baeabd`](https://github.com/jvanbuel/pattrick/commit/0baeabd866f88c15415cf8a42f240e53bf0be7f1))
+    - Merge pull request #435 from jvanbuel/dependabot/cargo/clap-4.5.56 ([`263fb0f`](https://github.com/jvanbuel/pattrick/commit/263fb0fa6bae45412887d42df1015b3bb60377b2))
+    - Bump clap from 4.5.54 to 4.5.56 ([`2e87585`](https://github.com/jvanbuel/pattrick/commit/2e8758571e1ca33d7dc96a2a663537a0cc50601b))
+    - Merge pull request #428 from jvanbuel/dependabot/cargo/clap-4.5.54 ([`46b733c`](https://github.com/jvanbuel/pattrick/commit/46b733c56b77b37df2ad82ec4043b5ae1a4dfb94))
+    - Bump clap from 4.5.53 to 4.5.54 ([`2897e03`](https://github.com/jvanbuel/pattrick/commit/2897e0375a5142dbef17c907609b699bccbbb09a))
+    - Merge pull request #417 from jvanbuel/dependabot/cargo/clap-4.5.53 ([`db4aa42`](https://github.com/jvanbuel/pattrick/commit/db4aa42595f2058a2a405f74f30fdce808a8b329))
+    - Bump clap from 4.5.52 to 4.5.53 ([`2b85747`](https://github.com/jvanbuel/pattrick/commit/2b85747fb3a87a990dcd39bdf7c9f00d2f5d790a))
+</details>
+
 ## 0.3.6 (2025-11-20)
 
 ### New Features
@@ -15,7 +131,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 2 commits contributed to the release.
+ - 3 commits contributed to the release.
  - 1 day passed between releases.
  - 1 commit was understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
@@ -27,6 +143,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - Release pattrick-clap v0.3.6, pattrick v0.4.0 ([`f4e28a0`](https://github.com/jvanbuel/pattrick/commit/f4e28a02289864f6373c8bd411daa63cfff999c1))
     - Merge pull request #415 from jvanbuel/push-okznrklozsrw ([`5f323bb`](https://github.com/jvanbuel/pattrick/commit/5f323bb20a0896fee35ed06595314c941c1ff3ba))
     - Add new token scopes ([`530a4fe`](https://github.com/jvanbuel/pattrick/commit/530a4fe5410122a7d55207f1bf7d0cba53e66bfa))
 </details>
