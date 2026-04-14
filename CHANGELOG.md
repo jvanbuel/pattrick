@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.5.0 (2026-04-14)
+
+### New Features
+
+ - Introduce json and token output formats
+ - Always print token if available
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 3 commits contributed to the release over the course of 4 calendar days.
+ - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Merge pull request #459 from RobbertDM/main ([`af13929`](https://github.com/jvanbuel/pattrick/commit/af13929bdc5978fc9b2a2fc96045538eaaf2a374))
+    - Always print token if available ([`4b28526`](https://github.com/jvanbuel/pattrick/commit/4b2852656ee3d8ac989f9369fc3fc37e743a4c17))
+    - Introduce json and token output formats ([`0996dfc`](https://github.com/jvanbuel/pattrick/commit/0996dfc204de33512ffa9948ce96087e0abf352c))
+</details>
+
 ## 0.4.0 (2025-11-20)
 
 ### New Features
