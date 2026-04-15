@@ -1,4 +1,4 @@
-use crate::model::token::{scopes_from_string, scopes_to_string, PatToken};
+use crate::model::token::{PatToken, scopes_from_string, scopes_to_string};
 use chrono::{DateTime, Utc};
 use pattrick_clap::Scope;
 use serde::{Deserialize, Serialize};

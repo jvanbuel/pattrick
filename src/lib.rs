@@ -38,10 +38,10 @@ pub use model::{
     },
     token::PatToken,
 };
-use reqwest::header;
 use reqwest::Client;
 use reqwest::IntoUrl;
 use reqwest::Method;
+use reqwest::header;
 
 const API_VERSION: &str = "7.1-preview.1";
 
@@ -83,7 +83,10 @@ impl PatTokenManager {
     /// ```
     pub async fn new(ad_token: AzureADToken) -> Result<Self, Box<dyn Error>> {
         let organization = azure::get_organization(&ad_token).await?;
-        let pat_url = format!("https://vssps.dev.azure.com/{}/_apis/tokens/pats", organization);
+        let pat_url = format!(
+            "https://vssps.dev.azure.com/{}/_apis/tokens/pats",
+            organization
+        );
 
         Ok(Self {
             ad_token,
