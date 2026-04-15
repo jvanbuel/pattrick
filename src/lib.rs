@@ -105,34 +105,31 @@ impl PatTokenManager {
             .header("Accept", "application/json")
             .query(&[("api-version", API_VERSION)])
     }
-    /// Get the lastest released version of the Pattrick CLI from GitHub
-    ///
-    /// # Example
-    ///
-    /// ```rust,no_run
-    /// use pattrick::PatTokenManager;
-    /// use pattrick::azure::get_ad_token_for_devops;
-    ///
-    /// # tokio_test::block_on(async {
-    /// let pat_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?).await?;
-    ///
-    /// let latest_version = pat_manager.get_latest_version().await?;
-    ///
-    /// println!("Latest version: {}", latest_version);
-    /// # Ok::<(), Box<dyn std::error::Error>>(())});
-    pub async fn get_latest_version(self) -> Result<String, Box<dyn Error>> {
-        let response = self
-            .client
-            .request(
-                Method::GET,
-                "https://api.github.com/repos/jvanbuel/pattrick/releases",
-            )
-            .header(header::USER_AGENT, "Pattrick")
-            .header(header::HOST, "api.github.com")
-            .send()
-            .await?;
+}
 
-        let gh_response = response.json::<Vec<GitHubRelease>>().await?;
-        Ok(gh_response[0].tag_name.clone())
-    }
+/// Get the latest released version of the Pattrick CLI from GitHub.
+///
+/// Does not require Azure authentication — queries GitHub's public releases API.
+///
+/// # Example
+///
+/// ```rust,no_run
+/// # tokio_test::block_on(async {
+/// let latest_version = pattrick::get_latest_version().await?;
+/// println!("Latest version: {}", latest_version);
+/// # Ok::<(), Box<dyn std::error::Error>>(())});
+/// ```
+pub async fn get_latest_version() -> Result<String, Box<dyn Error>> {
+    let response = Client::new()
+        .request(
+            Method::GET,
+            "https://api.github.com/repos/jvanbuel/pattrick/releases",
+        )
+        .header(header::USER_AGENT, "Pattrick")
+        .header(header::HOST, "api.github.com")
+        .send()
+        .await?;
+
+    let gh_response = response.json::<Vec<GitHubRelease>>().await?;
+    Ok(gh_response[0].tag_name.clone())
 }
