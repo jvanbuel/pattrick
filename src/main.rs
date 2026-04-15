@@ -23,6 +23,34 @@ async fn main() -> Result<(), Box<dyn Error>> {
         println!("pattrick v{}", crate_version!());
         return Ok(());
     }
+
+    if matches!(cli.command, Some(args::Commands::Update)) {
+        log::info!("Checking for updates...");
+        let current_version = crate_version!();
+        let latest_version = pattrick::get_latest_version().await?;
+        if latest_version.contains(current_version) {
+            println!("You are running the latest version of pattrick (v{current_version})");
+            return Ok(());
+        }
+
+        log::info!("Found new version: {latest_version}. Updating...");
+        let status = tokio::task::spawn_blocking(|| {
+            self_update::backends::github::Update::configure()
+                .repo_owner("jvanbuel")
+                .repo_name("pattrick")
+                .bin_name("pattrick")
+                .show_download_progress(true)
+                .current_version(crate_version!())
+                .build()
+                .unwrap()
+                .update()
+        })
+        .await?;
+
+        println!("Status of update: {status:?}");
+        return Ok(());
+    }
+
     let token_manager = PatTokenManager::new(get_ad_token_for_devops(1).await?).await?;
 
     match &cli.command {
@@ -107,31 +135,6 @@ async fn main() -> Result<(), Box<dyn Error>> {
                 }
                 _ => println!("Error deleting token: {status}"),
             }
-        }
-        Some(args::Commands::Update) => {
-            log::info!("Checking for updates...");
-            let current_version = crate_version!();
-            let latest_version = &token_manager.get_latest_version().await?;
-            if latest_version.contains(current_version) {
-                println!("You are running the latest version of pattrick (v{current_version})");
-                return Ok(());
-            }
-
-            log::info!("Found new version: {latest_version}. Updating...");
-            let status = tokio::task::spawn_blocking(|| {
-                self_update::backends::github::Update::configure()
-                    .repo_owner("jvanbuel")
-                    .repo_name("pattrick")
-                    .bin_name("pattrick")
-                    .show_download_progress(true)
-                    .current_version(crate_version!())
-                    .build()
-                    .unwrap()
-                    .update()
-            })
-            .await?;
-
-            println!("Status of update: {status:?}");
         }
         _ => {}
     }

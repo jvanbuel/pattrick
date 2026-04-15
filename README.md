@@ -30,8 +30,15 @@ On Linux, you can install Pattrick by executing the following commands:
 ```bash
 curl -L https://github.com/jvanbuel/pattrick/releases/latest/download/pattrick-x86_64-unknown-linux-gnu.tar.gz | tar xvz
 chmod +x pattrick
-sudo mv pattrick /usr/local/bin/pattrick
+mv pattrick ~/.local/bin/pattrick
 ```
+
+Make sure `~/.local/bin` exists and is on your `PATH`. Installing to a user-owned
+location lets `pattrick update` replace the binary in place without `sudo`.
+
+If you'd prefer a system-wide install, move the binary to `/usr/local/bin`
+instead (`sudo mv pattrick /usr/local/bin/pattrick`). Note that you'll then need
+`sudo` to run `pattrick update`.
 
 ## Usage
 
