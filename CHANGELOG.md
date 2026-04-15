@@ -5,7 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.5.0 (2026-04-14)
+## 0.5.0 (2026-04-15)
+
+### Style
+
+ - <csr-id-75c2c8f0c5d9dcdc8f5127c25ec637bc82c628bc/> apply rustfmt and clippy --fix
+   Runs `cargo fmt` and `cargo clippy --fix` to clean up import
+   ordering and collapse a nested `if let`. No behavior changes.
+
+### Bug Fixes
+
+ - <csr-id-2eeb7dc0e110388bed57adeaa89556b418831d70/> skip Azure auth for pattrick update
+   The `update` command was blocked behind an unconditional call to
+   `get_ad_token_for_devops` at the top of `main`, so running
+   `sudo pattrick update` would fall back to an interactive `az login`
+   when root didn't have cached Azure CLI creds. The GitHub release
+   check also ran as a method on `PatTokenManager` despite only hitting
+   a public API.
+   
+   Handle `Update` before constructing `PatTokenManager`, and expose
+   `get_latest_version` as a free function that doesn't require auth.
+   Also tweak the README to recommend installing to `~/.local/bin` so
+   `pattrick update` can write to a user-owned path without sudo.
 
 ### New Features
 
@@ -16,8 +37,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 3 commits contributed to the release over the course of 4 calendar days.
- - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 4 commits contributed to the release.
+ - 1 day passed between releases.
+ - 2 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
 
 ### Commit Details
@@ -27,9 +49,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
-    - Merge pull request #459 from RobbertDM/main ([`af13929`](https://github.com/jvanbuel/pattrick/commit/af13929bdc5978fc9b2a2fc96045538eaaf2a374))
-    - Always print token if available ([`4b28526`](https://github.com/jvanbuel/pattrick/commit/4b2852656ee3d8ac989f9369fc3fc37e743a4c17))
-    - Introduce json and token output formats ([`0996dfc`](https://github.com/jvanbuel/pattrick/commit/0996dfc204de33512ffa9948ce96087e0abf352c))
+    - Merge pull request #467 from RobbertDM/fix/update-no-azure-auth ([`1be9eb0`](https://github.com/jvanbuel/pattrick/commit/1be9eb047d5c99bc190862afb04732ad0e68c65f))
+    - Merge pull request #466 from RobbertDM/style/fmt-clippy ([`c2b4989`](https://github.com/jvanbuel/pattrick/commit/c2b49892e06f129afc2260a4a2374045def9eff6))
+    - Skip Azure auth for pattrick update ([`2eeb7dc`](https://github.com/jvanbuel/pattrick/commit/2eeb7dc0e110388bed57adeaa89556b418831d70))
+    - Apply rustfmt and clippy --fix ([`75c2c8f`](https://github.com/jvanbuel/pattrick/commit/75c2c8f0c5d9dcdc8f5127c25ec637bc82c628bc))
 </details>
 
 ## 0.4.0 (2025-11-20)
