@@ -4,8 +4,8 @@ use crate::crud::error::DEVOPS_ERROR_MESSAGE;
 use reqwest::Method;
 
 use crate::{
-    DisplayFilterOption, PatToken, PatTokenGetRequest, PatTokenListRequest,
-    PatTokenManager, PatTokenResult,
+    DisplayFilterOption, PatToken, PatTokenGetRequest, PatTokenListRequest, PatTokenManager,
+    PatTokenResult,
 };
 
 impl PatTokenManager {
