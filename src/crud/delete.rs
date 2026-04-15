@@ -35,17 +35,14 @@ impl PatTokenManager {
 
         log::debug!("{:#?}", response);
         match response.error_for_status() {
-            Ok(response) => {
-                Ok(response.status())
-            }
+            Ok(response) => Ok(response.status()),
             Err(e) => {
                 log::debug!("Error: {:#?}", e);
                 if let Some(status) = e.status()
-                    && status.is_client_error() {
-                        return Err::<StatusCode, Box<dyn Error>>(
-                        DEVOPS_ERROR_MESSAGE.into(),
-                        );
-                    }
+                    && status.is_client_error()
+                {
+                    return Err::<StatusCode, Box<dyn Error>>(DEVOPS_ERROR_MESSAGE.into());
+                }
                 Err::<StatusCode, Box<dyn Error>>(Box::new(e))
             }
         }

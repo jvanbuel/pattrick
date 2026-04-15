@@ -1,6 +1,6 @@
 use chrono::{DateTime, Utc};
 use pattrick_clap::Scope;
-use serde::{de::IntoDeserializer, Deserialize, Deserializer, Serialize};
+use serde::{Deserialize, Deserializer, Serialize, de::IntoDeserializer};
 use tabled::Tabled;
 
 use crate::model::scope::ScopeDef;

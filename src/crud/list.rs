@@ -3,7 +3,8 @@ use std::error::Error;
 use reqwest::Method;
 
 use crate::{
-    ListTokenResponse, PatToken, PatTokenListRequest, PatTokenManager, crud::error::DEVOPS_ERROR_MESSAGE,
+    ListTokenResponse, PatToken, PatTokenListRequest, PatTokenManager,
+    crud::error::DEVOPS_ERROR_MESSAGE,
 };
 
 impl PatTokenManager {
@@ -56,20 +57,18 @@ impl PatTokenManager {
 
                     lt_result = response.json::<ListTokenResponse>().await?;
                     pat_tokens.append(&mut lt_result.pat_tokens);
-                    }
+                }
 
                 Ok(pat_tokens)
             }
             Err(e) => {
                 if let Some(status) = e.status()
-                    && status.is_client_error() {
-                        return Err::<Vec<PatToken>, Box<dyn Error>>(DEVOPS_ERROR_MESSAGE.into())
-                    }
+                    && status.is_client_error()
+                {
+                    return Err::<Vec<PatToken>, Box<dyn Error>>(DEVOPS_ERROR_MESSAGE.into());
+                }
                 Err::<Vec<PatToken>, Box<dyn Error>>(Box::new(e))
             }
         }
-
-
-
     }
 }

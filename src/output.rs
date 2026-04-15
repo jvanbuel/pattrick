@@ -7,8 +7,8 @@ use std::{
 use netrc::Netrc;
 use pattrick_clap::Format;
 use tabled::{
-    settings::{location::ByColumnName, Remove, Style},
     Table,
+    settings::{Remove, Style, location::ByColumnName},
 };
 
 use pattrick::PatToken;
@@ -45,10 +45,8 @@ pub fn print_as_json(pat_tokens: &[PatToken]) {
         .iter()
         .map(|t| {
             let mut v = serde_json::to_value(t).expect("PatToken is serializable");
-            if !has_token {
-                if let Some(obj) = v.as_object_mut() {
-                    obj.remove("token");
-                }
+            if !has_token && let Some(obj) = v.as_object_mut() {
+                obj.remove("token");
             }
             v
         })

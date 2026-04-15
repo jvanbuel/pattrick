@@ -3,7 +3,8 @@ use std::error::Error;
 use reqwest::Method;
 
 use crate::{
-    PatToken, PatTokenCreateRequest, PatTokenManager, PatTokenResult, crud::error::DEVOPS_ERROR_MESSAGE,
+    PatToken, PatTokenCreateRequest, PatTokenManager, PatTokenResult,
+    crud::error::DEVOPS_ERROR_MESSAGE,
 };
 
 impl PatTokenManager {
@@ -49,10 +50,12 @@ impl PatTokenManager {
             Err(e) => {
                 log::debug!("Error: {:#?}", e);
                 if let Some(status) = e.status()
-                    && status.is_client_error() {
-                        return Err::<PatToken, Box<dyn Error>>(DEVOPS_ERROR_MESSAGE.into())
-                    }
-                Err::<PatToken, Box<dyn Error>>(Box::new(e))}
+                    && status.is_client_error()
+                {
+                    return Err::<PatToken, Box<dyn Error>>(DEVOPS_ERROR_MESSAGE.into());
+                }
+                Err::<PatToken, Box<dyn Error>>(Box::new(e))
+            }
         }
     }
 }
