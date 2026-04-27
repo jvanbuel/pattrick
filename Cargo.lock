@@ -204,7 +204,28 @@ dependencies = [
  "tokio",
  "tracing",
  "typespec",
- "typespec_client_core",
+ "typespec_client_core 0.13.0",
+]
+
+[[package]]
+name = "azure_core"
+version = "0.35.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9966f75417a6779ea221531960d9d46fe630879606501aa5277312ad4ae38587"
+dependencies = [
+ "async-lock",
+ "async-trait",
+ "azure_core_macros",
+ "bytes",
+ "futures",
+ "pin-project",
+ "rustc_version",
+ "serde",
+ "serde_json",
+ "tokio",
+ "tracing",
+ "typespec",
+ "typespec_client_core 0.14.0",
 ]
 
 [[package]]
@@ -227,7 +248,7 @@ checksum = "be8392bbf0028c43df2f69422825721614f47e12fd601f9056df2c18d35c57e0"
 dependencies = [
  "async-lock",
  "async-trait",
- "azure_core",
+ "azure_core 0.34.0",
  "futures",
  "pin-project",
  "serde",
@@ -1700,7 +1721,7 @@ name = "pattrick"
 version = "0.6.0"
 dependencies = [
  "async-recursion",
- "azure_core",
+ "azure_core 0.35.0",
  "azure_identity",
  "base64",
  "chrono",
@@ -2912,6 +2933,31 @@ name = "typespec_client_core"
 version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "66166c78ee5b5a03b665a639899414a468f645f58dba3c8154b82d64847d227b"
+dependencies = [
+ "async-trait",
+ "base64",
+ "bytes",
+ "dyn-clone",
+ "futures",
+ "pin-project",
+ "rand 0.10.1",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "time",
+ "tokio",
+ "tracing",
+ "typespec",
+ "typespec_macros",
+ "url",
+ "uuid",
+]
+
+[[package]]
+name = "typespec_client_core"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4714a935f6aa74724775f07291390e8f07df0a1804544cd4106ac3b75c0478d2"
 dependencies = [
  "async-trait",
  "base64",
