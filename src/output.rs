@@ -57,12 +57,36 @@ pub fn print_as_json(pat_tokens: &[PatToken]) {
     );
 }
 
+const PATTRICK_MARKER: &str = "# pattrick-managed";
+
 pub fn write_to_dotenv(pat_token: PatToken) -> Result<(), Box<dyn Error>> {
-    std::fs::write(
-        ".env",
-        format!("{}={}\n", pat_token.display_name, pat_token.token.unwrap()),
-    )?;
-    println!("✅ Successfully created .env file!");
+    let new_line = format!(
+        "{}={} {}\n",
+        pat_token.display_name,
+        pat_token.token.unwrap(),
+        PATTRICK_MARKER,
+    );
+
+    match std::fs::read_to_string(".env") {
+        Ok(existing) => {
+            let mut kept: String = existing
+                .lines()
+                .filter(|line| !line.trim_end().ends_with(PATTRICK_MARKER))
+                .fold(String::new(), |mut acc, line| {
+                    acc.push_str(line);
+                    acc.push('\n');
+                    acc
+                });
+            kept.push_str(&new_line);
+            std::fs::write(".env", kept)?;
+            println!("✅ Successfully updated .env file!");
+        }
+        Err(e) if e.kind() == ErrorKind::NotFound => {
+            std::fs::write(".env", new_line)?;
+            println!("✅ Successfully created .env file!");
+        }
+        Err(e) => return Err(e.into()),
+    }
     Ok(())
 }
 
