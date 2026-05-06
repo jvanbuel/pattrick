@@ -5,7 +5,54 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.7.0 (2026-05-06)
+
+### Bug Fixes
+
+ - <csr-id-1acf70ab37c12379fb2c70b61fba52087c05d4fc/> skip Azure auth for pattrick update
+   The `update` command was blocked behind an unconditional call to
+   `get_ad_token_for_devops` at the top of `main`, so running
+   `sudo pattrick update` would fall back to an interactive `az login`
+   when root didn't have cached Azure CLI creds. The GitHub release
+   check also ran as a method on `PatTokenManager` despite only hitting
+   a public API.
+   
+   Handle `Update` before constructing `PatTokenManager`, and expose
+   `get_latest_version` as a free function that doesn't require auth.
+   Also tweak the README to recommend installing to `~/.local/bin` so
+   `pattrick update` can write to a user-owned path without sudo.
+
+### Style
+
+ - <csr-id-747d8b11469ed6c75c47d4b8903cf97fb75f8bda/> apply rustfmt and clippy --fix
+   Runs `cargo fmt` and `cargo clippy --fix` to clean up import
+   ordering and collapse a nested `if let`. No behavior changes.
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 4 commits contributed to the release over the course of 2 calendar days.
+ - 21 days passed between releases.
+ - 2 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Merge pull request #477 from RobbertDM/main ([`7beb695`](https://github.com/jvanbuel/pattrick/commit/7beb6959928af4392ff5a65d0633ffe44eaba14b))
+    - Skip Azure auth for pattrick update ([`1acf70a`](https://github.com/jvanbuel/pattrick/commit/1acf70ab37c12379fb2c70b61fba52087c05d4fc))
+    - Apply rustfmt and clippy --fix ([`747d8b1`](https://github.com/jvanbuel/pattrick/commit/747d8b11469ed6c75c47d4b8903cf97fb75f8bda))
+    - Updatable dotenv files ([`c2b6820`](https://github.com/jvanbuel/pattrick/commit/c2b68207e1f37c2e1b251fe1e2c2bb432af1d199))
+</details>
+
 ## 0.6.0 (2026-04-15)
+
+<csr-id-75c2c8f0c5d9dcdc8f5127c25ec637bc82c628bc/>
 
 ### Bug Fixes
 
